@@ -598,6 +598,55 @@ class HomeView extends GetView<HomeController> {
                   // Get.toNamed(AppRoutes.LEARN_FUN);
                 },
               ),
+              ListTile(
+                leading: Icon(
+                  Icons.music_note_sharp,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  "AIR's Mission",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.LEARN_FUN);
+                },
+              ),
+
+              ListTile(
+                leading: Icon(
+                  Icons.show_chart,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  "AIR's Show Case",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.LEARN_FUN);
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.wrap_text,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  "Let's Windup",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.LEARN_FUN);
+                },
+              ),
               Divider(color: Theme.of(context).dividerColor, height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(
