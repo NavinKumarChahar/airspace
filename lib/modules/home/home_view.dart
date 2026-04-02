@@ -762,6 +762,38 @@ class HomeView extends GetView<HomeController> {
               ),
               ListTile(
                 leading: Icon(
+                  Icons.data_object_rounded,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  "Being Recorded & Rewarded",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  Get.toNamed(AppRoutes.AIR_VISION);
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.lens_blur_rounded,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  "AIR at Training",
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  Get.toNamed(AppRoutes.AIR_VISION);
+                },
+              ),
+              ListTile(
+                leading: Icon(
                   Icons.visibility_outlined,
                   color: Theme.of(context).colorScheme.tertiary,
                 ),
