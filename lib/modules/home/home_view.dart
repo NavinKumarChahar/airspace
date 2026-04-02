@@ -519,6 +519,38 @@ class HomeView extends GetView<HomeController> {
                   // Get.toNamed(AppRoutes.LEARN_FUN);
                 },
               ),
+              ListTile(
+                leading: Icon(
+                  Icons.check_circle_outline_rounded,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  'Checked Space Anomalies',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.LEARN_FUN);
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.question_mark_outlined,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+                title: Text(
+                  'Un-Checked Space Anomalies',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
+                ),
+                onTap: () {
+                  Get.back();
+                  // Get.toNamed(AppRoutes.LEARN_FUN);
+                },
+              ),
               // ListTile(
               //   leading: Icon(
               //     Icons.question_answer,
