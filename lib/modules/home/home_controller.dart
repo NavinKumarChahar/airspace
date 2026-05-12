@@ -395,6 +395,21 @@ class HomeController extends GetxController {
           icon: Icons.handyman,
           route: AppRoutes.ease_tools,
         ),
+        DrawerItem(
+          title: "Vocabulary",
+          icon: Icons.wordpress,
+          route: AppRoutes.vocabulary,
+        ),
+        DrawerItem(
+          title: "Code & Conduct",
+          icon: Icons.code,
+          route: AppRoutes.code_conduct,
+        ),
+        DrawerItem(
+          title: "Script & Strategy",
+          icon: Icons.video_collection,
+          route: AppRoutes.script_strategy,
+        ),
       ],
     ),
     DrawerSection(

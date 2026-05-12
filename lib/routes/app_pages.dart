@@ -155,6 +155,15 @@ import '../modules/category_tree/category_tree_binding.dart';
 import '../modules/category_tree/category_tree_view.dart';
 import '../modules/ease_tools/ease_tools_binding.dart';
 import '../modules/ease_tools/ease_tools_view.dart';
+import '../modules/vocabulary/vocabulary_binding.dart';
+import '../modules/vocabulary/vocabulary_view.dart';
+import '../modules/code_conduct/code_conduct_binding.dart';
+import '../modules/code_conduct/code_conduct_view.dart';
+import '../modules/script_strategy/script_strategy_binding.dart';
+import '../modules/script_strategy/script_strategy_view.dart';
+import '../modules/vocabulary/vocabulary_view.dart';
+import '../modules/code_conduct/code_conduct_binding.dart';
+import '../modules/code_conduct/code_conduct_view.dart';
 
 class AppRoutes {
   static const LOGIN = '/login';
@@ -242,6 +251,9 @@ class AppRoutes {
   static const projects_assessments = '/projects-assessments';
   static const category_tree = '/category-tree';
   static const ease_tools = '/ease-tools';
+  static const vocabulary = '/vocabulary';
+  static const script_strategy = '/script-strategy';
+  static const code_conduct = '/code-conduct';
 }
 
 class AppPages {
@@ -689,6 +701,24 @@ class AppPages {
       name: AppRoutes.ease_tools,
       page: () => const EaseToolsView(),
       binding: EaseToolsBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.vocabulary,
+      page: () => const VocabularyView(),
+      binding: VocabularyBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.script_strategy,
+      page: () => const ScriptStrategyView(),
+      binding: ScriptStrategyBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.code_conduct,
+      page: () => const CodeConductView(),
+      binding: CodeConductBinding(),
       transition: Transition.rightToLeft,
     ),
   ];
