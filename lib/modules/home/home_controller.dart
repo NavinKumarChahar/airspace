@@ -526,6 +526,11 @@ class HomeController extends GetxController {
           icon: Icons.volunteer_activism,
           route: AppRoutes.serve,
         ),
+        DrawerItem(
+          title: "Relationships",
+          icon: Icons.group,
+          route: AppRoutes.RELATIONSHIPS,
+        ),
       ],
     ),
     DrawerSection(

@@ -45,6 +45,8 @@ import 'package:air_app/modules/serve/serve_binding.dart';
 import 'package:air_app/modules/serve/serve_view.dart';
 import 'package:air_app/modules/marketing_promotion/marketing_promotion_binding.dart';
 import 'package:air_app/modules/marketing_promotion/marketing_promotion_view.dart';
+import 'package:air_app/modules/relationships/relationships_binding.dart';
+import 'package:air_app/modules/relationships/relationships_view.dart';
 import 'package:air_app/modules/signup/signup_binding.dart';
 import 'package:air_app/modules/signup/signup_view.dart';
 import 'package:get/get.dart';
@@ -323,6 +325,7 @@ class AppRoutes {
   static const LIFE_HACKS = '/life-hacks';
   static const serve = '/serve';
   static const marketing_promotion = '/marketing-promotion';
+  static const RELATIONSHIPS = '/relationships';
 }
 
 class AppPages {
@@ -927,6 +930,12 @@ class AppPages {
       name: AppRoutes.marketing_promotion,
       page: () => const MarketingPromotionView(),
       binding: MarketingPromotionBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.RELATIONSHIPS,
+      page: () => const RelationshipsView(),
+      binding: RelationshipsBinding(),
       transition: Transition.rightToLeft,
     ),
   ];
