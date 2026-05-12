@@ -5,6 +5,10 @@ import 'package:air_app/modules/safety/safety_binding.dart';
 import 'package:air_app/modules/safety/safety_view.dart';
 import 'package:air_app/modules/utility_facilities/utility_facilities_binding.dart';
 import 'package:air_app/modules/utility_facilities/utility_facilities_view.dart';
+import 'package:air_app/modules/commerce/commerce_binding.dart';
+import 'package:air_app/modules/commerce/commerce_view.dart';
+import 'package:air_app/modules/social/social_binding.dart';
+import 'package:air_app/modules/social/social_view.dart';
 import 'package:air_app/modules/signup/signup_binding.dart';
 import 'package:air_app/modules/signup/signup_view.dart';
 import 'package:get/get.dart';
@@ -263,6 +267,8 @@ class AppRoutes {
   static const SAFETY = '/safety';
   static const HOSPITALITY_CARE = '/hospitality-care';
   static const UTILITY_FACILITIES = '/utility-facilities';
+  static const COMMERCE = '/commerce';
+  static const SOCIAL = '/social';
 }
 
 class AppPages {
@@ -747,6 +753,18 @@ class AppPages {
       name: AppRoutes.UTILITY_FACILITIES,
       page: () => const UtilityFacilitiesView(),
       binding: UtilityFacilitiesBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.COMMERCE,
+      page: () => const CommerceView(),
+      binding: CommerceBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoutes.SOCIAL,
+      page: () => const SocialView(),
+      binding: SocialBinding(),
       transition: Transition.rightToLeft,
     ),
   ];

@@ -425,6 +425,16 @@ class HomeController extends GetxController {
           icon: Icons.amp_stories_rounded,
           route: AppRoutes.UTILITY_FACILITIES,
         ),
+        DrawerItem(
+          title: "Commerce",
+          icon: Icons.cabin,
+          route: AppRoutes.COMMERCE,
+        ),
+        DrawerItem(
+          title: "Social",
+          icon: Icons.social_distance,
+          route: AppRoutes.SOCIAL,
+        ),
       ],
     ),
     DrawerSection(
