@@ -632,7 +632,7 @@ class HomeController extends GetxController {
           route: AppRoutes.CONTROL_COORDINATION,
         ),
         DrawerItem(
-          title: "The Present ,The Only One Way",
+          title: "The Present - The Only One Way",
           icon: Icons.currency_rupee,
           route: AppRoutes.ONLY_ONE_WAY,
         ),
