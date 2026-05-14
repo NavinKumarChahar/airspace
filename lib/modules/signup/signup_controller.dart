@@ -6,6 +6,7 @@ class SignupController extends GetxController {
   final isLoading = false.obs;
   final isObscure = true.obs;
 
+  final profileSpecificNameController = TextEditingController();
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -56,7 +57,8 @@ class SignupController extends GetxController {
   void setRole(String role) => selectedRole.value = role;
 
   void signup() async {
-    if (usernameController.text.isEmpty ||
+    if (profileSpecificNameController.text.isEmpty ||
+        usernameController.text.isEmpty ||
         emailController.text.isEmpty ||
         passwordController.text.isEmpty) {
       Get.snackbar(
@@ -85,6 +87,7 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
+    profileSpecificNameController.dispose();
     usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();

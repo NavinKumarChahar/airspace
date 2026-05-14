@@ -624,6 +624,15 @@ class SignupView extends GetView<SignupController> {
 
                   const SizedBox(height: 32),
                   TextField(
+                    controller: controller.profileSpecificNameController,
+                    decoration: _inputDecoration(
+                      'Profile Specific Name',
+                      Icons.badge_outlined,
+                      context,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
                     controller: controller.usernameController,
                     decoration: _inputDecoration(
                       'Username',
