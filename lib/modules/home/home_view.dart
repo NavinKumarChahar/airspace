@@ -63,11 +63,9 @@ class HomeView extends StatelessWidget {
 
     /// WAIT FOR UI REBUILD
     await Future.delayed(const Duration(milliseconds: 800));
-    GlobalKey? keyActual = controller.drawerSections
-        .firstWhere((s) => s.title == sectionTitle)
-        .items
-        .firstWhere((i) => i.route == routeTemp)
-        .key;
+    GlobalKey? keyActual = ((controller.drawerSections.firstWhere(
+      (s) => s.title == sectionTitle,
+    )).items.firstWhere((i) => i.route == routeTemp)).key;
 
     /// BUILD UNIQUE KEY
 
