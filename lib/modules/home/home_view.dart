@@ -191,6 +191,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
 
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
 
                           children: [
@@ -269,7 +270,11 @@ class _HomeViewState extends State<HomeView> {
                               // );
 
                               return Container(
-                                key: controller.itemKeys[item.route],
+                                key: (item.route == null)
+                                    ? GlobalKey(
+                                        debugLabel: "FilterItems_${item.title}",
+                                      )
+                                    : controller.itemKeys[item.route],
                                 child: buildDrawerItem(
                                   context: context,
 
