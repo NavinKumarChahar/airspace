@@ -454,7 +454,7 @@ class _HomeViewState extends State<HomeView> {
                                     child: GestureDetector(
                                       onTap: () {},
 
-                                      child: getFilterResultsUIComponent()),
+                                      child: getFilterResultsUIComponent(),
                                     ),
                                   ),
                                 ],
@@ -474,174 +474,119 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
- Widget getFilterResultsUIComponent() {
-                                        final results = getFilteredResults();
+  Widget getFilterResultsUIComponent() {
+    final results = getFilteredResults();
 
-                                        if (results.isEmpty) {
-                                          return const Center(
-                                            child: Text(
-                                              "No Results Found",
+    if (results.isEmpty) {
+      return const Center(
+        child: Text(
+          "No Results Found",
 
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                              ),
-                                            ),
-                                          );
-                                        }
+          style: TextStyle(color: Colors.white, fontSize: 15),
+        ),
+      );
+    }
 
-                                        final grouped =
-                                            <
-                                              String,
-                                              List<DrawerSearchResult>
-                                            >{};
+    final grouped = <String, List<DrawerSearchResult>>{};
 
-                                        for (var r in results) {
-                                          grouped.putIfAbsent(
-                                            r.sectionTitle,
-                                            () => [],
-                                          );
+    for (var r in results) {
+      grouped.putIfAbsent(r.sectionTitle, () => []);
 
-                                          grouped[r.sectionTitle]!.add(r);
-                                        }
+      grouped[r.sectionTitle]!.add(r);
+    }
 
-                                        return ListView(
-                                          padding: const EdgeInsets.fromLTRB(
-                                            14,
-                                            0,
-                                            14,
-                                            120,
-                                          ),
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(14, 0, 14, 120),
 
-                                          children: grouped.entries.map((
-                                            entry,
-                                          ) {
-                                            return Container(
-                                              margin: const EdgeInsets.only(
-                                                bottom: 18,
-                                              ),
+      children: grouped.entries.map((entry) {
+        return Container(
+          margin: const EdgeInsets.only(bottom: 18),
 
-                                              padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
 
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
 
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    Color(0xFF16222A),
+            gradient: const LinearGradient(
+              colors: [Color(0xFF16222A), Color(0xFF3A6073)],
+            ),
+          ),
 
-                                                    Color(0xFF3A6073),
-                                                  ],
-                                                ),
-                                              ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
 
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+            children: [
+              Text(
+                entry.key,
 
-                                                children: [
-                                                  Text(
-                                                    entry.key,
+                style: const TextStyle(
+                  color: Colors.white,
 
-                                                    style: const TextStyle(
-                                                      color: Colors.white,
+                  fontSize: 15,
 
-                                                      fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
 
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
+              const SizedBox(height: 14),
 
-                                                  const SizedBox(height: 14),
+              ...entry.value.map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
 
-                                                  ...entry.value.map((e) {
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                            bottom: 10,
-                                                          ),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(18),
 
-                                                      child: InkWell(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              18,
-                                                            ),
+                    onTap: () {
+                      scrollToItem(
+                        sectionTitle: e.sectionTitle,
+                        route: e.item.route,
+                      );
+                      controller.isDrawerSearchVisible.refresh();
+                    },
 
-                                                        onTap: () {
-                                                          scrollToItem(
-                                                            sectionTitle:
-                                                                e.sectionTitle,
-                                                            route: e.item.route,
-                                                          );
-                                                          controller
-                                                              .isDrawerSearchVisible
-                                                              .refresh();
-                                                        },
+                    child: Ink(
+                      padding: const EdgeInsets.all(14),
 
-                                                        child: Ink(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                14,
-                                                              ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(18),
 
-                                                          decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius.circular(
-                                                                  18,
-                                                                ),
+                        color: Colors.white.withOpacity(0.08),
+                      ),
 
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                  0.08,
-                                                                ),
-                                                          ),
+                      child: Row(
+                        children: [
+                          Icon(e.item.icon, color: Colors.white),
 
-                                                          child: Row(
-                                                            children: [
-                                                              Icon(
-                                                                e.item.icon,
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
+                          const SizedBox(width: 14),
 
-                                                              const SizedBox(
-                                                                width: 14,
-                                                              ),
+                          Expanded(
+                            child: Text(
+                              e.item.title,
 
-                                                              Expanded(
-                                                                child: Text(
-                                                                  e.item.title,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
 
-                                                                  style: const TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ),
-                                                              ),
+                          const Icon(
+                            Icons.arrow_forward_ios_rounded,
 
-                                                              const Icon(
-                                                                Icons
-                                                                    .arrow_forward_ios_rounded,
+                            color: Colors.white70,
 
-                                                                color: Colors
-                                                                    .white70,
-
-                                                                size: 14,
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }),
-                                                ],
-                                              ),
-                                            );
-                                          }).toList(),
-                                        );
-                                      }
+                            size: 14,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
 
   /// =========================================================
   /// DRAWER ITEM
