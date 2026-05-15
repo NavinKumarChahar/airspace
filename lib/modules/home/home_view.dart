@@ -25,23 +25,24 @@ class HomeView extends StatelessWidget {
 
     for (final section in controller.drawerSections) {
       for (final item in section.items) {
-        final combined = "${item.title} "
-            // "${item.route} "
-            // "${DrawerNavigationCopy.linkSubtitle(item.route, item.title)}"
-            .toLowerCase();
-
-        if (combined.contains(query)) {
-          controller.results.value.add(
-            DrawerSearchResult(
-              sectionTitle: section.title,
-              item: DrawerResultItem(
-                title: item.title,
-                icon: item.icon,
-                route: "${item.route}",
-              ),
-            ),
-          );
+        if (!item.title.contains(query)) {
+          break;
         }
+
+        controller.results.value.add(
+          DrawerResultSection(
+            title: section.title,
+            items: section.items
+                .map<DrawerResultItem>(
+                  (item) => DrawerResultItem(
+                    title: item.title,
+                    icon: item.icon,
+                    route: item.route,
+                  ),
+                )
+                .toList(),
+          ),
+        );
       }
     }
 
@@ -507,18 +508,18 @@ class HomeView extends StatelessWidget {
       );
     }
 
-    final grouped = <String, List<DrawerSearchResult>>{};
+    // final grouped = <String, List<DrawerSearchResult>>{};
 
-    for (var r in controller.results.value) {
-      grouped.putIfAbsent(r.sectionTitle, () => []);
+    // for (var r in controller.results.value) {
+    //   grouped.putIfAbsent(r.section, () => []);
 
-      grouped[r.sectionTitle]!.add(r);
-    }
+    //   grouped[r.section]!.add(r);
+    // }
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(14, 0, 14, 120),
 
-      children: grouped.entries.map((entry) {
+      children: controller.results.value.map((listItem) {
         return Container(
           margin: const EdgeInsets.only(bottom: 18),
 
@@ -537,7 +538,7 @@ class HomeView extends StatelessWidget {
 
             children: [
               Text(
-                entry.key,
+                listItem.title,
 
                 style: const TextStyle(
                   color: Colors.white,
@@ -550,9 +551,9 @@ class HomeView extends StatelessWidget {
 
               const SizedBox(height: 14),
 
-              ...entry.value.map((e) {
+              ...listItem.items.map((e) {
                 return Padding(
-                  key: e.item.key!,
+                  key: e.key!,
                   padding: const EdgeInsets.only(bottom: 10),
 
                   child: InkWell(
@@ -560,9 +561,9 @@ class HomeView extends StatelessWidget {
 
                     onTap: () {
                       scrollToItem(
-                        sectionTitle: e.sectionTitle,
-                        routeTemp: e.item.route,
-                        key: e.item.key!,
+                        sectionTitle: listItem.title,
+                        routeTemp: e.route,
+                        key: e.key!,
                       );
                       controller.isDrawerSearchVisible.refresh();
                     },
@@ -578,13 +579,13 @@ class HomeView extends StatelessWidget {
 
                       child: Row(
                         children: [
-                          Icon(e.item.icon, color: Colors.white),
+                          Icon(e.icon, color: Colors.white),
 
                           const SizedBox(width: 14),
 
                           Expanded(
                             child: Text(
-                              e.item.title,
+                              e.title,
 
                               style: const TextStyle(color: Colors.white),
                             ),

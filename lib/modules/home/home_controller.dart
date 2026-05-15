@@ -40,16 +40,15 @@ class DrawerActualSection {
   DrawerActualSection({required this.title, required this.items}) {}
 }
 
-class DrawerSearchResult {
-  final String sectionTitle;
-  final DrawerResultItem item;
-
-  DrawerSearchResult({required this.sectionTitle, required this.item}) {}
+class DrawerResultSection {
+  final String title;
+  final List<DrawerResultItem> items;
+  DrawerResultSection({required this.title, required this.items}) {}
 }
 
 class HomeController extends GetxController {
   var currentIndex = 0.obs;
-  RxList<DrawerSearchResult> results = <DrawerSearchResult>[].obs;
+  RxList<DrawerResultSection> results = <DrawerResultSection>[].obs;
 
   void changePage(int index) {
     currentIndex.value = index;
