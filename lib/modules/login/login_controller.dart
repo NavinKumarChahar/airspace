@@ -9,7 +9,7 @@ class LoginController extends GetxController {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  final selectedRole = 'Alifiyas'.obs; // Default role
+  Rx<String?> selectedRole = (null).obs; // Default role
   final roles = [
     'Alifiyas',
     'Mazeasta',
@@ -71,7 +71,10 @@ class LoginController extends GetxController {
     await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
 
-    AuthService.to.login(usernameController.text, selectedRole.value);
+    AuthService.to.login(
+      usernameController.text,
+      selectedRole.value ?? 'guest',
+    );
 
     Get.offAllNamed('/');
     Get.snackbar(
