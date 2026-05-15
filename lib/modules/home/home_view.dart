@@ -277,7 +277,6 @@ class HomeView extends StatelessWidget {
                               // );
 
                               return Container(
-                                key: controller.itemKeys[item.route],
                                 child: buildDrawerItem(
                                   context: context,
 
@@ -651,6 +650,7 @@ class HomeView extends StatelessWidget {
 
               children: [
                 Container(
+                  key: controller.itemKeys[item.route],
                   padding: const EdgeInsets.all(10),
 
                   decoration: const BoxDecoration(
