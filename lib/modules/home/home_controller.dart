@@ -34,7 +34,7 @@ class HomeController extends GetxController {
   final ScrollController drawerScrollController = ScrollController();
 
   /// SAFE KEYS
-  final Map<String, Key> itemKeys = {};
+  final Map<String, GlobalKey> itemKeys = {};
 
   @override
   void onInit() {
@@ -42,7 +42,9 @@ class HomeController extends GetxController {
 
     for (final section in drawerSections) {
       for (final item in section.items) {
-        itemKeys[item.route] = ValueKey(item.route);
+        itemKeys[item.route] = GlobalKey(
+          debugLabel: "${section.title}_${item.route}",
+        );
       }
     }
   }

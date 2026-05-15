@@ -14,8 +14,15 @@ class DrawerSearchResult {
   DrawerSearchResult({required this.sectionTitle, required this.item});
 }
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatefulWidget {
   HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  HomeController controller = Get.find<HomeController>();
 
   final List<Widget> pages = [EntitiesView(), UnionsView(), IdentityView()];
 
@@ -56,22 +63,22 @@ class HomeView extends GetView<HomeController> {
 
     await Future.delayed(const Duration(milliseconds: 400));
 
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   final GlobalKey? key = controller.itemKeys["${sectionTitle}_$route"];
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final GlobalKey? key = controller.itemKeys["${sectionTitle}_$route"];
 
-    //   if (key == null) return;
+      if (key == null) return;
 
-    //   final context = key.currentContext;
+      final context = key.currentContext;
 
-    //   if (context == null) return;
+      if (context == null) return;
 
-    //   await Scrollable.ensureVisible(
-    //     context,
-    //     duration: const Duration(milliseconds: 1000),
-    //     curve: Curves.easeInOutCubic,
-    //     alignment: 0.35,
-    //   );
-    // });
+      await Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 1000),
+        curve: Curves.easeInOutCubic,
+        alignment: 0.35,
+      );
+    });
   }
 
   @override
