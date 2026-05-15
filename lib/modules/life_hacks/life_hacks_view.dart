@@ -13,7 +13,14 @@ class LifeHacksView extends GetView<LifeHacksController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Life Hacks', style: TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold, color: onSurface)),
+        title: Text(
+          'Life Hacks',
+          style: TextStyle(
+            letterSpacing: 1.5,
+            fontWeight: FontWeight.bold,
+            color: onSurface,
+          ),
+        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: onSurface,
@@ -25,7 +32,9 @@ class LifeHacksView extends GetView<LifeHacksController> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: isDark ? [theme.scaffoldBackgroundColor, theme.colorScheme.surface] : [theme.colorScheme.surface, theme.scaffoldBackgroundColor],
+            colors: isDark
+                ? [theme.scaffoldBackgroundColor, theme.colorScheme.surface]
+                : [theme.colorScheme.surface, theme.scaffoldBackgroundColor],
           ),
         ),
         child: SafeArea(
@@ -34,7 +43,9 @@ class LifeHacksView extends GetView<LifeHacksController> {
             children: [
               _buildHeader(context, isDark, onSurface),
               const SizedBox(height: 20),
-              ..._sections.map((s) => _buildSection(context, s, isDark, onSurface)),
+              ..._sections.map(
+                (s) => _buildSection(context, s, isDark, onSurface),
+              ),
             ],
           ),
         ),
@@ -47,7 +58,10 @@ class LifeHacksView extends GetView<LifeHacksController> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.orange.withOpacity(0.15), Colors.amber.withOpacity(0.05)],
+          colors: [
+            Colors.orange.withOpacity(0.15),
+            Colors.amber.withOpacity(0.05),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -61,17 +75,37 @@ class LifeHacksView extends GetView<LifeHacksController> {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: Colors.orange.withOpacity(0.15), borderRadius: BorderRadius.circular(14)),
-                child: const Icon(Icons.heat_pump_rounded, color: Colors.orange, size: 28),
+                decoration: BoxDecoration(
+                  color: Colors.orange.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Icon(
+                  Icons.heat_pump_rounded,
+                  color: Colors.orange,
+                  size: 28,
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Life Hacks', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: onSurface)),
+                    Text(
+                      'Life Hacks',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: onSurface,
+                      ),
+                    ),
                     const SizedBox(height: 4),
-                    Text('Optimize your daily routine', style: TextStyle(fontSize: 13, color: onSurface.withOpacity(0.6))),
+                    Text(
+                      'Optimize your daily routine',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: onSurface.withOpacity(0.6),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -81,21 +115,36 @@ class LifeHacksView extends GetView<LifeHacksController> {
           Text(
             'Smart shortcuts, productivity tips, and everyday tricks to make '
             'your life easier. Work smarter, not harder.',
-            style: TextStyle(fontSize: 14, color: onSurface.withOpacity(0.75), height: 1.6),
+            style: TextStyle(
+              fontSize: 14,
+              color: onSurface.withOpacity(0.75),
+              height: 1.6,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSection(BuildContext context, _Section section, bool isDark, Color onSurface) {
+  Widget _buildSection(
+    BuildContext context,
+    _Section section,
+    bool isDark,
+    Color onSurface,
+  ) {
     final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
       decoration: BoxDecoration(
-        color: isDark ? theme.cardColor.withOpacity(0.35) : theme.colorScheme.surface,
+        color: isDark
+            ? theme.cardColor.withOpacity(0.35)
+            : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: isDark ? Colors.white.withOpacity(0.06) : theme.colorScheme.outline.withOpacity(0.12)),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withOpacity(0.06)
+              : theme.colorScheme.outline.withOpacity(0.12),
+        ),
       ),
       child: Theme(
         data: theme.copyWith(dividerColor: Colors.transparent),
@@ -104,11 +153,23 @@ class LifeHacksView extends GetView<LifeHacksController> {
           childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
           leading: Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(color: section.color.withOpacity(0.12), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+              color: section.color.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Icon(section.icon, color: section.color, size: 20),
           ),
-          title: Text(section.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: onSurface)),
-          children: section.points.map((p) => _buildPoint(p, onSurface, section.color)).toList(),
+          title: Text(
+            section.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: onSurface,
+            ),
+          ),
+          children: section.points
+              .map((p) => _buildPoint(p, onSurface, section.color))
+              .toList(),
         ),
       ),
     );
@@ -120,9 +181,23 @@ class LifeHacksView extends GetView<LifeHacksController> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(margin: const EdgeInsets.only(top: 6), width: 6, height: 6, decoration: BoxDecoration(color: accent, shape: BoxShape.circle)),
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            width: 6,
+            height: 6,
+            decoration: BoxDecoration(color: accent, shape: BoxShape.circle),
+          ),
           const SizedBox(width: 12),
-          Expanded(child: Text(point, style: TextStyle(fontSize: 14, color: onSurface.withOpacity(0.75), height: 1.5))),
+          Expanded(
+            child: Text(
+              point,
+              style: TextStyle(
+                fontSize: 14,
+                color: onSurface.withOpacity(0.75),
+                height: 1.5,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -134,7 +209,12 @@ class _Section {
   final IconData icon;
   final Color color;
   final List<String> points;
-  const _Section({required this.title, required this.icon, required this.color, required this.points});
+  const _Section({
+    required this.title,
+    required this.icon,
+    required this.color,
+    required this.points,
+  });
 }
 
 final List<_Section> _sections = [
@@ -142,12 +222,50 @@ final List<_Section> _sections = [
     title: 'Productivity',
     icon: Icons.timer,
     color: Colors.orange,
-    points: ['Time-blocking techniques.', 'Automating repetitive tasks.', 'Inbox zero strategies.'],
+    points: [
+      'Time-blocking techniques.',
+      'Automating repetitive tasks.',
+      'Inbox zero strategies.',
+    ],
   ),
   _Section(
     title: 'Well-being',
     icon: Icons.self_improvement,
     color: Colors.amber,
-    points: ['Ergonomic desk setups.', 'Quick 5-minute workouts.', 'Hydration trackers.'],
+    points: [
+      'Ergonomic desk setups.',
+      'Quick 5-minute workouts.',
+      'Hydration trackers.',
+    ],
+  ),
+  _Section(
+    title: 'Financial Tips',
+    icon: Icons.savings,
+    color: Colors.green,
+    points: [
+      'Budget optimization strategies.',
+      'Smart spending habits.',
+      'Investment basics.',
+    ],
+  ),
+  _Section(
+    title: 'Learning Shortcuts',
+    icon: Icons.school,
+    color: Colors.blue,
+    points: [
+      'Speed reading techniques.',
+      'Memory improvement methods.',
+      'Active learning strategies.',
+    ],
+  ),
+  _Section(
+    title: 'Daily Efficiency',
+    icon: Icons.trending_up,
+    color: Colors.teal,
+    points: [
+      'Morning routine optimization.',
+      'Decision-making frameworks.',
+      'Energy management.',
+    ],
   ),
 ];

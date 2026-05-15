@@ -13,7 +13,14 @@ class LoopHoleView extends GetView<LoopHoleController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Loop Hole', style: TextStyle(letterSpacing: 1.5, fontWeight: FontWeight.bold, color: onSurface)),
+        title: Text(
+          'Loop Hole',
+          style: TextStyle(
+            letterSpacing: 1.5,
+            fontWeight: FontWeight.bold,
+            color: onSurface,
+          ),
+        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: onSurface,
@@ -25,7 +32,9 @@ class LoopHoleView extends GetView<LoopHoleController> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: isDark ? [theme.scaffoldBackgroundColor, theme.colorScheme.surface] : [theme.colorScheme.surface, theme.scaffoldBackgroundColor],
+            colors: isDark
+                ? [theme.scaffoldBackgroundColor, theme.colorScheme.surface]
+                : [theme.colorScheme.surface, theme.scaffoldBackgroundColor],
           ),
         ),
         child: SafeArea(
@@ -34,7 +43,9 @@ class LoopHoleView extends GetView<LoopHoleController> {
             children: [
               _buildHeader(context, isDark, onSurface),
               const SizedBox(height: 20),
-              ..._sections.map((s) => _buildSection(context, s, isDark, onSurface)),
+              ..._sections.map(
+                (s) => _buildSection(context, s, isDark, onSurface),
+              ),
             ],
           ),
         ),
@@ -47,7 +58,10 @@ class LoopHoleView extends GetView<LoopHoleController> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.red.withOpacity(0.15), Colors.orange.withOpacity(0.05)],
+          colors: [
+            Colors.red.withOpacity(0.15),
+            Colors.orange.withOpacity(0.05),
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -61,7 +75,10 @@ class LoopHoleView extends GetView<LoopHoleController> {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: Colors.red.withOpacity(0.15), borderRadius: BorderRadius.circular(14)),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(14),
+                ),
                 child: const Icon(Icons.loop, color: Colors.red, size: 28),
               ),
               const SizedBox(width: 16),
@@ -69,9 +86,22 @@ class LoopHoleView extends GetView<LoopHoleController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Loop Hole', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: onSurface)),
+                    Text(
+                      'Loop Hole',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: onSurface,
+                      ),
+                    ),
                     const SizedBox(height: 4),
-                    Text('Identify and resolve vulnerabilities', style: TextStyle(fontSize: 13, color: onSurface.withOpacity(0.6))),
+                    Text(
+                      'Identify and resolve vulnerabilities',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: onSurface.withOpacity(0.6),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -81,21 +111,36 @@ class LoopHoleView extends GetView<LoopHoleController> {
           Text(
             'Explore identified system gaps, security vulnerabilities, and process loop holes. '
             'We proactively analyze risks and formulate mitigation strategies.',
-            style: TextStyle(fontSize: 14, color: onSurface.withOpacity(0.75), height: 1.6),
+            style: TextStyle(
+              fontSize: 14,
+              color: onSurface.withOpacity(0.75),
+              height: 1.6,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildSection(BuildContext context, _Section section, bool isDark, Color onSurface) {
+  Widget _buildSection(
+    BuildContext context,
+    _Section section,
+    bool isDark,
+    Color onSurface,
+  ) {
     final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
       decoration: BoxDecoration(
-        color: isDark ? theme.cardColor.withOpacity(0.35) : theme.colorScheme.surface,
+        color: isDark
+            ? theme.cardColor.withOpacity(0.35)
+            : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: isDark ? Colors.white.withOpacity(0.06) : theme.colorScheme.outline.withOpacity(0.12)),
+        border: Border.all(
+          color: isDark
+              ? Colors.white.withOpacity(0.06)
+              : theme.colorScheme.outline.withOpacity(0.12),
+        ),
       ),
       child: Theme(
         data: theme.copyWith(dividerColor: Colors.transparent),
@@ -104,11 +149,23 @@ class LoopHoleView extends GetView<LoopHoleController> {
           childrenPadding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
           leading: Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(color: section.color.withOpacity(0.12), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+              color: section.color.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Icon(section.icon, color: section.color, size: 20),
           ),
-          title: Text(section.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: onSurface)),
-          children: section.points.map((p) => _buildPoint(p, onSurface, section.color)).toList(),
+          title: Text(
+            section.title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: onSurface,
+            ),
+          ),
+          children: section.points
+              .map((p) => _buildPoint(p, onSurface, section.color))
+              .toList(),
         ),
       ),
     );
@@ -120,9 +177,23 @@ class LoopHoleView extends GetView<LoopHoleController> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(margin: const EdgeInsets.only(top: 6), width: 6, height: 6, decoration: BoxDecoration(color: accent, shape: BoxShape.circle)),
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            width: 6,
+            height: 6,
+            decoration: BoxDecoration(color: accent, shape: BoxShape.circle),
+          ),
           const SizedBox(width: 12),
-          Expanded(child: Text(point, style: TextStyle(fontSize: 14, color: onSurface.withOpacity(0.75), height: 1.5))),
+          Expanded(
+            child: Text(
+              point,
+              style: TextStyle(
+                fontSize: 14,
+                color: onSurface.withOpacity(0.75),
+                height: 1.5,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -134,7 +205,12 @@ class _Section {
   final IconData icon;
   final Color color;
   final List<String> points;
-  const _Section({required this.title, required this.icon, required this.color, required this.points});
+  const _Section({
+    required this.title,
+    required this.icon,
+    required this.color,
+    required this.points,
+  });
 }
 
 final List<_Section> _sections = [
@@ -142,12 +218,50 @@ final List<_Section> _sections = [
     title: 'Security Audits',
     icon: Icons.security,
     color: Colors.red,
-    points: ['Regular penetration testing.', 'Codebase vulnerability scanning.', 'Access control reviews.'],
+    points: [
+      'Regular penetration testing.',
+      'Codebase vulnerability scanning.',
+      'Access control reviews.',
+    ],
   ),
   _Section(
     title: 'Process Gaps',
     icon: Icons.account_tree_outlined,
     color: Colors.orange,
-    points: ['Identifying workflow bottlenecks.', 'Analyzing miscommunication channels.', 'Improving task handovers.'],
+    points: [
+      'Identifying workflow bottlenecks.',
+      'Analyzing miscommunication channels.',
+      'Improving task handovers.',
+    ],
+  ),
+  _Section(
+    title: 'Compliance & Standards',
+    icon: Icons.verified,
+    color: Colors.purple,
+    points: [
+      'Regulatory requirement alignment.',
+      'Industry standard compliance.',
+      'Certification maintenance.',
+    ],
+  ),
+  _Section(
+    title: 'Risk Mitigation',
+    icon: Icons.shield,
+    color: Colors.indigo,
+    points: [
+      'Proactive threat identification.',
+      'Incident response protocols.',
+      'Disaster recovery planning.',
+    ],
+  ),
+  _Section(
+    title: 'Continuous Improvement',
+    icon: Icons.refresh,
+    color: Colors.teal,
+    points: [
+      'Regular security updates.',
+      'Process optimization.',
+      'Best practices implementation.',
+    ],
   ),
 ];
