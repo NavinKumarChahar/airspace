@@ -41,8 +41,8 @@ class HomeView extends StatelessWidget {
       if (existingItemsPerSection.isNotEmpty) {
         controller.results.value = [
           ...controller.results.value,
-          DrawerSearchResult(
-            section: section.title,
+          DrawerResultSection(
+            title: section.title,
             items: existingItemsPerSection,
           ),
         ];
