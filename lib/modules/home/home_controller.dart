@@ -6,7 +6,7 @@ import '../../routes/app_pages.dart';
 class DrawerItem {
   final String title;
   final IconData icon;
-  String? route;
+  final String route;
 
   DrawerItem({required this.title, required this.icon, required this.route});
 }

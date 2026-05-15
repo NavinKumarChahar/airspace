@@ -34,7 +34,11 @@ class HomeView extends StatelessWidget {
           controller.results.value.add(
             DrawerSearchResult(
               sectionTitle: section.title,
-              item: DrawerItem(title: item.title, icon: item.icon, route: null),
+              item: DrawerItem(
+                title: item.title,
+                icon: item.icon,
+                route: item.route,
+              ),
             ),
           );
         }
@@ -46,7 +50,7 @@ class HomeView extends StatelessWidget {
 
   Future<void> scrollToItem({
     required String sectionTitle,
-    required String itemTitle,
+    required String routeTemp,
   }) async {
     /// CLOSE SEARCH OVERLAY
     controller.isDrawerSearchVisible.value = false;
@@ -56,7 +60,7 @@ class HomeView extends StatelessWidget {
     String? route = "";
     for (final section in controller.drawerSections) {
       for (final item in section.items) {
-        item.title == itemTitle ? route = item.route : null;
+        routeTemp.contains("Fixed") ? route = item.route : null;
       }
     }
 
@@ -266,7 +270,12 @@ class HomeView extends StatelessWidget {
                               // );
 
                               return Container(
-                                key: (controller.results.value.isNotEmpty)
+                                key:
+                                    (controller
+                                            .drawerSearchController
+                                            .text
+                                            .isEmpty ||
+                                        controller.results.value.isNotEmpty)
                                     ? GlobalKey(
                                         debugLabel:
                                             "FilterItems_${item.icon}_${item.title}",
@@ -557,7 +566,7 @@ class HomeView extends StatelessWidget {
                     onTap: () {
                       scrollToItem(
                         sectionTitle: e.sectionTitle,
-                        itemTitle: e.item.title,
+                        routeTemp: e.item.route,
                       );
                       controller.isDrawerSearchVisible.refresh();
                     },
