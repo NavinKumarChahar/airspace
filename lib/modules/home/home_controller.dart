@@ -149,7 +149,7 @@ class HomeController extends GetxController {
     "AIR'S VISION": 6420,
     "MOTIVATION & CONNECTIVITY": 7260,
     "SETUP A-ONE": 9260,
-    "SYSTEM CORE": 9385.2,
+    "SYSTEM CORE": 9280,
   };
 
   final List<DrawerActualSection> drawerSections = [
