@@ -14,99 +14,27 @@ class AdvantageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _bg,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 230,
-            backgroundColor: _bg,
-            foregroundColor: Colors.white,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [_bg, _ink, Color(0xFF064E3B)],
-                      ),
-                    ),
-                  ),
-                  CustomPaint(painter: _LeverPainter()),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 70, 20, 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: _gold,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Text(
-                            'LEVERAGE · POSITION · TIMING',
-                            style: TextStyle(
-                              color: _bg,
-                              fontSize: 10,
-                              letterSpacing: 2,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'ADVANTAGE',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 6,
-                          ),
-                        ),
-                        Text(
-                          'the quiet edge that compounds',
-                          style: TextStyle(
-                            color: _emerald,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                _meter(),
-                const SizedBox(height: 22),
-                _h('SIX STRATEGIC EDGES'),
-                const SizedBox(height: 10),
-                _edges(),
-                const SizedBox(height: 22),
-                _h('COMPOUNDING STEPS'),
-                const SizedBox(height: 10),
-                _steps(),
-                const SizedBox(height: 22),
-                _h('TRADE-OFFS'),
-                const SizedBox(height: 10),
-                _tradeoffs(),
-                const SizedBox(height: 24),
-                _split('ORIGINAL ADVANTAGE CONTENT'),
-              ]),
-            ),
+      body: ListView(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _meter(),
+              const SizedBox(height: 22),
+              _h('SIX STRATEGIC EDGES'),
+              const SizedBox(height: 10),
+              _edges(),
+              const SizedBox(height: 22),
+              _h('COMPOUNDING STEPS'),
+              const SizedBox(height: 10),
+              _steps(),
+              const SizedBox(height: 22),
+              _h('TRADE-OFFS'),
+              const SizedBox(height: 10),
+              _tradeoffs(),
+              const SizedBox(height: 24),
+              _split('ORIGINAL ADVANTAGE CONTENT'),
+            ],
           ),
         ],
       ),

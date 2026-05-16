@@ -15,36 +15,27 @@ class AirVisionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _bg,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 280,
-            backgroundColor: _bg,
-            foregroundColor: Colors.white,
-            flexibleSpace: FlexibleSpaceBar(background: _beacon()),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                _summary(),
-                const SizedBox(height: 22),
-                _h('SIX VISION PILLARS', _cyan),
-                const SizedBox(height: 10),
-                _pillars(),
-                const SizedBox(height: 22),
-                _h('FIVE-STAGE ROADMAP', _violet),
-                const SizedBox(height: 10),
-                _roadmap(),
-                const SizedBox(height: 22),
-                _h('MANIFESTO', _gold),
-                const SizedBox(height: 10),
-                _manifesto(),
-                const SizedBox(height: 22),
-                _split('ORIGINAL AIR VISION CONTENT'),
-              ]),
-            ),
+      body: ListView(
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _summary(),
+              const SizedBox(height: 22),
+              _h('SIX VISION PILLARS', _cyan),
+              const SizedBox(height: 10),
+              _pillars(),
+              const SizedBox(height: 22),
+              _h('FIVE-STAGE ROADMAP', _violet),
+              const SizedBox(height: 10),
+              _roadmap(),
+              const SizedBox(height: 22),
+              _h('MANIFESTO', _gold),
+              const SizedBox(height: 10),
+              _manifesto(),
+              const SizedBox(height: 22),
+              _split('ORIGINAL AIR VISION CONTENT'),
+            ],
           ),
         ],
       ),

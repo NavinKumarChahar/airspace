@@ -46,7 +46,7 @@ class HomeView extends StatelessWidget {
       alignment: 0.45,
     );
 
-    routeTemp = "${routeTemp}";
+    routeTemp = routeTemp;
 
     /// WAIT FOR UI REBUILD
     await Future.delayed(const Duration(milliseconds: 300));
@@ -141,7 +141,7 @@ class HomeView extends StatelessWidget {
                   itemCount: controller.drawerSections.length + 1,
 
                   itemBuilder: (context, index) {
-                    DrawerActualSection? itemSectionActual = null;
+                    DrawerActualSection? itemSectionActual;
                     if (index == (controller.drawerSections.length)) {
                     } else {
                       itemSectionActual = controller.drawerSections[index];
@@ -650,10 +650,8 @@ class HomeView extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
 
           onTap: () {
-            if (item.route != null) {
-              Get.toNamed(item.route!);
-            }
-          },
+            Get.toNamed(item.route);
+                    },
 
           child: Ink(
             padding: EdgeInsets.only(left: 14, top: 10, right: 14, bottom: 0),

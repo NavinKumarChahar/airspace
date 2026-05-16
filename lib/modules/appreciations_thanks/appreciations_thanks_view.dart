@@ -17,98 +17,89 @@ class AppreciationsThanksView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _cream,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 230,
-            backgroundColor: _amber,
-            foregroundColor: _coffee,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [_sun, _amber, Color(0xFFEA580C)],
+      body: ListView(
+        children: [
+          Stack(
+            fit: StackFit.expand,
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [_sun, _amber, Color(0xFFEA580C)],
+                  ),
+                ),
+              ),
+              CustomPaint(painter: _RaysPainter()),
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 30),
+                    Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            blurRadius: 16,
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.emoji_events,
+                        color: _amber,
+                        size: 36,
                       ),
                     ),
-                  ),
-                  CustomPaint(painter: _RaysPainter()),
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: 30),
-                        Container(
-                          width: 70,
-                          height: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.2),
-                                blurRadius: 16,
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.emoji_events,
-                            color: _amber,
-                            size: 36,
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        const Text(
-                          'APPRECIATIONS & THANKS',
-                          style: TextStyle(
-                            color: _coffee,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 3,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'a culture of acknowledgement',
-                          style: TextStyle(
-                            color: _coffee,
-                            fontSize: 12,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: 14),
+                    const Text(
+                      'APPRECIATIONS & THANKS',
+                      style: TextStyle(
+                        color: _coffee,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 3,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 4),
+                    const Text(
+                      'a culture of acknowledgement',
+                      style: TextStyle(
+                        color: _coffee,
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-          SliverPadding(
-            padding: const EdgeInsets.all(18),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                _todaysCard(),
-                const SizedBox(height: 22),
-                _h('GRATITUDE WALL'),
-                const SizedBox(height: 10),
-                _wall(),
-                const SizedBox(height: 22),
-                _h('SEVEN FORMS OF THANKS'),
-                const SizedBox(height: 10),
-                _forms(),
-                const SizedBox(height: 22),
-                _h('PAY IT FORWARD'),
-                const SizedBox(height: 10),
-                _ladder(),
-                const SizedBox(height: 22),
-                _split('ORIGINAL APPRECIATIONS CONTENT'),
-              ]),
-            ),
+
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _todaysCard(),
+              const SizedBox(height: 22),
+              _h('GRATITUDE WALL'),
+              const SizedBox(height: 10),
+              _wall(),
+              const SizedBox(height: 22),
+              _h('SEVEN FORMS OF THANKS'),
+              const SizedBox(height: 10),
+              _forms(),
+              const SizedBox(height: 22),
+              _h('PAY IT FORWARD'),
+              const SizedBox(height: 10),
+              _ladder(),
+              const SizedBox(height: 22),
+              _split('ORIGINAL APPRECIATIONS CONTENT'),
+            ],
           ),
         ],
       ),

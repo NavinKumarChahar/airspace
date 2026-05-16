@@ -15,36 +15,28 @@ class CodeConductView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _ivory,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 250,
-            backgroundColor: _navy,
-            foregroundColor: _ivory,
-            flexibleSpace: FlexibleSpaceBar(background: _seal()),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(18),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                _preamble(),
-                const SizedBox(height: 24),
-                _h('SEVEN PRINCIPLES'),
-                const SizedBox(height: 10),
-                _principles(),
-                const SizedBox(height: 24),
-                _h('DO & DO NOT'),
-                const SizedBox(height: 10),
-                _matrix(),
-                const SizedBox(height: 24),
-                _h('REPORTING & RECOURSE'),
-                const SizedBox(height: 10),
-                _reporting(),
-                const SizedBox(height: 24),
-                _split('ORIGINAL CODE OF CONDUCT'),
-              ]),
-            ),
+      body: ListView(
+        children: [
+          _seal(),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _preamble(),
+              const SizedBox(height: 24),
+              _h('SEVEN PRINCIPLES'),
+              const SizedBox(height: 10),
+              _principles(),
+              const SizedBox(height: 24),
+              _h('DO & DO NOT'),
+              const SizedBox(height: 10),
+              _matrix(),
+              const SizedBox(height: 24),
+              _h('REPORTING & RECOURSE'),
+              const SizedBox(height: 10),
+              _reporting(),
+              const SizedBox(height: 24),
+              _split('ORIGINAL CODE OF CONDUCT'),
+            ],
           ),
         ],
       ),

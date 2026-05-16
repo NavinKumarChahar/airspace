@@ -47,7 +47,7 @@ class DrawerActualSection {
 class DrawerResultSection {
   final String title;
   final List<DrawerResultItem> items;
-  DrawerResultSection({required this.title, required this.items}) {}
+  DrawerResultSection({required this.title, required this.items});
 }
 
 class HomeController extends GetxController {
@@ -85,7 +85,7 @@ class HomeController extends GetxController {
                     title: item.title,
                     icon: item.icon,
                     route: item.route,
-                    key: GlobalKey(debugLabel: "${item.route}"),
+                    key: GlobalKey(debugLabel: item.route),
                   ),
                 )
                 .toList(),
@@ -112,7 +112,7 @@ class HomeController extends GetxController {
               title: item.title,
               icon: item.icon,
               route: item.route,
-              key: GlobalKey(debugLabel: "${item.route}"),
+              key: GlobalKey(debugLabel: item.route),
             ),
           ];
         }

@@ -1310,18 +1310,22 @@ class _QuickConverterCardState extends State<_QuickConverterCard> {
     if (n < 0) return 'ऋण ${_toHindi(-n)}';
     if (n <= 99) return _ones[n];
     if (n < 200) return 'एक सौ ${n > 100 ? _ones[n - 100] : ''}'.trim();
-    if (n < 1000)
+    if (n < 1000) {
       return '${_ones[n ~/ 100]} सौ ${n % 100 > 0 ? _ones[n % 100] : ''}'
           .trim();
-    if (n < 100000)
+    }
+    if (n < 100000) {
       return '${_toHindi(n ~/ 1000)} हज़ार ${n % 1000 > 0 ? _toHindi(n % 1000) : ''}'
           .trim();
-    if (n < 10000000)
+    }
+    if (n < 10000000) {
       return '${_toHindi(n ~/ 100000)} लाख ${n % 100000 > 0 ? _toHindi(n % 100000) : ''}'
           .trim();
-    if (n < 1000000000)
+    }
+    if (n < 1000000000) {
       return '${_toHindi(n ~/ 10000000)} करोड़ ${n % 10000000 > 0 ? _toHindi(n % 10000000) : ''}'
           .trim();
+    }
     return '${_toHindi(n ~/ 1000000000)} अरब ${n % 1000000000 > 0 ? _toHindi(n % 1000000000) : ''}'
         .trim();
   }
@@ -1365,16 +1369,21 @@ class _QuickConverterCardState extends State<_QuickConverterCard> {
     if (n == 0) return 'Zero';
     if (n < 0) return 'Minus ${_toEnglish(-n)}';
     if (n < 20) return _engOnes[n];
-    if (n < 100)
+    if (n < 100) {
       return '${_engTens[n ~/ 10]}${n % 10 > 0 ? ' ${_engOnes[n % 10]}' : ''}';
-    if (n < 1000)
+    }
+    if (n < 1000) {
       return '${_engOnes[n ~/ 100]} Hundred${n % 100 > 0 ? ' ${_toEnglish(n % 100)}' : ''}';
-    if (n < 100000)
+    }
+    if (n < 100000) {
       return '${_toEnglish(n ~/ 1000)} Thousand${n % 1000 > 0 ? ' ${_toEnglish(n % 1000)}' : ''}';
-    if (n < 10000000)
+    }
+    if (n < 10000000) {
       return '${_toEnglish(n ~/ 100000)} Lakh${n % 100000 > 0 ? ' ${_toEnglish(n % 100000)}' : ''}';
-    if (n < 1000000000)
+    }
+    if (n < 1000000000) {
       return '${_toEnglish(n ~/ 10000000)} Crore${n % 10000000 > 0 ? ' ${_toEnglish(n % 10000000)}' : ''}';
+    }
     return '${_toEnglish(n ~/ 1000000000)} Arab${n % 1000000000 > 0 ? ' ${_toEnglish(n % 1000000000)}' : ''}';
   }
 

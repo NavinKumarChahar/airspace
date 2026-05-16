@@ -24,6 +24,8 @@ class SocialEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         slivers: [
           SliverAppBar(
             pinned: true,
