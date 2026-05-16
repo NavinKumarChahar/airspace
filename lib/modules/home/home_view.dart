@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
     routeTemp = "${routeTemp}";
 
     /// WAIT FOR UI REBUILD
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 300));
     GlobalKey? keyActualTab = ((controller.drawerSections.firstWhere(
       (s) => s.title == sectionTitle,
     )).items.firstWhere((i) => i.route == routeTemp)).key;
