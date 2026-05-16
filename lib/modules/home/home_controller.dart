@@ -69,7 +69,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    drawerSearchController.text = "Sign";
+
     for (final section in drawerSections) {
       section.indexSection = drawerSections.indexOf(section);
       for (final item in section.items) {
@@ -93,6 +93,42 @@ class HomeController extends GetxController {
         );
       }
     }
+    drawerSearchController.text = "Sign";
+    getFilteredResults();
+  }
+
+  void getFilteredResults() {
+    final query = drawerSearchText.value.trim().toLowerCase();
+    results.value = [];
+    if (query.isNotEmpty) {}
+
+    for (final section in drawerSections) {
+      List<DrawerResultItem> existingItemsPerSection = [];
+      for (final item in section.items) {
+        if ((item.title.toLowerCase().contains(query)) && query.isNotEmpty) {
+          existingItemsPerSection = [
+            ...existingItemsPerSection,
+            DrawerResultItem(
+              title: item.title,
+              icon: item.icon,
+              route: item.route,
+              key: GlobalKey(debugLabel: "${item.route}"),
+            ),
+          ];
+        }
+      }
+      if (existingItemsPerSection.isNotEmpty) {
+        results.value = [
+          ...results.value,
+          DrawerResultSection(
+            title: section.title,
+            items: existingItemsPerSection,
+          ),
+        ];
+      }
+    }
+
+    // return results;
   }
 
   /// =====================================================

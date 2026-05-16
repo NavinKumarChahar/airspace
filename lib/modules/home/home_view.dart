@@ -19,40 +19,6 @@ class HomeView extends StatelessWidget {
   /// FILTERED RESULTS
   /// =========================================================
 
-  void getFilteredResults() {
-    final query = controller.drawerSearchText.value.trim().toLowerCase();
-    controller.results.value = [];
-    if (query.isNotEmpty) {}
-
-    for (final section in controller.drawerSections) {
-      List<DrawerResultItem> existingItemsPerSection = [];
-      for (final item in section.items) {
-        if ((item.title.toLowerCase().contains(query)) && query.isNotEmpty) {
-          existingItemsPerSection = [
-            ...existingItemsPerSection,
-            DrawerResultItem(
-              title: item.title,
-              icon: item.icon,
-              route: item.route,
-              key: GlobalKey(debugLabel: "${item.route}"),
-            ),
-          ];
-        }
-      }
-      if (existingItemsPerSection.isNotEmpty) {
-        controller.results.value = [
-          ...controller.results.value,
-          DrawerResultSection(
-            title: section.title,
-            items: existingItemsPerSection,
-          ),
-        ];
-      }
-    }
-
-    // return results;
-  }
-
   Future<void> scrollToItem({
     required String sectionTitle,
     required String routeTemp,
@@ -553,7 +519,7 @@ class HomeView extends StatelessWidget {
   }
 
   Widget getFilterResultsUIComponent() {
-    getFilteredResults();
+    controller.getFilteredResults();
 
     if (controller.results.value.isEmpty) {
       return const Center(
