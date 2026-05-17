@@ -88,8 +88,6 @@ class HomeBestView extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: CustomScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
         slivers: [
           // SliverToBoxAdapter(child: HomeView()),
           // const SliverToBoxAdapter(child: SizedBox(height: 40)),
@@ -202,12 +200,12 @@ class HomeBestView extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-              child: _OriginalBanner(primary: _primary, secondary: _secondary),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: Padding(
+          //     padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+          //     child: _OriginalBanner(primary: _primary, secondary: _secondary),
+          //   ),
+          // ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
           // Original page content embedded below — nothing is lost
@@ -1169,7 +1167,7 @@ class _StatsBlock extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
-      childAspectRatio: 1.5,
+      childAspectRatio: 1.35,
       children: stats
           .map(
             (s) => Container(

@@ -131,13 +131,13 @@ class HomeView extends StatelessWidget {
             title: const Text('All-Space', style: TextStyle(letterSpacing: 3)),
 
             bottom: const TabBar(
-              labelPadding: EdgeInsets.all(8),
+              tabAlignment: TabAlignment.start,
               isScrollable: true,
               tabs: [
                 Tab(icon: Icon(Icons.category), text: 'ENTITIES'),
                 Tab(icon: Icon(Icons.account_tree), text: 'UNIONS'),
                 Tab(icon: Icon(Icons.fingerprint), text: 'IDENTITY'),
-                Tab(icon: Icon(Icons.category), text: 'Home UI & UX'),
+                Tab(icon: Icon(Icons.home), text: 'Home UI & UX'),
               ],
             ),
           ),
