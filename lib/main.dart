@@ -22,7 +22,7 @@ class AirApp extends StatelessWidget {
       theme: AppTheme.etherealLight,
       darkTheme: AppTheme.cosmicDark,
       themeMode: ThemeMode.system, // Defaults to system but managed by Settings
-      initialRoute: AppRoutes.SPLASH,
+      initialRoute: (kIsWeb) ? AppRoutes.WEB_HOME : AppRoutes.SPLASH,
       getPages: AppPages.pages,
       initialBinding: SplashBinding(),
       debugShowCheckedModeBanner: false,

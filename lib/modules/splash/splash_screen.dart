@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:air_app/routes/app_pages.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -47,7 +49,11 @@ class _SplashScreenState extends State<SplashScreen>
     _logoController.forward();
 
     Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.HOME);
+      if (kIsWeb) {
+        Get.offAllNamed(AppRoutes.WEB_HOME);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRoutes.HOME);
+      }
     });
   }
 
