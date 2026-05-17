@@ -1,383 +1,287 @@
-import 'package:air_app/modules/kindness/kindness_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
-/// Card Cascade design wrapper for Kindness module
-/// Features: Layered card system, cascade animations, compassionate aesthetics
-class KindnessBestView extends StatefulWidget {
+/// DESIGN: Radial/Circular Layout — circular rings of kindness acts with ripple effect
+class KindnessBestView extends StatelessWidget {
   const KindnessBestView({super.key});
 
-  @override
-  State<KindnessBestView> createState() => _KindnessBestViewState();
-}
-
-class _KindnessBestViewState extends State<KindnessBestView>
-    with TickerProviderStateMixin {
-  late AnimationController _cascadeController;
-
-  @override
-  void initState() {
-    super.initState();
-    _cascadeController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    )..forward();
-  }
-
-  @override
-  void dispose() {
-    _cascadeController.dispose();
-    super.dispose();
-  }
+  static const _rose = Color(0xFFF43F5E);
+  static const _pink = Color(0xFFEC4899);
+  static const _violet = Color(0xFF7C3AED);
+  static const _teal = Color(0xFF0D9488);
+  static const _amber = Color(0xFFF59E0B);
+  static const _green = Color(0xFF10B981);
+  static const _sky = Color(0xFF0EA5E9);
+  static const _bg = Color(0xFF08000A);
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    const heartColor = Color(0xffe84855);
-    const warmBg = Color(0xfffff5f5);
-
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xff2a2a2a) : warmBg,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 180,
-            backgroundColor: isDark ? const Color(0xff2a2a2a) : warmBg,
-            elevation: 0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: _CascadeHeader(isDark: isDark),
+      backgroundColor: _bg,
+      appBar: AppBar(
+        backgroundColor: _bg,
+        foregroundColor: Colors.white,
+        title: const Text(
+          'KINDNESS',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 4,
+            fontSize: 14,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 14),
+            child: Icon(
+              Icons.volunteer_activism_rounded,
+              color: _rose,
+              size: 22,
             ),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-              child: Column(
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
+        children: [
+          // RIPPLE RINGS HERO
+          SizedBox(
+            height: 220,
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  _CascadeCard(
-                    animation: _cascadeController,
-                    delay: 0.0,
-                    isDark: isDark,
-                    color: heartColor.withValues(alpha: 0.1),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: heartColor.withValues(alpha: 0.15),
-                              ),
-                              child: const Icon(
-                                Icons.favorite_rounded,
-                                color: heartColor,
-                                size: 20,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'The Gift of Kindness',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: isDark
-                                          ? Colors.white
-                                          : Colors.black87,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 2),
-                                  Text(
-                                    'Small acts, lasting impact',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: isDark
-                                          ? Colors.white60
-                                          : Colors.black54,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                  ...[180.0, 150.0, 120.0, 90.0, 60.0].asMap().entries.map(
+                    (e) => Container(
+                      width: e.value,
+                      height: e.value,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: _rose.withOpacity(0.06 + e.key * 0.04),
+                          width: 1.5,
                         ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Kindness is not just about what we do—it\'s about the intention and compassion we bring to every interaction.',
-                          style: TextStyle(
-                            fontSize: 14,
-                            height: 1.6,
-                            color: isDark ? Colors.white70 : Colors.black54,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  _CascadeCard(
-                    animation: _cascadeController,
-                    delay: 0.15,
-                    isDark: isDark,
-                    color: Colors.orange.withValues(alpha: 0.1),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Ways to Practice Kindness',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: isDark ? Colors.white : Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ...[
-                          (
-                            'Listen Deeply',
-                            'Give someone your full attention',
-                            Icons.hearing_rounded,
-                          ),
-                          (
-                            'Share Generously',
-                            'Give without expecting return',
-                            Icons.card_giftcard_rounded,
-                          ),
-                          (
-                            'Smile Often',
-                            'A smile can brighten someone\'s day',
-                            Icons.sentiment_satisfied_rounded,
-                          ),
-                          (
-                            'Help Without Asking',
-                            'Anticipate needs and act',
-                            Icons.volunteer_activism_rounded,
-                          ),
-                        ].map(
-                          (item) => Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: _KindnessAction(
-                              title: item.$1,
-                              description: item.$2,
-                              icon: item.$3,
-                              isDark: isDark,
-                            ),
-                          ),
-                        ),
-                      ],
+                  Container(
+                    width: 56,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [
+                          _rose.withOpacity(0.4),
+                          _rose.withOpacity(0.1),
+                        ],
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.volunteer_activism_rounded,
+                      color: Colors.white,
+                      size: 24,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  _CascadeCard(
-                    animation: _cascadeController,
-                    delay: 0.30,
-                    isDark: isDark,
-                    color: Colors.green.withValues(alpha: 0.1),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Kindness Ripple',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: isDark ? Colors.white : Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: isDark
-                                ? Colors.white.withValues(alpha: 0.05)
-                                : Colors.white.withValues(alpha: 0.5),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: heartColor.withValues(alpha: 0.2),
-                            ),
-                          ),
-                          child: Text(
-                            'One act of kindness creates a ripple effect. When you show kindness, others are inspired to do the same, creating a cascade of compassion.',
-                            style: TextStyle(
-                              fontSize: 13,
-                              height: 1.7,
-                              fontStyle: FontStyle.italic,
-                              color: isDark ? Colors.white70 : Colors.black54,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  // Labels on rings
+                  Positioned(
+                    top: 18,
+                    right: 20,
+                    child: _RingLabel('Global', _amber),
                   ),
-                  const SizedBox(height: 24),
+                  Positioned(
+                    top: 40,
+                    left: 14,
+                    child: _RingLabel('Community', _violet),
+                  ),
+                  Positioned(
+                    bottom: 36,
+                    right: 14,
+                    child: _RingLabel('Friends', _teal),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    left: 22,
+                    child: _RingLabel('Family', _sky),
+                  ),
+                  Positioned(
+                    top: 24,
+                    left: 60,
+                    child: _RingLabel('Self', _green),
+                  ),
                 ],
               ),
             ),
           ),
-          SliverToBoxAdapter(child: const KindnessEnhancedView()),
+          const SizedBox(height: 8),
+          Center(
+            child: Text(
+              'Kindness ripples outward from self to the world',
+              style: TextStyle(
+                color: _rose.withOpacity(0.7),
+                fontSize: 11,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          // KINDNESS DIMENSIONS
+          _SecHead('DIMENSIONS OF KINDNESS', _rose),
+          const SizedBox(height: 12),
+          _KindCard(
+            color: _rose,
+            icon: Icons.self_improvement_rounded,
+            title: 'Self-Compassion First',
+            body:
+                'You cannot give what you do not have. Self-kindness — treating yourself with the same compassion you extend to people you love — is not selfishness. It is the source from which sustainable kindness toward others is drawn. The most consistently kind people have a robust practice of self-compassion.',
+          ),
+          const SizedBox(height: 8),
+          _KindCard(
+            color: _pink,
+            icon: Icons.people_rounded,
+            title: 'Micro-Acts of Kindness',
+            body:
+                'Grand gestures are memorable but rare. Consistent micro-acts — a genuine compliment, a door held, an unsolicited offer of help, a message that acknowledges someone\'s difficulty — compose the majority of kindness experienced by the people around you. Log one per day.',
+          ),
+          const SizedBox(height: 8),
+          _KindCard(
+            color: _violet,
+            icon: Icons.hearing_rounded,
+            title: 'Listening as Kindness',
+            body:
+                'Full attention is one of the rarest and most valued gifts one person can give another. Being truly listened to — without interruption, without one-upmanship, without the listener composing their response — produces a physiological calming response. It is kindness in its most portable form.',
+          ),
+          const SizedBox(height: 8),
+          _KindCard(
+            color: _teal,
+            icon: Icons.public_rounded,
+            title: 'Structural Kindness',
+            body:
+                'Individual acts of kindness are valuable; structural kindness scales. Designing systems, organisations, and processes that are kind by default — that make the compassionate option the easy option — multiplies kindness beyond what any individual could achieve through personal acts alone.',
+          ),
+          const SizedBox(height: 8),
+          _KindCard(
+            color: _amber,
+            icon: Icons.memory_rounded,
+            title: 'Kindness Under Pressure',
+            body:
+                'Anyone can be kind when it costs nothing. The defining practice is kindness under pressure — when you are stressed, when the other person is difficult, when you have been wronged. This is not sainthood; it is a practised skill that gets easier with deliberate, logged repetition.',
+          ),
+          const SizedBox(height: 8),
+          _KindCard(
+            color: _green,
+            icon: Icons.trending_up_rounded,
+            title: 'The Kindness Compound',
+            body:
+                'Kindness compounds because it changes the environment. People treated kindly are more likely to treat others kindly — the longitudinal research is unambiguous. Every documented act of kindness is a small input into a positive feedback loop whose output is disproportionate to the initial investment.',
+          ),
+          const SizedBox(height: 20),
+          // KINDNESS STATS ROW
+          Row(
+            children: [
+              _StatBox('34', 'Acts Logged\nThis Month', _rose),
+              const SizedBox(width: 8),
+              _StatBox('7', 'Days\nStreak', _pink),
+              const SizedBox(width: 8),
+              _StatBox('94%', 'Self-Compassion\nScore', _violet),
+              const SizedBox(width: 8),
+              _StatBox('12', 'People\nImpacted', _teal),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [_rose.withOpacity(0.10), _violet.withOpacity(0.06)],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: _rose.withOpacity(0.2)),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.format_quote_rounded, color: _amber, size: 26),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Text(
+                    '"No act of kindness, no matter how small, is ever wasted." — Aesop',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      height: 1.4,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-class _CascadeHeader extends StatelessWidget {
-  final bool isDark;
-  const _CascadeHeader({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color(0xffe84855).withValues(alpha: 0.1),
-                Colors.orange.withValues(alpha: 0.08),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: const Color(0xffe84855).withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: const Color(0xffe84855).withValues(alpha: 0.3),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.favorite_rounded,
-                  color: Color(0xffe84855),
-                  size: 28,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Kindness'.toUpperCase(),
-                style: TextStyle(
-                  color: isDark ? Colors.white : Colors.black87,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Card Cascade Design',
-                style: TextStyle(
-                  color: isDark ? Colors.white60 : Colors.black54,
-                  fontSize: 12,
-                  letterSpacing: 1.5,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _CascadeCard extends StatelessWidget {
-  final Widget child;
-  final AnimationController animation;
-  final double delay;
-  final bool isDark;
+class _RingLabel extends StatelessWidget {
+  final String text;
   final Color color;
-  const _CascadeCard({
-    required this.child,
-    required this.animation,
-    required this.delay,
-    required this.isDark,
-    required this.color,
-  });
-
+  const _RingLabel(this.text, this.color);
   @override
-  Widget build(BuildContext context) {
-    final delayedAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: animation,
-        curve: Interval(delay, delay + 0.3, curve: Curves.easeOut),
-      ),
-    );
-
-    return AnimatedBuilder(
-      animation: delayedAnimation,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 20 * (1 - delayedAnimation.value)),
-          child: Opacity(
-            opacity: delayedAnimation.value,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isDark ? Colors.white.withValues(alpha: 0.08) : color,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: isDark
-                      ? Colors.white.withValues(alpha: 0.1)
-                      : Colors.black.withValues(alpha: 0.05),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.08),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: child,
-            ),
-          ),
-        );
-      },
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => Text(
+    text,
+    style: TextStyle(color: color, fontSize: 9, fontWeight: FontWeight.w700),
+  );
 }
 
-class _KindnessAction extends StatelessWidget {
-  final String title;
-  final String description;
-  final IconData icon;
-  final bool isDark;
-  const _KindnessAction({
-    required this.title,
-    required this.description,
-    required this.icon,
-    required this.isDark,
-  });
-
+class _SecHead extends StatelessWidget {
+  final String text;
+  final Color color;
+  const _SecHead(this.text, this.color);
   @override
-  Widget build(BuildContext context) {
-    return Row(
+  Widget build(BuildContext context) => Row(
+    children: [
+      Container(width: 3, height: 14, color: color),
+      const SizedBox(width: 8),
+      Text(
+        text,
+        style: TextStyle(
+          color: color.withOpacity(0.85),
+          fontSize: 10,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 2,
+        ),
+      ),
+    ],
+  );
+}
+
+class _KindCard extends StatelessWidget {
+  final Color color;
+  final IconData icon;
+  final String title, body;
+  const _KindCard({
+    required this.color,
+    required this.icon,
+    required this.title,
+    required this.body,
+  });
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      color: color.withOpacity(0.07),
+      borderRadius: BorderRadius.circular(14),
+      border: Border.all(color: color.withOpacity(0.2)),
+    ),
+    child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 40,
-          height: 40,
+          padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.orange.withValues(alpha: 0.15),
+            color: color.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(9),
           ),
-          child: Icon(icon, color: Colors.orange, size: 20),
+          child: Icon(icon, color: color, size: 16),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -387,22 +291,62 @@ class _KindnessAction extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : Colors.black87,
+                  color: color,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 5),
               Text(
-                description,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: isDark ? Colors.white60 : Colors.black54,
+                body,
+                style: const TextStyle(
+                  color: Colors.white60,
+                  fontSize: 11,
+                  height: 1.5,
                 ),
               ),
             ],
           ),
         ),
       ],
-    );
-  }
+    ),
+  );
+}
+
+class _StatBox extends StatelessWidget {
+  final String value, label;
+  final Color color;
+  const _StatBox(this.value, this.label, this.color);
+  @override
+  Widget build(BuildContext context) => Expanded(
+    child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(0.2)),
+      ),
+      child: Column(
+        children: [
+          Text(
+            value,
+            style: TextStyle(
+              color: color,
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white38,
+              fontSize: 8,
+              height: 1.2,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }

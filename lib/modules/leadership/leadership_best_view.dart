@@ -1,461 +1,325 @@
-import 'package:air_app/modules/leadership/leadership_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
-/// Tab Navigation design wrapper for Leadership module
-/// Features: Tab-based navigation, organized content sections, clear hierarchies
-class LeadershipBestView extends StatefulWidget {
+/// DESIGN: Magazine Editorial — big drop-cap typography, pull quotes, editorial columns
+class LeadershipBestView extends StatelessWidget {
   const LeadershipBestView({super.key});
 
-  @override
-  State<LeadershipBestView> createState() => _LeadershipBestViewState();
-}
-
-class _LeadershipBestViewState extends State<LeadershipBestView>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 4, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
+  static const _ink = Color(0xFF1A1A2E);
+  static const _gold = Color(0xFFD4A853);
+  static const _cream = Color(0xFFF5F0E8);
+  static const _charcoal = Color(0xFF2D2D2D);
+  static const _red = Color(0xFFB91C1C);
+  static const _teal = Color(0xFF0D9488);
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    const leaderColor = Color(0xff1e88e5);
+    final bg = isDark ? _ink : _cream;
+    final text = isDark ? Colors.white : _charcoal;
+    final sub = isDark ? Colors.white60 : Colors.black54;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xff1a1a1a) : Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 200,
-            backgroundColor: isDark ? const Color(0xff1a1a1a) : Colors.white,
-            elevation: 0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: _TabHeader(isDark: isDark),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? const Color(0xff1a1a1a) : Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    color: isDark
-                        ? const Color(0xff252525)
-                        : Colors.grey.shade50,
-                    child: TabBar(
-                      controller: _tabController,
-                      labelColor: leaderColor,
-                      unselectedLabelColor: isDark
-                          ? Colors.white60
-                          : Colors.black54,
-                      indicatorColor: leaderColor,
-                      indicatorWeight: 3,
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        letterSpacing: 0.5,
-                      ),
-                      tabs: const [
-                        Tab(text: 'OVERVIEW'),
-                        Tab(text: 'QUALITIES'),
-                        Tab(text: 'PRACTICES'),
-                        Tab(text: 'IMPACT'),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 800,
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        _OverviewTab(isDark: isDark),
-                        _QualitiesTab(isDark: isDark),
-                        _PracticesTab(isDark: isDark),
-                        _ImpactTab(isDark: isDark),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(child: const LeadershipEnhancedView()),
-        ],
-      ),
-    );
-  }
-}
-
-class _TabHeader extends StatelessWidget {
-  final bool isDark;
-  const _TabHeader({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color(0xff1e88e5).withValues(alpha: 0.08),
-                const Color(0xff1565c0).withValues(alpha: 0.05),
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: const Color(0xff1e88e5).withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: const Color(0xff1e88e5).withValues(alpha: 0.3),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.trending_up_rounded,
-                  color: Color(0xff1e88e5),
-                  size: 28,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Leadership'.toUpperCase(),
-                style: TextStyle(
-                  color: isDark ? Colors.white : Colors.black87,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Tab Navigation Design',
-                style: TextStyle(
-                  color: isDark ? Colors.white60 : Colors.black54,
-                  fontSize: 12,
-                  letterSpacing: 1.5,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _OverviewTab extends StatelessWidget {
-  final bool isDark;
-  const _OverviewTab({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: bg,
+      appBar: AppBar(
+        backgroundColor: bg,
+        foregroundColor: text,
+        elevation: 0,
+        title: Column(
           children: [
             Text(
-              'What is Leadership?',
+              'THE AIR REVIEW',
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : Colors.black87,
+                fontSize: 8,
+                letterSpacing: 4,
+                color: _gold,
+                fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 12),
             Text(
-              'Leadership is the ability to guide, inspire, and empower others toward a shared vision. It\'s not about authority—it\'s about influence and integrity.',
+              'LEADERSHIP EDITION',
               style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: isDark ? Colors.white70 : Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 20),
-            _TabCard(
-              isDark: isDark,
-              title: 'The Core',
-              items: [
-                'Vision & Purpose',
-                'Integrity & Trust',
-                'Empathy & Connection',
-                'Continuous Growth',
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _QualitiesTab extends StatelessWidget {
-  final bool isDark;
-  const _QualitiesTab({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Essential Qualities',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ...[
-              ('Visionary', 'See beyond today into tomorrow'),
-              ('Communicator', 'Express clearly and listen deeply'),
-              ('Courageous', 'Make difficult decisions with conviction'),
-              ('Humble', 'Know your limits and learn continuously'),
-              ('Ethical', 'Do right, not just what\'s easy'),
-            ].map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: _QualityItem(
-                  title: item.$1,
-                  description: item.$2,
-                  isDark: isDark,
-                ),
+                fontSize: 12,
+                letterSpacing: 2,
+                color: text,
+                fontWeight: FontWeight.w900,
               ),
             ),
           ],
         ),
+        centerTitle: true,
       ),
-    );
-  }
-}
-
-class _PracticesTab extends StatelessWidget {
-  final bool isDark;
-  const _PracticesTab({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Daily Practices',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 16),
-            _TabCard(
-              isDark: isDark,
-              title: 'Develop Leadership',
-              items: [
-                'Reflect on your decisions daily',
-                'Seek feedback from your team',
-                'Mentor someone younger',
-                'Read and learn constantly',
-                'Lead by example',
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ImpactTab extends StatelessWidget {
-  final bool isDark;
-  const _ImpactTab({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Creating Impact',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'True leadership creates ripples of positive change. Your actions inspire others to lead too.',
-              style: TextStyle(
-                fontSize: 14,
-                height: 1.6,
-                color: isDark ? Colors.white70 : Colors.black54,
-              ),
-            ),
-            const SizedBox(height: 20),
-            _TabCard(
-              isDark: isDark,
-              title: 'Measure Your Impact',
-              items: [
-                'Team growth & development',
-                'Organizational culture',
-                'Results & achievements',
-                'Lives touched & inspired',
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TabCard extends StatelessWidget {
-  final bool isDark;
-  final String title;
-  final List<String> items;
-  const _TabCard({
-    required this.isDark,
-    required this.title,
-    required this.items,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark
-            ? Colors.white.withValues(alpha: 0.08)
-            : Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.1)
-              : Colors.black.withValues(alpha: 0.05),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: isDark ? Colors.white : Colors.black87,
+          // MASTHEAD RULE
+          Container(
+            height: 3,
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [_red, _gold]),
             ),
           ),
-          const SizedBox(height: 12),
-          ...items.map(
-            (item) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.check_circle_rounded,
-                    color: Colors.blue.shade400,
-                    size: 18,
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      item,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isDark ? Colors.white70 : Colors.black54,
-                      ),
-                    ),
-                  ),
-                ],
+          // ISSUE INFO
+          Center(
+            child: Text(
+              'VOLUME XII • ISSUE 5 • MAY 2026',
+              style: TextStyle(
+                fontSize: 9,
+                letterSpacing: 3,
+                color: sub,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _QualityItem extends StatelessWidget {
-  final String title;
-  final String description;
-  final bool isDark;
-  const _QualityItem({
-    required this.title,
-    required this.description,
-    required this.isDark,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: isDark
-            ? Colors.white.withValues(alpha: 0.08)
-            : Colors.blue.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xff1e88e5).withValues(alpha: 0.2),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+          Container(
+            height: 1,
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            color: isDark ? Colors.white12 : Colors.black12,
+          ),
+          const SizedBox(height: 8),
+          // HEADLINE
           Text(
-            title,
+            'THE WEIGHT OF COMMAND',
             style: TextStyle(
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff1e88e5),
-              fontSize: 14,
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              color: text,
+              height: 1.1,
+              letterSpacing: -0.5,
             ),
           ),
           const SizedBox(height: 4),
           Text(
-            description,
+            'What separates leaders who endure from those who merely hold power',
             style: TextStyle(
-              fontSize: 13,
-              color: isDark ? Colors.white70 : Colors.black54,
-              height: 1.5,
+              fontSize: 14,
+              color: _gold,
+              fontWeight: FontWeight.w600,
+              height: 1.3,
+              fontStyle: FontStyle.italic,
             ),
           ),
+          Container(
+            height: 1,
+            margin: const EdgeInsets.symmetric(vertical: 12),
+            color: isDark ? Colors.white12 : Colors.black12,
+          ),
+          // BYLINE
+          Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: _gold.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.person,
+                  color: Color(0xFFD4A853),
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'By the AIR Editorial Board',
+                    style: TextStyle(
+                      color: text,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'Leadership Intelligence Desk',
+                    style: TextStyle(color: sub, fontSize: 9),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          // DROP CAP OPENING PARAGRAPH
+          _DropCapPara(
+            dropCap: 'L',
+            rest:
+                'eadership is not a title — it is a practice. Every person who has ever sat in a position of authority has discovered, usually painfully, that authority is the least of the tools available to them.',
+            text: text,
+            sub: sub,
+            gold: _gold,
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'The most effective leaders in history shared a common trait: they invested disproportionately in the people below them and demanded disproportionately little in personal deference. Command was reserved for crisis; influence was the permanent mode of operation.',
+            style: TextStyle(color: sub, fontSize: 13, height: 1.65),
+          ),
+          const SizedBox(height: 20),
+          // PULL QUOTE
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            decoration: BoxDecoration(
+              border: Border(left: BorderSide(color: _red, width: 4)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '"Leadership is not about being in charge. It is about taking care of those in your charge."',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: _red,
+                    fontWeight: FontWeight.w700,
+                    height: 1.4,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '— Simon Sinek',
+                  style: TextStyle(
+                    color: sub,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          // SUB-SECTIONS
+          _EditSection(
+            title: 'THE FIVE CORE MANDATES',
+            color: _gold,
+            text: text,
+            sub: sub,
+            body:
+                'Every leadership role carries five non-negotiable mandates: set direction, align people, motivate and inspire, produce results, and develop successors. The leader who fulfills all five is rare. The leader who neglects even one creates a gap that the organisation will eventually fill with crisis.',
+          ),
+          const SizedBox(height: 16),
+          _EditSection(
+            title: 'ON DELEGATION',
+            color: _teal,
+            text: text,
+            sub: sub,
+            body:
+                'The greatest leadership leverage point is delegation — the art of handing off work in a way that develops the person who receives it. The leader who cannot delegate cannot scale. The leader who delegates without development creates dependency, not capability.',
+          ),
+          const SizedBox(height: 16),
+          _EditSection(
+            title: 'THE TRUST ECONOMY',
+            color: _red,
+            text: text,
+            sub: sub,
+            body:
+                'Trust is the currency of leadership. It is earned slowly, through consistent words and actions aligned over time, and lost instantly through a single significant breach. The leader\'s most important daily task is the maintenance of the trust that makes voluntary cooperation possible.',
+          ),
+          const SizedBox(height: 16),
+          _EditSection(
+            title: 'LEADING UNDER PRESSURE',
+            color: _gold,
+            text: text,
+            sub: sub,
+            body:
+                'Pressure is the test of character that ordinary circumstances cannot provide. Leaders who have never faced a genuine crisis have not yet discovered who they are. AIR\'s leadership module includes a crisis simulation framework that surfaces your default leadership pattern before a real crisis does.',
+          ),
+          const SizedBox(height: 16),
+          _EditSection(
+            title: 'SUCCESSION: THE FINAL DUTY',
+            color: _teal,
+            text: text,
+            sub: sub,
+            body:
+                'The ultimate measure of a leader is the quality of the leadership that follows them. Leaders who build organisations that cannot survive their departure have failed the most important test — not because they lacked talent, but because they confused being needed with being effective.',
+          ),
+          const SizedBox(height: 20),
+          Container(
+            height: 3,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [_gold, _red]),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Center(
+            child: Text(
+              'AIR INTELLIGENCE REVIEW • ALL RIGHTS RESERVED',
+              style: TextStyle(fontSize: 8, letterSpacing: 2, color: sub),
+            ),
+          ),
+          const SizedBox(height: 30),
         ],
       ),
     );
   }
+}
+
+class _DropCapPara extends StatelessWidget {
+  final String dropCap, rest;
+  final Color text, sub, gold;
+  const _DropCapPara({
+    required this.dropCap,
+    required this.rest,
+    required this.text,
+    required this.sub,
+    required this.gold,
+  });
+  @override
+  Widget build(BuildContext context) => Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Container(
+        width: 52,
+        height: 60,
+        alignment: Alignment.center,
+        child: Text(
+          dropCap,
+          style: TextStyle(
+            fontSize: 64,
+            fontWeight: FontWeight.w900,
+            color: gold,
+            height: 1.0,
+          ),
+        ),
+      ),
+      const SizedBox(width: 6),
+      Expanded(
+        child: Text(
+          rest,
+          style: TextStyle(color: text, fontSize: 14, height: 1.65),
+        ),
+      ),
+    ],
+  );
+}
+
+class _EditSection extends StatelessWidget {
+  final String title, body;
+  final Color color, text, sub;
+  const _EditSection({
+    required this.title,
+    required this.body,
+    required this.color,
+    required this.text,
+    required this.sub,
+  });
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        title,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w900,
+          letterSpacing: 2,
+          color: color,
+        ),
+      ),
+      const SizedBox(height: 6),
+      Text(body, style: TextStyle(color: sub, fontSize: 13, height: 1.6)),
+    ],
+  );
 }

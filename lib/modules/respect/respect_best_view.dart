@@ -1,389 +1,299 @@
-import 'package:air_app/modules/respect/respect_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
-/// Animated Hero design wrapper for Respect module
-/// Features: Hero animations, dynamic transitions, emphasis on dignity
-class RespectBestView extends StatefulWidget {
+/// DESIGN: Two-Column Split Screen — dual-panel comparative deep-dive
+class RespectBestView extends StatelessWidget {
   const RespectBestView({super.key});
 
-  @override
-  State<RespectBestView> createState() => _RespectBestViewState();
-}
-
-class _RespectBestViewState extends State<RespectBestView>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _heroController;
-
-  @override
-  void initState() {
-    super.initState();
-    _heroController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _heroController.dispose();
-    super.dispose();
-  }
+  static const _gold = Color(0xFFD4A853);
+  static const _amber = Color(0xFFF59E0B);
+  static const _blue = Color(0xFF1D4ED8);
+  static const _teal = Color(0xFF0D9488);
+  static const _violet = Color(0xFF7C3AED);
+  static const _red = Color(0xFFDC2626);
+  static const _bg = Color(0xFF060400);
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    const respectColor = Color(0xff2c5aa0);
-
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xff1a1a1a) : Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 220,
-            backgroundColor: isDark ? const Color(0xff1a1a1a) : Colors.white,
-            elevation: 0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: _HeroHeader(
-                heroController: _heroController,
-                isDark: isDark,
+      backgroundColor: _bg,
+      appBar: AppBar(
+        backgroundColor: _bg,
+        foregroundColor: Colors.white,
+        title: const Text(
+          'RESPECT',
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            letterSpacing: 4,
+            fontSize: 14,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 14),
+            child: Icon(Icons.handshake_rounded, color: _gold, size: 22),
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
+        children: [
+          // HERO
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [const Color(0xFF1C1200), const Color(0xFF0A0800)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: _gold.withOpacity(0.3)),
+            ),
+            child: Column(
+              children: [
+                Icon(Icons.handshake_rounded, color: _gold, size: 38),
+                const SizedBox(height: 14),
+                Text(
+                  'RESPECT INTELLIGENCE',
+                  style: TextStyle(
+                    color: _gold,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 3,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Respect is the foundation on which every productive relationship — professional, civic, or personal — is built and sustained.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 13,
+                    height: 1.45,
+                  ),
+                ),
+              ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-              child: Column(
-                children: [
-                  _HeroCard(
-                    heroController: _heroController,
-                    delay: 0.0,
-                    isDark: isDark,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'The Foundation of Dignity',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: respectColor,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Respect is the cornerstone of all healthy relationships. It\'s about recognizing the inherent worth and dignity in every person.',
-                          style: TextStyle(
-                            fontSize: 14,
-                            height: 1.6,
-                            color: isDark ? Colors.white70 : Colors.black54,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _HeroCard(
-                    heroController: _heroController,
-                    delay: 0.3,
-                    isDark: isDark,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Principles of Respect',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: respectColor,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ...[
-                          (
-                            'Listen Without Judgment',
-                            'Hear others with an open mind',
-                          ),
-                          (
-                            'Honor Differences',
-                            'Celebrate what makes us unique',
-                          ),
-                          (
-                            'Keep Boundaries',
-                            'Respect personal space and limits',
-                          ),
-                          ('Value Their Time', 'Show up and be present'),
-                          (
-                            'Apologize Sincerely',
-                            'Take responsibility when wrong',
-                          ),
-                        ].map(
-                          (item) => Padding(
-                            padding: const EdgeInsets.only(bottom: 14),
-                            child: _RespectPrinciple(
-                              title: item.$1,
-                              description: item.$2,
-                              isDark: isDark,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _HeroCard(
-                    heroController: _heroController,
-                    delay: 0.6,
-                    isDark: isDark,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'In Daily Practice',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: respectColor,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: respectColor.withValues(alpha: 0.08),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: respectColor.withValues(alpha: 0.2),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              ...[
-                                'Address people by their preferred names',
-                                'Ask before giving advice',
-                                'Follow through on commitments',
-                                'Disagree respectfully',
-                                'Celebrate others\' successes',
-                              ].map(
-                                (point) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 6,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.check_circle_rounded,
-                                        color: respectColor,
-                                        size: 18,
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Text(
-                                          point,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: isDark
-                                                ? Colors.white70
-                                                : Colors.black54,
-                                            height: 1.5,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                ],
+          const SizedBox(height: 20),
+          // SPLIT COLUMNS: Earned vs Demanded
+          _SecHead('EARNED VS. DEMANDED', _gold),
+          const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _Panel(
+                  color: _gold,
+                  title: 'EARNED RESPECT',
+                  items: [
+                    'Consistent behaviour across contexts',
+                    'Keeping commitments without reminders',
+                    'Treating people fairly regardless of status',
+                    'Taking responsibility for mistakes',
+                    'Competence demonstrated over time',
+                    'Honouring others\' time and contributions',
+                  ],
+                ),
               ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _Panel(
+                  color: _red,
+                  title: 'DEMANDED RESPECT',
+                  items: [
+                    'Threats for non-deference',
+                    'Status symbols as a substitute for substance',
+                    'Disrespecting others while demanding respect',
+                    'Claiming respect based on title alone',
+                    'Expecting loyalty without offering trust',
+                    'Silencing criticism as "disrespect"',
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          _SecHead('RESPECT PRACTICES', _teal),
+          const SizedBox(height: 12),
+          _RespCard(
+            color: _blue,
+            icon: Icons.access_time_rounded,
+            title: 'Temporal Respect',
+            body:
+                'Respecting someone\'s time is one of the most concrete forms of regard. Arriving on time, not over-scheduling, delivering on deadline, and communicating early when plans change are all enacted statements that the other person\'s time has value equal to your own.',
+          ),
+          const SizedBox(height: 8),
+          _RespCard(
+            color: _teal,
+            icon: Icons.record_voice_over_rounded,
+            title: 'Epistemic Respect',
+            body:
+                'Respecting someone\'s perspective — their right to hold views, to be wrong in their own way, to change their mind at their own pace — is the foundation of productive disagreement. You can disagree strongly with someone\'s conclusions while respecting their reasoning process.',
+          ),
+          const SizedBox(height: 8),
+          _RespCard(
+            color: _violet,
+            icon: Icons.shield_outlined,
+            title: 'Dignity Respect',
+            body:
+                'Every person has unconditional worth that exists independently of their performance, status, or behaviour. Dignity respect does not have to be earned — it is the baseline from which all interaction begins. Treating someone disrespectfully is not a statement about their worth; it is a statement about yours.',
+          ),
+          const SizedBox(height: 8),
+          _RespCard(
+            color: _amber,
+            icon: Icons.psychology_rounded,
+            title: 'Intellectual Respect',
+            body:
+                'Credit the source of ideas — acknowledge when someone changed your thinking, when their work preceded yours, when their contribution enabled your achievement. Intellectual generosity is a form of respect that distinguishes people of genuine substance from those who merely pursue credit.',
+          ),
+          const SizedBox(height: 8),
+          _RespCard(
+            color: _gold,
+            icon: Icons.diversity_2_rounded,
+            title: 'Cross-Cultural Respect',
+            body:
+                'Respect is expressed differently across cultures — directness can be disrespectful in one context and essential in another; formality signals respect in some relationships and distance in others. Cultural intelligence is the practice of learning which expressions of respect land in which contexts.',
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [_gold.withOpacity(0.10), _teal.withOpacity(0.06)],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: _gold.withOpacity(0.2)),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.format_quote_rounded, color: _amber, size: 26),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Text(
+                    '"Respect is earned, honesty is appreciated, trust is gained, and loyalty is returned." — Unknown',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      height: 1.4,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          SliverToBoxAdapter(child: const RespectEnhancedView()),
         ],
       ),
     );
   }
 }
 
-class _HeroHeader extends StatelessWidget {
-  final AnimationController heroController;
-  final bool isDark;
-  const _HeroHeader({required this.heroController, required this.isDark});
-
+class _Panel extends StatelessWidget {
+  final Color color;
+  final String title;
+  final List<String> items;
+  const _Panel({required this.color, required this.title, required this.items});
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      color: color.withOpacity(0.08),
+      borderRadius: BorderRadius.circular(14),
+      border: Border.all(color: color.withOpacity(0.22)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color(0xff2c5aa0).withValues(alpha: 0.1),
-                const Color(0xff1e3a5f).withValues(alpha: 0.08),
+        Text(
+          title,
+          style: TextStyle(
+            color: color,
+            fontSize: 10,
+            fontWeight: FontWeight.w900,
+            letterSpacing: 1,
+          ),
+        ),
+        const SizedBox(height: 10),
+        ...items.map(
+          (i) => Padding(
+            padding: const EdgeInsets.only(bottom: 7),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(Icons.circle, color: color.withOpacity(0.6), size: 6),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    i,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 10,
+                      height: 1.4,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              AnimatedBuilder(
-                animation: heroController,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: 1.0 + (0.05 * heroController.value),
-                    child: Transform.rotate(
-                      angle: 0.02 * heroController.value,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(
-                            0xff2c5aa0,
-                          ).withValues(alpha: 0.15),
-                          border: Border.all(
-                            color: const Color(
-                              0xff2c5aa0,
-                            ).withValues(alpha: 0.3),
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.handshake_rounded,
-                          color: Color(0xff2c5aa0),
-                          size: 28,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Respect'.toUpperCase(),
-                style: TextStyle(
-                  color: isDark ? Colors.white : Colors.black87,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 2,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Animated Hero Design',
-                style: TextStyle(
-                  color: isDark ? Colors.white60 : Colors.black54,
-                  fontSize: 12,
-                  letterSpacing: 1.5,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
-    );
-  }
+    ),
+  );
 }
 
-class _HeroCard extends StatelessWidget {
-  final Widget child;
-  final AnimationController heroController;
-  final double delay;
-  final bool isDark;
-  const _HeroCard({
-    required this.child,
-    required this.heroController,
-    required this.delay,
-    required this.isDark,
-  });
-
+class _SecHead extends StatelessWidget {
+  final String text;
+  final Color color;
+  const _SecHead(this.text, this.color);
   @override
-  Widget build(BuildContext context) {
-    final delayedAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: heroController,
-        curve: Interval(delay, delay + 0.3, curve: Curves.easeInOut),
+  Widget build(BuildContext context) => Row(
+    children: [
+      Container(width: 3, height: 14, color: color),
+      const SizedBox(width: 8),
+      Text(
+        text,
+        style: TextStyle(
+          color: color.withOpacity(0.85),
+          fontSize: 10,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 2,
+        ),
       ),
-    );
-
-    return AnimatedBuilder(
-      animation: delayedAnimation,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 10 * (1 - delayedAnimation.value)),
-          child: Opacity(
-            opacity: 0.5 + (0.5 * delayedAnimation.value),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.white.withValues(alpha: 0.08)
-                    : Colors.grey.shade50,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: const Color(0xff2c5aa0).withValues(alpha: 0.15),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(
-                      0xff2c5aa0,
-                    ).withValues(alpha: 0.1 * delayedAnimation.value),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: child,
-            ),
-          ),
-        );
-      },
-    );
-  }
+    ],
+  );
 }
 
-class _RespectPrinciple extends StatelessWidget {
-  final String title;
-  final String description;
-  final bool isDark;
-  const _RespectPrinciple({
+class _RespCard extends StatelessWidget {
+  final Color color;
+  final IconData icon;
+  final String title, body;
+  const _RespCard({
+    required this.color,
+    required this.icon,
     required this.title,
-    required this.description,
-    required this.isDark,
+    required this.body,
   });
-
   @override
-  Widget build(BuildContext context) {
-    return Row(
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      color: color.withOpacity(0.07),
+      borderRadius: BorderRadius.circular(14),
+      border: Border.all(color: color.withOpacity(0.2)),
+    ),
+    child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 28,
-          height: 28,
+          padding: const EdgeInsets.all(7),
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: const Color(0xff2c5aa0).withValues(alpha: 0.15),
-            border: Border.all(
-              color: const Color(0xff2c5aa0).withValues(alpha: 0.3),
-              width: 1.5,
-            ),
+            color: color.withOpacity(0.14),
+            borderRadius: BorderRadius.circular(9),
           ),
-          child: const Center(
-            child: Icon(Icons.star_rounded, color: Color(0xff2c5aa0), size: 14),
-          ),
+          child: Icon(icon, color: color, size: 16),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -393,23 +303,24 @@ class _RespectPrinciple extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : Colors.black87,
-                  fontSize: 14,
+                  color: color,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 3),
+              const SizedBox(height: 5),
               Text(
-                description,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: isDark ? Colors.white60 : Colors.black54,
+                body,
+                style: const TextStyle(
+                  color: Colors.white60,
+                  fontSize: 11,
+                  height: 1.5,
                 ),
               ),
             ],
           ),
         ),
       ],
-    );
-  }
+    ),
+  );
 }

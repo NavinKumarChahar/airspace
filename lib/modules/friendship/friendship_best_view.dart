@@ -127,7 +127,7 @@ class FriendshipBestView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Divider(
-                    color: isDark ? Colors.white10 : Colors.black10,
+                    color: isDark ? Colors.white10 : Colors.black12,
                     height: 1,
                   ),
                   const SizedBox(height: 32),
