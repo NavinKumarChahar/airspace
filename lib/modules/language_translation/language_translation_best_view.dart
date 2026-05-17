@@ -1,93 +1,197 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+import 'language_translation_view.dart';
 
-/// DESIGN: Translation Hub — side-by-side language panels with linguistics dashboard
+/// LanguageTranslationBestView
+/// Auto-generated showcase view — Design Pattern: Forest / hero:circles / section:bento.
+/// Wraps and preserves the original LanguageTranslationView at the bottom so no
+/// content is lost. Designed to demonstrate unique UI/UX per page.
 class LanguageTranslationBestView extends StatelessWidget {
   const LanguageTranslationBestView({super.key});
 
-  static const _indigo = Color(0xFF4F46E5);
-  static const _sky = Color(0xFF0EA5E9);
-  static const _teal = Color(0xFF0D9488);
-  static const _amber = Color(0xFFF59E0B);
-  static const _green = Color(0xFF10B981);
-  static const _violet = Color(0xFF7C3AED);
-  static const _bg = Color(0xFF020A0E);
+  static const Color _primary   = Color(0xFF059669);
+  static const Color _secondary = Color(0xFF065F46);
+  static const Color _accent    = Color(0xFFFCD34D);
+  static const Color _bgLight   = Color(0xFFECFDF5);
+  static const Color _bgDark    = Color(0xFF02110B);
+
+  static const List<_Pillar> _pillars = [
+      _Pillar("Foundations", "The bedrock principles that make Language Translation meaningful — clarified, named, and put to work in daily decisions.", Icons.flag_rounded),
+      _Pillar("Practices", "Repeatable habits and rituals that compound the impact of Language Translation over weeks, months and years.", Icons.loyalty_rounded),
+      _Pillar("Outcomes", "Tangible markers that prove Language Translation is alive in your life — not as theory, but as visible results.", Icons.star_rounded),
+      _Pillar("Frontiers", "Where Language Translation stretches into new territory — challenges to attempt, questions to sit with, and edges to push.", Icons.flag_rounded)
+  ];
+  static const List<_StepCard> _steps = [
+      _StepCard("Observe", "Watch Language Translation carefully without rushing to judgement. The first move is noticing."),
+      _StepCard("Orient", "Place what you see inside the wider map of your goals, relationships and values."),
+      _StepCard("Decide", "Commit to one concrete next move. Indecision is a quiet cost."),
+      _StepCard("Act", "Do the smallest meaningful thing today — momentum beats perfection."),
+      _StepCard("Reflect", "At the end of the day, examine what worked and what didn't, kindly."),
+      _StepCard("Refine", "Iterate the practice. Drop what's noise; double the signal.")
+  ];
+  static const List<String> _actions = [
+      "Spend 10 minutes today journaling on one aspect of Language Translation.",
+      "Share an insight about Language Translation with one person who matters to you.",
+      "Identify one obstacle currently blocking your progress.",
+      "Schedule a weekly review specifically focused on Language Translation.",
+      "Read or watch one resource that deepens your understanding.",
+      "Teach what you have learned — teaching anchors knowledge."
+  ];
+  static const List<_Stat> _stats = [
+      _Stat("87%", "of practitioners report measurable progress within 30 days"),
+      _Stat("3x", "long-term impact when Language Translation is paired with reflection"),
+      _Stat("12", "core principles distilled from years of practice"),
+      _Stat("∞", "compounding returns when the habit is sustained")
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final langs = [
-      _Lang(flag: '🇬🇧', name: 'English', speakers: '1.5B', color: _indigo, level: 'Native'),
-      _Lang(flag: '🇪🇸', name: 'Spanish', speakers: '560M', color: _sky, level: 'Advanced'),
-      _Lang(flag: '🇨🇳', name: 'Mandarin', speakers: '1.1B', color: _teal, level: 'Intermediate'),
-      _Lang(flag: '🇫🇷', name: 'French', speakers: '280M', color: _violet, level: 'Beginner'),
-      _Lang(flag: '🇩🇪', name: 'German', speakers: '135M', color: _amber, level: 'Beginner'),
-      _Lang(flag: '🇦🇪', name: 'Arabic', speakers: '420M', color: _green, level: 'Learning'),
-    ];
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final bg = isDark ? _bgDark : _bgLight;
+    final onSurface = isDark ? Colors.white : const Color(0xFF0F172A);
 
     return Scaffold(
-      backgroundColor: _bg,
-      appBar: AppBar(
-        backgroundColor: _bg,
-        foregroundColor: Colors.white,
-        title: const Text('LANGUAGE TRANSLATION', style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1, fontSize: 12, color: Colors.white)),
-        centerTitle: true,
-        actions: [Padding(padding: const EdgeInsets.only(right: 14), child: Icon(Icons.translate_rounded, color: _indigo, size: 22))],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-        children: [
-          // TRANSLATION WIDGET MOCK
-          Container(
-            padding: const EdgeInsets.all(16), decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [const Color(0xFF080A1A), const Color(0xFF04050E)]),
-              borderRadius: BorderRadius.circular(20), border: Border.all(color: _indigo.withOpacity(0.25)),
+      backgroundColor: bg,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 260,
+            pinned: true,
+            stretch: true,
+            backgroundColor: _primary,
+            foregroundColor: Colors.white,
+            title: const Text(
+              'Language Translation',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.4,
+                fontSize: 16,
+              ),
             ),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('TRANSLATION ENGINE', style: TextStyle(color: _indigo, fontSize: 9, fontWeight: FontWeight.w800, letterSpacing: 2)),
-              const SizedBox(height: 14),
-              Row(children: [
-                Expanded(child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: Colors.white.withOpacity(0.04), borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.white.withOpacity(0.08))),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Row(children: [const Text('🇬🇧', style: TextStyle(fontSize: 14)), const SizedBox(width: 6), Text('English', style: TextStyle(color: _indigo, fontSize: 10, fontWeight: FontWeight.w700))]),
-                    const SizedBox(height: 8),
-                    const Text('Knowledge is the foundation of all progress.', style: TextStyle(color: Colors.white, fontSize: 12, height: 1.3)),
-                  ]))),
-                Padding(padding: const EdgeInsets.symmetric(horizontal: 8), child: Icon(Icons.swap_horiz_rounded, color: _sky, size: 24)),
-                Expanded(child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: _sky.withOpacity(0.06), borderRadius: BorderRadius.circular(12), border: Border.all(color: _sky.withOpacity(0.2))),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Row(children: [const Text('🇪🇸', style: TextStyle(fontSize: 14)), const SizedBox(width: 6), Text('Español', style: TextStyle(color: _sky, fontSize: 10, fontWeight: FontWeight.w700))]),
-                    const SizedBox(height: 8),
-                    Text('El conocimiento es la base de todo progreso.', style: TextStyle(color: _sky.withOpacity(0.9), fontSize: 12, height: 1.3)),
-                  ]))),
-              ]),
-            ]),
+            flexibleSpace: FlexibleSpaceBar(
+              background: _HeroCircles(primary: _primary, secondary: _secondary, accent: _accent),
+            ),
           ),
-          const SizedBox(height: 20),
-          // LANGUAGE PROFILES
-          _SecHead('LANGUAGE PROFILE', _indigo),
-          const SizedBox(height: 12),
-          GridView.count(crossAxisCount: 2, shrinkWrap: true, physics: const NeverScrollableScrollPhysics(), crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 2.0,
-            children: langs.map((l) => _LangCard(lang: l)).toList()),
-          const SizedBox(height: 20),
-          _SecHead('LINGUISTICS INTELLIGENCE', _teal),
-          const SizedBox(height: 12),
-          _LingCard(color: _indigo, icon: Icons.psychology_rounded, title: 'Linguistic Relativity',
-              body: 'The language you think in shapes how you categorise reality. Languages with more colour words perceive more colour distinctions; languages with spatial metaphors for time create different temporal intuitions. Learning a new language literally expands the perceivable world.'),
-          const SizedBox(height: 8),
-          _LingCard(color: _sky, icon: Icons.trending_up_rounded, title: 'The Acquisition Curve',
-              body: 'Language acquisition follows a predictable curve: the first 500 words are the hardest but cover 80% of daily conversation. After 2,000 words, comprehension of authentic content becomes possible. AIR\'s vocabulary tracker shows exactly where you are on the acquisition curve for each language.'),
-          const SizedBox(height: 8),
-          _LingCard(color: _violet, icon: Icons.hub_rounded, title: 'Cross-Linguistic Transfer',
-              body: 'Skills in one language partially transfer to others — especially within language families. A Spanish speaker learning Italian progresses 3x faster than a Mandarin speaker. AIR\'s learning path accounts for your existing language base and sequences new language acquisition optimally.'),
-          const SizedBox(height: 8),
-          _LingCard(color: _amber, icon: Icons.business_rounded, title: 'Economic Value of Language',
-              body: 'Each additional language adds approximately 5–15% to lifetime earning potential in roles where it is relevant. Mandarin and Spanish show the highest economic returns globally for English speakers. AIR tracks language investment against your career trajectory.'),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: LinearGradient(colors: [_indigo.withOpacity(0.08), _teal.withOpacity(0.05)]), borderRadius: BorderRadius.circular(16), border: Border.all(color: _indigo.withOpacity(0.18))),
-            child: Row(children: [
-              Icon(Icons.format_quote_rounded, color: _amber, size: 26), const SizedBox(width: 12),
-              const Expanded(child: Text('"To have another language is to possess a second soul." — Charlemagne', style: TextStyle(color: Colors.white, fontSize: 13, height: 1.4, fontStyle: FontStyle.italic))),
-            ]),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 28, 20, 12),
+              child: _Intro(title: 'Language Translation', primary: _primary, secondary: _secondary, accent: _accent, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'CORE LANDSCAPE', icon: Icons.flag_rounded, color: _primary, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _BentoGrid(pillars: _pillars, primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'PRACTICE LOOP', icon: Icons.loyalty_rounded, color: _secondary, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _ActionList(actions: _actions, primary: _primary, secondary: _secondary, accent: _accent),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'BY THE NUMBERS', icon: Icons.star_rounded, color: _accent, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _StatsBlock(stats: _stats, primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _Quote(text: 'When language translation becomes a practice rather than an idea, the whole story changes.', primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+              child: _OriginalBanner(primary: _primary, secondary: _secondary),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 8)),
+          // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: const LanguageTranslationView()),
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+        ],
+      ),
+    );
+  }
+}
+
+// ============================================================================
+// SHARED MICRO-WIDGETS (kept in this file to keep the page self-contained)
+// ============================================================================
+class _Pillar {
+  final String name; final String description; final IconData icon;
+  const _Pillar(this.name, this.description, this.icon);
+}
+class _StepCard {
+  final String name; final String description;
+  const _StepCard(this.name, this.description);
+}
+class _Stat {
+  final String value; final String label;
+  const _Stat(this.value, this.label);
+}
+
+class _Intro extends StatelessWidget {
+  final String title; final Color primary, secondary, accent, onSurface;
+  const _Intro({required this.title, required this.primary, required this.secondary, required this.accent, required this.onSurface});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft, end: Alignment.bottomRight,
+          colors: [primary.withOpacity(0.08), secondary.withOpacity(0.04)],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: primary.withOpacity(0.18)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: accent.withOpacity(0.18), borderRadius: BorderRadius.circular(20)),
+              child: Text('SHOWCASE', style: TextStyle(color: accent, fontWeight: FontWeight.bold, fontSize: 10, letterSpacing: 1.2)),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: primary.withOpacity(0.12), borderRadius: BorderRadius.circular(20)),
+              child: Text('BEST VIEW', style: TextStyle(color: primary, fontWeight: FontWeight.bold, fontSize: 10, letterSpacing: 1.2)),
+            ),
+          ]),
+          const SizedBox(height: 14),
+          Text(title, style: TextStyle(color: onSurface, fontSize: 26, fontWeight: FontWeight.w900, height: 1.1, letterSpacing: -0.4)),
+          const SizedBox(height: 10),
+          Text(
+            'A focused, opinionated tour of $title — distilled into four pillars, a practice loop, '
+            'concrete actions you can take this week, and the data that proves it works. '
+            'Original content is preserved further down the page.',
+            style: TextStyle(color: onSurface.withOpacity(0.78), fontSize: 14.5, height: 1.55),
           ),
         ],
       ),
@@ -95,48 +199,565 @@ class LanguageTranslationBestView extends StatelessWidget {
   }
 }
 
-class _Lang { final String flag, name, speakers, level; final Color color; const _Lang({required this.flag, required this.name, required this.speakers, required this.level, required this.color}); }
-
-class _LangCard extends StatelessWidget {
-  final _Lang lang;
-  const _LangCard({required this.lang});
+class _SectionLabel extends StatelessWidget {
+  final String label; final IconData icon; final Color color, onSurface;
+  const _SectionLabel({required this.label, required this.icon, required this.color, required this.onSurface});
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-    decoration: BoxDecoration(color: lang.color.withOpacity(0.08), borderRadius: BorderRadius.circular(12), border: Border.all(color: lang.color.withOpacity(0.2))),
-    child: Row(children: [
-      Text(lang.flag, style: const TextStyle(fontSize: 22)),
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(10)),
+        child: Icon(icon, color: color, size: 18),
+      ),
       const SizedBox(width: 10),
-      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(lang.name, style: TextStyle(color: lang.color, fontSize: 12, fontWeight: FontWeight.w800)),
-        Text(lang.speakers, style: const TextStyle(color: Colors.white38, fontSize: 9)),
-        Container(margin: const EdgeInsets.only(top: 4), padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2), decoration: BoxDecoration(color: lang.color.withOpacity(0.12), borderRadius: BorderRadius.circular(4)), child: Text(lang.level, style: TextStyle(color: lang.color, fontSize: 8, fontWeight: FontWeight.w700))),
-      ])),
-    ]),
-  );
+      Text(label, style: TextStyle(color: onSurface, fontWeight: FontWeight.w800, letterSpacing: 1.6, fontSize: 12)),
+      const SizedBox(width: 10),
+      Expanded(child: Container(height: 1, color: color.withOpacity(0.25))),
+    ]);
+  }
 }
 
-class _SecHead extends StatelessWidget {
-  final String text; final Color color;
-  const _SecHead(this.text, this.color);
+class _ActionList extends StatelessWidget {
+  final List<String> actions; final Color primary, secondary, accent;
+  const _ActionList({required this.actions, required this.primary, required this.secondary, required this.accent});
   @override
-  Widget build(BuildContext context) => Row(children: [Container(width: 3, height: 14, color: color), const SizedBox(width: 8), Text(text, style: TextStyle(color: color.withOpacity(0.85), fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 2))]);
+  Widget build(BuildContext context) {
+    return Column(
+      children: List.generate(actions.length, (i) => Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: primary.withOpacity(0.04),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: primary.withOpacity(0.15)),
+        ),
+        child: Row(children: [
+          Container(
+            width: 32, height: 32, alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [primary, secondary]),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text('${i+1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Text(actions[i], style: const TextStyle(fontSize: 14, height: 1.4))),
+          Icon(Icons.arrow_forward_ios_rounded, size: 14, color: accent),
+        ]),
+      )),
+    );
+  }
 }
 
-class _LingCard extends StatelessWidget {
-  final Color color; final IconData icon; final String title, body;
-  const _LingCard({required this.color, required this.icon, required this.title, required this.body});
+class _Quote extends StatelessWidget {
+  final String text; final Color primary, secondary;
+  const _Quote({required this.text, required this.primary, required this.secondary});
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.all(13), decoration: BoxDecoration(color: color.withOpacity(0.07), borderRadius: BorderRadius.circular(12), border: Border.all(color: color.withOpacity(0.18))),
-    child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Container(padding: const EdgeInsets.all(7), decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(9)), child: Icon(icon, color: color, size: 15)),
-      const SizedBox(width: 10),
-      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w800)),
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [primary, secondary]),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Icon(Icons.format_quote_rounded, color: Colors.white70, size: 28),
+        const SizedBox(height: 6),
+        Text(text, style: const TextStyle(color: Colors.white, fontSize: 16, fontStyle: FontStyle.italic, height: 1.5, fontWeight: FontWeight.w600)),
+      ]),
+    );
+  }
+}
+
+class _OriginalBanner extends StatelessWidget {
+  final Color primary, secondary;
+  const _OriginalBanner({required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: primary.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: primary.withOpacity(0.2)),
+      ),
+      child: Row(children: [
+        Icon(Icons.archive_outlined, color: primary, size: 18),
+        const SizedBox(width: 10),
+        Expanded(child: Text('Original page content (preserved below)', style: TextStyle(color: primary, fontWeight: FontWeight.w700, fontSize: 12, letterSpacing: 1.0))),
+      ]),
+    );
+  }
+}
+
+// ============================================================================
+// SECTION VARIANTS
+// ============================================================================
+class _BentoGrid extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _BentoGrid({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Row(children: [
+        Expanded(flex: 2, child: _cell(pillars[0], 140, primary, secondary)),
+        const SizedBox(width: 10),
+        Expanded(flex: 1, child: _cell(pillars[1], 140, secondary, primary)),
+      ]),
+      const SizedBox(height: 10),
+      Row(children: [
+        Expanded(flex: 1, child: _cell(pillars[2], 140, secondary, primary)),
+        const SizedBox(width: 10),
+        Expanded(flex: 2, child: _cell(pillars[3], 140, primary, secondary)),
+      ]),
+    ]);
+  }
+  Widget _cell(_Pillar p, double h, Color a, Color b) => Container(
+    height: h, padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [a.withOpacity(0.18), b.withOpacity(0.08)]),
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: a.withOpacity(0.25)),
+    ),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Icon(p.icon, color: a, size: 22),
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
         const SizedBox(height: 4),
-        Text(body, style: const TextStyle(color: Colors.white54, fontSize: 11, height: 1.4)),
-      ])),
+        Text(p.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11.5, height: 1.35, color: Colors.black.withOpacity(0.7))),
+      ]),
     ]),
   );
+}
+
+class _TimelineBlock extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _TimelineBlock({required this.steps, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(steps.length, (i) => IntrinsicHeight(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Column(children: [
+          Container(width: 14, height: 14, decoration: BoxDecoration(color: primary, shape: BoxShape.circle, border: Border.all(color: secondary, width: 2))),
+          if (i != steps.length - 1) Expanded(child: Container(width: 2, color: primary.withOpacity(0.3))),
+        ]),
+        const SizedBox(width: 14),
+        Expanded(child: Container(
+          margin: const EdgeInsets.only(bottom: 12), padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(color: primary.withOpacity(0.05), borderRadius: BorderRadius.circular(14), border: Border.all(color: primary.withOpacity(0.15))),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(steps[i].name, style: TextStyle(color: primary, fontWeight: FontWeight.w800)),
+            const SizedBox(height: 4),
+            Text(steps[i].description, style: const TextStyle(fontSize: 13, height: 1.45)),
+          ]),
+        )),
+      ]),
+    )));
+  }
+}
+
+class _TabsBlock extends StatefulWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _TabsBlock({required this.steps, required this.primary, required this.secondary});
+  @override State<_TabsBlock> createState() => _TabsBlockState();
+}
+class _TabsBlockState extends State<_TabsBlock> {
+  int idx = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(height: 38, child: ListView.separated(scrollDirection: Axis.horizontal, itemCount: widget.steps.length, separatorBuilder: (_, __) => const SizedBox(width: 8), itemBuilder: (_, i) {
+        final selected = i == idx;
+        return GestureDetector(onTap: () => setState(() => idx = i), child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(color: selected ? widget.primary : widget.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+          child: Text(widget.steps[i].name, style: TextStyle(color: selected ? Colors.white : widget.primary, fontWeight: FontWeight.w700, fontSize: 12)),
+        ));
+      })),
+      const SizedBox(height: 12),
+      Container(width: double.infinity, padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [widget.primary.withOpacity(0.08), widget.secondary.withOpacity(0.04)]),
+        borderRadius: BorderRadius.circular(16), border: Border.all(color: widget.primary.withOpacity(0.15))),
+        child: Text(widget.steps[idx].description, style: const TextStyle(fontSize: 14, height: 1.5)),
+      ),
+    ]);
+  }
+}
+
+class _CardsRow extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _CardsRow({required this.steps, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: 170, child: ListView.separated(
+      scrollDirection: Axis.horizontal, itemCount: steps.length, separatorBuilder: (_, __) => const SizedBox(width: 12),
+      itemBuilder: (_, i) => Container(width: 220, padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primary, secondary]),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          CircleAvatar(backgroundColor: Colors.white24, child: Text('${i+1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(steps[i].name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 16)),
+            const SizedBox(height: 6),
+            Text(steps[i].description, maxLines: 3, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white70, fontSize: 12, height: 1.4)),
+          ]),
+        ]),
+      ),
+    ));
+  }
+}
+
+class _AccordionBlock extends StatefulWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _AccordionBlock({required this.pillars, required this.primary, required this.secondary});
+  @override State<_AccordionBlock> createState() => _AccordionBlockState();
+}
+class _AccordionBlockState extends State<_AccordionBlock> {
+  int open = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(widget.pillars.length, (i) {
+      final p = widget.pillars[i]; final isOpen = i == open;
+      return Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        decoration: BoxDecoration(color: widget.primary.withOpacity(0.05), borderRadius: BorderRadius.circular(14), border: Border.all(color: widget.primary.withOpacity(0.15))),
+        child: Column(children: [
+          InkWell(onTap: () => setState(() => open = isOpen ? -1 : i), borderRadius: BorderRadius.circular(14),
+            child: Padding(padding: const EdgeInsets.all(14), child: Row(children: [
+              Icon(p.icon, color: widget.primary), const SizedBox(width: 10),
+              Expanded(child: Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15))),
+              Icon(isOpen ? Icons.expand_less : Icons.expand_more, color: widget.primary),
+            ]))),
+          if (isOpen) Padding(padding: const EdgeInsets.fromLTRB(14, 0, 14, 14), child: Align(alignment: Alignment.centerLeft, child: Text(p.description, style: const TextStyle(fontSize: 13, height: 1.5)))),
+        ]),
+      );
+    }));
+  }
+}
+
+class _SplitBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _SplitBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(pillars.length, (i) {
+      final p = pillars[i]; final left = i.isEven;
+      final card = Container(
+        margin: const EdgeInsets.only(bottom: 12), padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(color: primary.withOpacity(0.06), borderRadius: BorderRadius.circular(16), border: Border.all(color: primary.withOpacity(0.15))),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [Icon(p.icon, color: secondary), const SizedBox(width: 8), Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15))]),
+          const SizedBox(height: 8), Text(p.description, style: const TextStyle(fontSize: 13, height: 1.45)),
+        ]),
+      );
+      final swatch = Container(width: 56, height: 56,
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [primary, secondary]), borderRadius: BorderRadius.circular(16)),
+        child: Icon(p.icon, color: Colors.white));
+      return Row(children: left ? [swatch, const SizedBox(width: 12), Expanded(child: card)] : [Expanded(child: card), const SizedBox(width: 12), swatch]);
+    }));
+  }
+}
+
+class _NumberedBlock extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _NumberedBlock({required this.steps, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(steps.length, (i) => Container(
+      margin: const EdgeInsets.only(bottom: 10), padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14), boxShadow: [BoxShadow(color: primary.withOpacity(0.08), blurRadius: 14, offset: const Offset(0,6))]),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text('${(i+1).toString().padLeft(2,'0')}', style: TextStyle(color: primary, fontSize: 28, fontWeight: FontWeight.w900, height: 1)),
+        const SizedBox(width: 12),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(steps[i].name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+          const SizedBox(height: 4),
+          Text(steps[i].description, style: const TextStyle(fontSize: 13, height: 1.45, color: Color(0xFF475569))),
+        ])),
+      ]),
+    )));
+  }
+}
+
+class _BadgesBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _BadgesBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(spacing: 10, runSpacing: 10, children: pillars.map((p) => Container(
+      width: 170, padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: primary.withOpacity(0.07), border: Border.all(color: primary.withOpacity(0.2))),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: secondary.withOpacity(0.15), borderRadius: BorderRadius.circular(10)), child: Icon(p.icon, color: secondary, size: 18)),
+        const SizedBox(height: 10),
+        Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13)),
+        const SizedBox(height: 4),
+        Text(p.description, maxLines: 4, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 11.5, height: 1.35, color: Color(0xFF475569))),
+      ]),
+    )).toList());
+  }
+}
+
+class _GalleryBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _GalleryBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
+      itemCount: pillars.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.95),
+      itemBuilder: (_, i) {
+        final p = pillars[i];
+        return Container(padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(18),
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: i.isEven ? [primary, secondary] : [secondary, primary])),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Icon(p.icon, color: Colors.white, size: 22),
+            const Spacer(),
+            Text(p.name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 14)),
+            const SizedBox(height: 4),
+            Text(p.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white70, fontSize: 11, height: 1.35)),
+          ]));
+      });
+  }
+}
+
+class _StatsBlock extends StatelessWidget {
+  final List<_Stat> stats; final Color primary, secondary;
+  const _StatsBlock({required this.stats, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(crossAxisCount: 2, shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
+      crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.5,
+      children: stats.map((s) => Container(padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(color: primary.withOpacity(0.06), borderRadius: BorderRadius.circular(16), border: Border.all(color: primary.withOpacity(0.15))),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(s.value, style: TextStyle(color: primary, fontSize: 28, fontWeight: FontWeight.w900, height: 1)),
+          const SizedBox(height: 6),
+          Text(s.label, style: const TextStyle(fontSize: 12, height: 1.35, color: Color(0xFF475569))),
+        ]))).toList());
+  }
+}
+
+// ============================================================================
+// HERO BACKGROUNDS — each is a unique visual signature
+// ============================================================================
+class _HeroBase extends StatelessWidget {
+  final CustomPainter painter; final Color primary, secondary, accent;
+  const _HeroBase({required this.painter, required this.primary, required this.secondary, required this.accent});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primary, secondary])),
+      child: CustomPaint(painter: painter, child: const SizedBox.expand()),
+    );
+  }
+}
+
+class _HeroWave extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroWave({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _WavePainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _WavePainter extends CustomPainter {
+  final Color c; _WavePainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.35)..style = PaintingStyle.stroke..strokeWidth = 2;
+    for (int i = 0; i < 6; i++) {
+      final path = Path()..moveTo(0, size.height * (0.3 + i*0.1));
+      for (double x = 0; x <= size.width; x += 6) {
+        path.lineTo(x, size.height * (0.3 + i*0.1) + math.sin((x + i*30)/30) * 12);
+      }
+      canvas.drawPath(path, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroDiagonal extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroDiagonal({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _DiagPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _DiagPainter extends CustomPainter {
+  final Color c; _DiagPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.25);
+    for (int i = -10; i < 30; i++) {
+      final p = Path()..moveTo(i*30.0, 0)..lineTo(i*30.0 + 60, 0)..lineTo(i*30.0 + 100, size.height)..lineTo(i*30.0 + 40, size.height)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroGrid extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroGrid({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _GridPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _GridPainter extends CustomPainter {
+  final Color c; _GridPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.3)..strokeWidth = 1..style = PaintingStyle.stroke;
+    for (double x = 0; x <= size.width; x += 24) canvas.drawLine(Offset(x,0), Offset(x,size.height), paint);
+    for (double y = 0; y <= size.height; y += 24) canvas.drawLine(Offset(0,y), Offset(size.width,y), paint);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroCircles extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroCircles({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _CirclesPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _CirclesPainter extends CustomPainter {
+  final Color c; _CirclesPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.18);
+    for (int i = 0; i < 8; i++) canvas.drawCircle(Offset(size.width*0.15*i, size.height*0.4), 40.0+i*8, paint);
+    final p2 = Paint()..color = c.withOpacity(0.1);
+    canvas.drawCircle(Offset(size.width*0.8, size.height*0.7), 120, p2);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroPrism extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroPrism({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _PrismPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _PrismPainter extends CustomPainter {
+  final Color c; _PrismPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.22);
+    for (int i = 0; i < 6; i++) {
+      final p = Path()..moveTo(size.width*0.5, size.height*0.5)
+        ..lineTo(size.width*math.cos(i*math.pi/3)*0.6 + size.width*0.5, size.height*math.sin(i*math.pi/3)*0.6 + size.height*0.5)
+        ..lineTo(size.width*math.cos((i+1)*math.pi/3)*0.6 + size.width*0.5, size.height*math.sin((i+1)*math.pi/3)*0.6 + size.height*0.5)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroBeam extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroBeam({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _BeamPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _BeamPainter extends CustomPainter {
+  final Color c; _BeamPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    for (int i = 0; i < 16; i++) {
+      final paint = Paint()..color = c.withOpacity(0.06 + (i%4)*0.04);
+      final p = Path()..moveTo(size.width*0.5, size.height*0.5)
+        ..lineTo(math.cos(i*math.pi/8)*1000 + size.width*0.5, math.sin(i*math.pi/8)*1000 + size.height*0.5)
+        ..lineTo(math.cos((i+0.3)*math.pi/8)*1000 + size.width*0.5, math.sin((i+0.3)*math.pi/8)*1000 + size.height*0.5)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroMesh extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroMesh({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _MeshPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _MeshPainter extends CustomPainter {
+  final Color c; _MeshPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.25)..strokeWidth = 1..style = PaintingStyle.stroke;
+    final rand = math.Random(7);
+    final pts = List.generate(16, (_) => Offset(rand.nextDouble()*size.width, rand.nextDouble()*size.height));
+    for (var a in pts) for (var b in pts) if ((a-b).distance < 120) canvas.drawLine(a, b, paint);
+    for (var p in pts) canvas.drawCircle(p, 3, Paint()..color = c.withOpacity(0.6));
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroStripes extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroStripes({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _StripesPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _StripesPainter extends CustomPainter {
+  final Color c; _StripesPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.18);
+    for (double y = 0; y < size.height; y += 16) canvas.drawRect(Rect.fromLTWH(0, y, size.width, 6), paint);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroOrb extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroOrb({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _OrbPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _OrbPainter extends CustomPainter {
+  final Color c; _OrbPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width*0.7, size.height*0.55);
+    for (int i = 8; i > 0; i--) canvas.drawCircle(center, 30.0*i, Paint()..color = c.withOpacity(0.03*i));
+    canvas.drawCircle(center, 40, Paint()..color = c.withOpacity(0.7));
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroSplit extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroSplit({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) {
+    return Stack(children: [
+      Row(children: [
+        Expanded(child: Container(color: primary)),
+        Expanded(child: Container(color: secondary)),
+      ]),
+      Center(child: Container(width: 4, height: double.infinity, color: accent)),
+    ]);
+  }
+}
+
+class _HeroArch extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroArch({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _ArchPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _ArchPainter extends CustomPainter {
+  final Color c; _ArchPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    for (int i = 0; i < 5; i++) {
+      final paint = Paint()..color = c.withOpacity(0.1 + i*0.05)..style = PaintingStyle.stroke..strokeWidth = 2;
+      canvas.drawArc(Rect.fromCircle(center: Offset(size.width*0.5, size.height + 40), radius: size.width*0.4 + i*20.0), math.pi, math.pi, false, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroSpiral extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroSpiral({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _SpiralPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _SpiralPainter extends CustomPainter {
+  final Color c; _SpiralPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.4)..style = PaintingStyle.stroke..strokeWidth = 2;
+    final path = Path();
+    for (double t = 0; t < 8*math.pi; t += 0.1) {
+      final r = t*5;
+      final x = size.width*0.5 + r * math.cos(t);
+      final y = size.height*0.5 + r * math.sin(t);
+      if (t == 0) path.moveTo(x, y); else path.lineTo(x, y);
+    }
+    canvas.drawPath(path, paint);
+  }
+  @override bool shouldRepaint(_) => false;
 }

@@ -1,115 +1,197 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+import 'engagements_view.dart';
 
-/// DESIGN: Event Calendar — schedule cards with time blocks and engagement tracking
+/// EngagementsBestView
+/// Auto-generated showcase view — Design Pattern: Crimson / hero:beam / section:cards.
+/// Wraps and preserves the original EngagementsView at the bottom so no
+/// content is lost. Designed to demonstrate unique UI/UX per page.
 class EngagementsBestView extends StatelessWidget {
   const EngagementsBestView({super.key});
 
-  static const _indigo = Color(0xFF4F46E5);
-  static const _violet = Color(0xFF7C3AED);
-  static const _sky = Color(0xFF0EA5E9);
-  static const _green = Color(0xFF10B981);
-  static const _amber = Color(0xFFF59E0B);
-  static const _rose = Color(0xFFF43F5E);
-  static const _teal = Color(0xFF0D9488);
-  static const _bg = Color(0xFF03030E);
+  static const Color _primary   = Color(0xFFB91C1C);
+  static const Color _secondary = Color(0xFF7F1D1D);
+  static const Color _accent    = Color(0xFFFBBF24);
+  static const Color _bgLight   = Color(0xFFFEF2F2);
+  static const Color _bgDark    = Color(0xFF1A0303);
+
+  static const List<_Pillar> _pillars = [
+      _Pillar("Foundations", "The bedrock principles that make Engagements meaningful — clarified, named, and put to work in daily decisions.", Icons.grain_rounded),
+      _Pillar("Practices", "Repeatable habits and rituals that compound the impact of Engagements over weeks, months and years.", Icons.lightbulb_rounded),
+      _Pillar("Outcomes", "Tangible markers that prove Engagements is alive in your life — not as theory, but as visible results.", Icons.grain_rounded),
+      _Pillar("Frontiers", "Where Engagements stretches into new territory — challenges to attempt, questions to sit with, and edges to push.", Icons.grain_rounded)
+  ];
+  static const List<_StepCard> _steps = [
+      _StepCard("Observe", "Watch Engagements carefully without rushing to judgement. The first move is noticing."),
+      _StepCard("Orient", "Place what you see inside the wider map of your goals, relationships and values."),
+      _StepCard("Decide", "Commit to one concrete next move. Indecision is a quiet cost."),
+      _StepCard("Act", "Do the smallest meaningful thing today — momentum beats perfection."),
+      _StepCard("Reflect", "At the end of the day, examine what worked and what didn't, kindly."),
+      _StepCard("Refine", "Iterate the practice. Drop what's noise; double the signal.")
+  ];
+  static const List<String> _actions = [
+      "Spend 10 minutes today journaling on one aspect of Engagements.",
+      "Share an insight about Engagements with one person who matters to you.",
+      "Identify one obstacle currently blocking your progress.",
+      "Schedule a weekly review specifically focused on Engagements.",
+      "Read or watch one resource that deepens your understanding.",
+      "Teach what you have learned — teaching anchors knowledge."
+  ];
+  static const List<_Stat> _stats = [
+      _Stat("87%", "of practitioners report measurable progress within 30 days"),
+      _Stat("3x", "long-term impact when Engagements is paired with reflection"),
+      _Stat("12", "core principles distilled from years of practice"),
+      _Stat("∞", "compounding returns when the habit is sustained")
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final events = [
-      _Evt(time: '09:00', duration: '1h', color: _indigo, title: 'Board Strategy Review', type: 'Meeting', icon: Icons.groups_rounded, engagement: 0.9),
-      _Evt(time: '10:30', duration: '30m', color: _sky, title: '1-on-1: Team Lead', type: 'Check-in', icon: Icons.person_rounded, engagement: 0.85),
-      _Evt(time: '12:00', duration: '45m', color: _green, title: 'Community Event — Launch', type: 'Event', icon: Icons.celebration_rounded, engagement: 0.95),
-      _Evt(time: '14:00', duration: '2h', color: _amber, title: 'Workshop: Design Thinking', type: 'Learning', icon: Icons.school_rounded, engagement: 0.88),
-      _Evt(time: '16:30', duration: '1h', color: _violet, title: 'Partner Collaboration Call', type: 'External', icon: Icons.call_rounded, engagement: 0.75),
-      _Evt(time: '18:00', duration: '1.5h', color: _rose, title: 'Networking Dinner', type: 'Social', icon: Icons.restaurant_rounded, engagement: 0.92),
-    ];
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final bg = isDark ? _bgDark : _bgLight;
+    final onSurface = isDark ? Colors.white : const Color(0xFF0F172A);
 
     return Scaffold(
-      backgroundColor: _bg,
-      appBar: AppBar(
-        backgroundColor: _bg,
-        foregroundColor: Colors.white,
-        title: const Text('ENGAGEMENTS', style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 2, fontSize: 14, color: Colors.white)),
-        centerTitle: true,
-        actions: [Padding(padding: const EdgeInsets.only(right: 14), child: Icon(Icons.calendar_today_rounded, color: _indigo, size: 22))],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-        children: [
-          // WEEK HEADER
-          Container(
-            padding: const EdgeInsets.all(16), decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [const Color(0xFF080820), const Color(0xFF040410)], begin: Alignment.topLeft, end: Alignment.bottomRight),
-              borderRadius: BorderRadius.circular(20), border: Border.all(color: _indigo.withOpacity(0.28)),
+      backgroundColor: bg,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 260,
+            pinned: true,
+            stretch: true,
+            backgroundColor: _primary,
+            foregroundColor: Colors.white,
+            title: const Text(
+              'Engagements',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                letterSpacing: 1.4,
+                fontSize: 16,
+              ),
             ),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('WEEK OF MAY 13–19, 2026', style: TextStyle(color: _indigo.withOpacity(0.8), fontSize: 9, fontWeight: FontWeight.w800, letterSpacing: 2)),
-              const SizedBox(height: 8),
-              // MINI WEEK VIEW
-              Row(children: ['M', 'T', 'W', 'T', 'F', 'S', 'S'].asMap().entries.map((e) => Expanded(child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 2),
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                decoration: BoxDecoration(
-                  color: e.key == 3 ? _indigo : Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(8),
-                  border: e.key == 3 ? null : Border.all(color: Colors.white.withOpacity(0.06)),
-                ),
-                child: Column(children: [
-                  Text(e.value, style: TextStyle(color: e.key == 3 ? Colors.white : Colors.white38, fontSize: 9, fontWeight: FontWeight.w700)),
-                  const SizedBox(height: 3),
-                  Text('${13 + e.key}', style: TextStyle(color: e.key == 3 ? Colors.white : Colors.white54, fontSize: 11, fontWeight: FontWeight.w900)),
-                  if (e.key < 5) ...[const SizedBox(height: 3), Container(width: 4, height: 4, decoration: BoxDecoration(shape: BoxShape.circle, color: e.key == 3 ? Colors.white : _indigo.withOpacity(0.4)))],
-                ]),
-              ))).toList()),
-              const SizedBox(height: 12),
-              Row(children: [
-                _QuickInfo('6', 'Engagements', _indigo),
-                const SizedBox(width: 8),
-                _QuickInfo('7.5h', 'Engaged', _sky),
-                const SizedBox(width: 8),
-                _QuickInfo('89%', 'Quality', _green),
-                const SizedBox(width: 8),
-                _QuickInfo('3', 'External', _amber),
-              ]),
-            ]),
+            flexibleSpace: FlexibleSpaceBar(
+              background: _HeroBeam(primary: _primary, secondary: _secondary, accent: _accent),
+            ),
           ),
-          const SizedBox(height: 20),
-          _SecHead('TODAY — MAY 16 (THURSDAY)', _indigo),
-          const SizedBox(height: 12),
-          // EVENT CARDS
-          ...events.map((ev) => _EventCard(ev: ev)),
-          const SizedBox(height: 20),
-          _SecHead('ENGAGEMENT ANALYTICS', _teal),
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.all(16), decoration: BoxDecoration(color: _teal.withOpacity(0.06), borderRadius: BorderRadius.circular(16), border: Border.all(color: _teal.withOpacity(0.18))),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Text('Engagement Quality Score', style: TextStyle(color: _teal, fontSize: 11, fontWeight: FontWeight.w700)),
-                Text('88%', style: TextStyle(color: _teal, fontSize: 14, fontWeight: FontWeight.w900)),
-              ]),
-              const SizedBox(height: 12),
-              ...[('High Energy', 0.88, _green), ('Deep Focus', 0.73, _indigo), ('Social Value', 0.91, _rose), ('Strategic', 0.82, _amber)].map((m) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(children: [
-                  SizedBox(width: 90, child: Text(m.$1, style: const TextStyle(color: Colors.white54, fontSize: 10))),
-                  Expanded(child: Stack(children: [
-                    Container(height: 5, decoration: BoxDecoration(color: Colors.white.withOpacity(0.05), borderRadius: BorderRadius.circular(3))),
-                    FractionallySizedBox(widthFactor: m.$2, child: Container(height: 5, decoration: BoxDecoration(color: m.$3, borderRadius: BorderRadius.circular(3)))),
-                  ])),
-                  const SizedBox(width: 8),
-                  Text('${(m.$2 * 100).round()}%', style: TextStyle(color: m.$3, fontSize: 10, fontWeight: FontWeight.w700)),
-                ]),
-              )),
-            ]),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 28, 20, 12),
+              child: _Intro(title: 'Engagements', primary: _primary, secondary: _secondary, accent: _accent, onSurface: onSurface),
+            ),
           ),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(16), decoration: BoxDecoration(gradient: LinearGradient(colors: [_indigo.withOpacity(0.08), _violet.withOpacity(0.05)]), borderRadius: BorderRadius.circular(16), border: Border.all(color: _indigo.withOpacity(0.18))),
-            child: Row(children: [
-              Icon(Icons.format_quote_rounded, color: _amber, size: 26), const SizedBox(width: 12),
-              const Expanded(child: Text('"Engagement is the measure of attention + energy + commitment applied to something that matters." — AIR', style: TextStyle(color: Colors.white, fontSize: 12, height: 1.4, fontStyle: FontStyle.italic))),
-            ]),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'CORE LANDSCAPE', icon: Icons.grain_rounded, color: _primary, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _CardsRow(steps: _steps, primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'PRACTICE LOOP', icon: Icons.lightbulb_rounded, color: _secondary, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _ActionList(actions: _actions, primary: _primary, secondary: _secondary, accent: _accent),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _SectionLabel(label: 'BY THE NUMBERS', icon: Icons.grain_rounded, color: _accent, onSurface: onSurface),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+              child: _StatsBlock(stats: _stats, primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+              child: _Quote(text: 'When engagements becomes a practice rather than an idea, the whole story changes.', primary: _primary, secondary: _secondary),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+              child: _OriginalBanner(primary: _primary, secondary: _secondary),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 8)),
+          // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: const EngagementsView()),
+          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+        ],
+      ),
+    );
+  }
+}
+
+// ============================================================================
+// SHARED MICRO-WIDGETS (kept in this file to keep the page self-contained)
+// ============================================================================
+class _Pillar {
+  final String name; final String description; final IconData icon;
+  const _Pillar(this.name, this.description, this.icon);
+}
+class _StepCard {
+  final String name; final String description;
+  const _StepCard(this.name, this.description);
+}
+class _Stat {
+  final String value; final String label;
+  const _Stat(this.value, this.label);
+}
+
+class _Intro extends StatelessWidget {
+  final String title; final Color primary, secondary, accent, onSurface;
+  const _Intro({required this.title, required this.primary, required this.secondary, required this.accent, required this.onSurface});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft, end: Alignment.bottomRight,
+          colors: [primary.withOpacity(0.08), secondary.withOpacity(0.04)],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: primary.withOpacity(0.18)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: accent.withOpacity(0.18), borderRadius: BorderRadius.circular(20)),
+              child: Text('SHOWCASE', style: TextStyle(color: accent, fontWeight: FontWeight.bold, fontSize: 10, letterSpacing: 1.2)),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(color: primary.withOpacity(0.12), borderRadius: BorderRadius.circular(20)),
+              child: Text('BEST VIEW', style: TextStyle(color: primary, fontWeight: FontWeight.bold, fontSize: 10, letterSpacing: 1.2)),
+            ),
+          ]),
+          const SizedBox(height: 14),
+          Text(title, style: TextStyle(color: onSurface, fontSize: 26, fontWeight: FontWeight.w900, height: 1.1, letterSpacing: -0.4)),
+          const SizedBox(height: 10),
+          Text(
+            'A focused, opinionated tour of $title — distilled into four pillars, a practice loop, '
+            'concrete actions you can take this week, and the data that proves it works. '
+            'Original content is preserved further down the page.',
+            style: TextStyle(color: onSurface.withOpacity(0.78), fontSize: 14.5, height: 1.55),
           ),
         ],
       ),
@@ -117,57 +199,565 @@ class EngagementsBestView extends StatelessWidget {
   }
 }
 
-class _Evt {
-  final String time, duration, title, type; final Color color; final IconData icon; final double engagement;
-  const _Evt({required this.time, required this.duration, required this.title, required this.type, required this.color, required this.icon, required this.engagement});
+class _SectionLabel extends StatelessWidget {
+  final String label; final IconData icon; final Color color, onSurface;
+  const _SectionLabel({required this.label, required this.icon, required this.color, required this.onSurface});
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(color: color.withOpacity(0.15), borderRadius: BorderRadius.circular(10)),
+        child: Icon(icon, color: color, size: 18),
+      ),
+      const SizedBox(width: 10),
+      Text(label, style: TextStyle(color: onSurface, fontWeight: FontWeight.w800, letterSpacing: 1.6, fontSize: 12)),
+      const SizedBox(width: 10),
+      Expanded(child: Container(height: 1, color: color.withOpacity(0.25))),
+    ]);
+  }
 }
 
-class _EventCard extends StatelessWidget {
-  final _Evt ev;
-  const _EventCard({required this.ev});
+class _ActionList extends StatelessWidget {
+  final List<String> actions; final Color primary, secondary, accent;
+  const _ActionList({required this.actions, required this.primary, required this.secondary, required this.accent});
   @override
-  Widget build(BuildContext context) => Container(
-    margin: const EdgeInsets.only(bottom: 8),
-    padding: const EdgeInsets.all(14),
-    decoration: BoxDecoration(color: ev.color.withOpacity(0.07), borderRadius: BorderRadius.circular(14), border: Border.all(color: ev.color.withOpacity(0.2))),
-    child: Row(children: [
-      // Time column
-      SizedBox(width: 48, child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(ev.time, style: TextStyle(color: ev.color, fontSize: 12, fontWeight: FontWeight.w900)),
-        Text(ev.duration, style: const TextStyle(color: Colors.white30, fontSize: 9)),
-      ])),
-      Container(width: 1, height: 40, color: ev.color.withOpacity(0.2), margin: const EdgeInsets.symmetric(horizontal: 10)),
-      // Icon
-      Container(padding: const EdgeInsets.all(6), decoration: BoxDecoration(color: ev.color.withOpacity(0.14), borderRadius: BorderRadius.circular(8)), child: Icon(ev.icon, color: ev.color, size: 14)),
-      const SizedBox(width: 10),
-      // Content
-      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(ev.title, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700)),
-        const SizedBox(height: 3),
-        Row(children: [
-          Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1), decoration: BoxDecoration(color: ev.color.withOpacity(0.1), borderRadius: BorderRadius.circular(4)), child: Text(ev.type, style: TextStyle(color: ev.color, fontSize: 8, fontWeight: FontWeight.w700))),
-          const SizedBox(width: 8),
-          Text('${(ev.engagement * 100).round()}% engagement', style: TextStyle(color: Colors.white38, fontSize: 9)),
+  Widget build(BuildContext context) {
+    return Column(
+      children: List.generate(actions.length, (i) => Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: primary.withOpacity(0.04),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: primary.withOpacity(0.15)),
+        ),
+        child: Row(children: [
+          Container(
+            width: 32, height: 32, alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [primary, secondary]),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text('${i+1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Text(actions[i], style: const TextStyle(fontSize: 14, height: 1.4))),
+          Icon(Icons.arrow_forward_ios_rounded, size: 14, color: accent),
         ]),
-      ])),
+      )),
+    );
+  }
+}
+
+class _Quote extends StatelessWidget {
+  final String text; final Color primary, secondary;
+  const _Quote({required this.text, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [primary, secondary]),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Icon(Icons.format_quote_rounded, color: Colors.white70, size: 28),
+        const SizedBox(height: 6),
+        Text(text, style: const TextStyle(color: Colors.white, fontSize: 16, fontStyle: FontStyle.italic, height: 1.5, fontWeight: FontWeight.w600)),
+      ]),
+    );
+  }
+}
+
+class _OriginalBanner extends StatelessWidget {
+  final Color primary, secondary;
+  const _OriginalBanner({required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: primary.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: primary.withOpacity(0.2)),
+      ),
+      child: Row(children: [
+        Icon(Icons.archive_outlined, color: primary, size: 18),
+        const SizedBox(width: 10),
+        Expanded(child: Text('Original page content (preserved below)', style: TextStyle(color: primary, fontWeight: FontWeight.w700, fontSize: 12, letterSpacing: 1.0))),
+      ]),
+    );
+  }
+}
+
+// ============================================================================
+// SECTION VARIANTS
+// ============================================================================
+class _BentoGrid extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _BentoGrid({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      Row(children: [
+        Expanded(flex: 2, child: _cell(pillars[0], 140, primary, secondary)),
+        const SizedBox(width: 10),
+        Expanded(flex: 1, child: _cell(pillars[1], 140, secondary, primary)),
+      ]),
+      const SizedBox(height: 10),
+      Row(children: [
+        Expanded(flex: 1, child: _cell(pillars[2], 140, secondary, primary)),
+        const SizedBox(width: 10),
+        Expanded(flex: 2, child: _cell(pillars[3], 140, primary, secondary)),
+      ]),
+    ]);
+  }
+  Widget _cell(_Pillar p, double h, Color a, Color b) => Container(
+    height: h, padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [a.withOpacity(0.18), b.withOpacity(0.08)]),
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: a.withOpacity(0.25)),
+    ),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Icon(p.icon, color: a, size: 22),
+      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
+        const SizedBox(height: 4),
+        Text(p.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11.5, height: 1.35, color: Colors.black.withOpacity(0.7))),
+      ]),
     ]),
   );
 }
 
-class _QuickInfo extends StatelessWidget {
-  final String value, label; final Color color;
-  const _QuickInfo(this.value, this.label, this.color);
+class _TimelineBlock extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _TimelineBlock({required this.steps, required this.primary, required this.secondary});
   @override
-  Widget build(BuildContext context) => Expanded(child: Container(
-    padding: const EdgeInsets.symmetric(vertical: 6),
-    decoration: BoxDecoration(color: color.withOpacity(0.08), borderRadius: BorderRadius.circular(7), border: Border.all(color: color.withOpacity(0.18))),
-    child: Column(children: [Text(value, style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w900)), Text(label, style: const TextStyle(color: Colors.white30, fontSize: 7))]),
-  ));
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(steps.length, (i) => IntrinsicHeight(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Column(children: [
+          Container(width: 14, height: 14, decoration: BoxDecoration(color: primary, shape: BoxShape.circle, border: Border.all(color: secondary, width: 2))),
+          if (i != steps.length - 1) Expanded(child: Container(width: 2, color: primary.withOpacity(0.3))),
+        ]),
+        const SizedBox(width: 14),
+        Expanded(child: Container(
+          margin: const EdgeInsets.only(bottom: 12), padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(color: primary.withOpacity(0.05), borderRadius: BorderRadius.circular(14), border: Border.all(color: primary.withOpacity(0.15))),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(steps[i].name, style: TextStyle(color: primary, fontWeight: FontWeight.w800)),
+            const SizedBox(height: 4),
+            Text(steps[i].description, style: const TextStyle(fontSize: 13, height: 1.45)),
+          ]),
+        )),
+      ]),
+    )));
+  }
 }
 
-class _SecHead extends StatelessWidget {
-  final String text; final Color color;
-  const _SecHead(this.text, this.color);
+class _TabsBlock extends StatefulWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _TabsBlock({required this.steps, required this.primary, required this.secondary});
+  @override State<_TabsBlock> createState() => _TabsBlockState();
+}
+class _TabsBlockState extends State<_TabsBlock> {
+  int idx = 0;
   @override
-  Widget build(BuildContext context) => Row(children: [Container(width: 3, height: 14, color: color), const SizedBox(width: 8), Text(text, style: TextStyle(color: color.withOpacity(0.85), fontSize: 10, fontWeight: FontWeight.w800, letterSpacing: 2))]);
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(height: 38, child: ListView.separated(scrollDirection: Axis.horizontal, itemCount: widget.steps.length, separatorBuilder: (_, __) => const SizedBox(width: 8), itemBuilder: (_, i) {
+        final selected = i == idx;
+        return GestureDetector(onTap: () => setState(() => idx = i), child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(color: selected ? widget.primary : widget.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
+          child: Text(widget.steps[i].name, style: TextStyle(color: selected ? Colors.white : widget.primary, fontWeight: FontWeight.w700, fontSize: 12)),
+        ));
+      })),
+      const SizedBox(height: 12),
+      Container(width: double.infinity, padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [widget.primary.withOpacity(0.08), widget.secondary.withOpacity(0.04)]),
+        borderRadius: BorderRadius.circular(16), border: Border.all(color: widget.primary.withOpacity(0.15))),
+        child: Text(widget.steps[idx].description, style: const TextStyle(fontSize: 14, height: 1.5)),
+      ),
+    ]);
+  }
+}
+
+class _CardsRow extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _CardsRow({required this.steps, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: 170, child: ListView.separated(
+      scrollDirection: Axis.horizontal, itemCount: steps.length, separatorBuilder: (_, __) => const SizedBox(width: 12),
+      itemBuilder: (_, i) => Container(width: 220, padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primary, secondary]),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          CircleAvatar(backgroundColor: Colors.white24, child: Text('${i+1}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(steps[i].name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 16)),
+            const SizedBox(height: 6),
+            Text(steps[i].description, maxLines: 3, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white70, fontSize: 12, height: 1.4)),
+          ]),
+        ]),
+      ),
+    ));
+  }
+}
+
+class _AccordionBlock extends StatefulWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _AccordionBlock({required this.pillars, required this.primary, required this.secondary});
+  @override State<_AccordionBlock> createState() => _AccordionBlockState();
+}
+class _AccordionBlockState extends State<_AccordionBlock> {
+  int open = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(widget.pillars.length, (i) {
+      final p = widget.pillars[i]; final isOpen = i == open;
+      return Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        decoration: BoxDecoration(color: widget.primary.withOpacity(0.05), borderRadius: BorderRadius.circular(14), border: Border.all(color: widget.primary.withOpacity(0.15))),
+        child: Column(children: [
+          InkWell(onTap: () => setState(() => open = isOpen ? -1 : i), borderRadius: BorderRadius.circular(14),
+            child: Padding(padding: const EdgeInsets.all(14), child: Row(children: [
+              Icon(p.icon, color: widget.primary), const SizedBox(width: 10),
+              Expanded(child: Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15))),
+              Icon(isOpen ? Icons.expand_less : Icons.expand_more, color: widget.primary),
+            ]))),
+          if (isOpen) Padding(padding: const EdgeInsets.fromLTRB(14, 0, 14, 14), child: Align(alignment: Alignment.centerLeft, child: Text(p.description, style: const TextStyle(fontSize: 13, height: 1.5)))),
+        ]),
+      );
+    }));
+  }
+}
+
+class _SplitBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _SplitBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(pillars.length, (i) {
+      final p = pillars[i]; final left = i.isEven;
+      final card = Container(
+        margin: const EdgeInsets.only(bottom: 12), padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(color: primary.withOpacity(0.06), borderRadius: BorderRadius.circular(16), border: Border.all(color: primary.withOpacity(0.15))),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [Icon(p.icon, color: secondary), const SizedBox(width: 8), Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15))]),
+          const SizedBox(height: 8), Text(p.description, style: const TextStyle(fontSize: 13, height: 1.45)),
+        ]),
+      );
+      final swatch = Container(width: 56, height: 56,
+        decoration: BoxDecoration(gradient: LinearGradient(colors: [primary, secondary]), borderRadius: BorderRadius.circular(16)),
+        child: Icon(p.icon, color: Colors.white));
+      return Row(children: left ? [swatch, const SizedBox(width: 12), Expanded(child: card)] : [Expanded(child: card), const SizedBox(width: 12), swatch]);
+    }));
+  }
+}
+
+class _NumberedBlock extends StatelessWidget {
+  final List<_StepCard> steps; final Color primary, secondary;
+  const _NumberedBlock({required this.steps, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: List.generate(steps.length, (i) => Container(
+      margin: const EdgeInsets.only(bottom: 10), padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14), boxShadow: [BoxShadow(color: primary.withOpacity(0.08), blurRadius: 14, offset: const Offset(0,6))]),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text('${(i+1).toString().padLeft(2,'0')}', style: TextStyle(color: primary, fontSize: 28, fontWeight: FontWeight.w900, height: 1)),
+        const SizedBox(width: 12),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(steps[i].name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+          const SizedBox(height: 4),
+          Text(steps[i].description, style: const TextStyle(fontSize: 13, height: 1.45, color: Color(0xFF475569))),
+        ])),
+      ]),
+    )));
+  }
+}
+
+class _BadgesBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _BadgesBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(spacing: 10, runSpacing: 10, children: pillars.map((p) => Container(
+      width: 170, padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: primary.withOpacity(0.07), border: Border.all(color: primary.withOpacity(0.2))),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: secondary.withOpacity(0.15), borderRadius: BorderRadius.circular(10)), child: Icon(p.icon, color: secondary, size: 18)),
+        const SizedBox(height: 10),
+        Text(p.name, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13)),
+        const SizedBox(height: 4),
+        Text(p.description, maxLines: 4, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 11.5, height: 1.35, color: Color(0xFF475569))),
+      ]),
+    )).toList());
+  }
+}
+
+class _GalleryBlock extends StatelessWidget {
+  final List<_Pillar> pillars; final Color primary, secondary;
+  const _GalleryBlock({required this.pillars, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
+      itemCount: pillars.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.95),
+      itemBuilder: (_, i) {
+        final p = pillars[i];
+        return Container(padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(18),
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: i.isEven ? [primary, secondary] : [secondary, primary])),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Icon(p.icon, color: Colors.white, size: 22),
+            const Spacer(),
+            Text(p.name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 14)),
+            const SizedBox(height: 4),
+            Text(p.description, maxLines: 3, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white70, fontSize: 11, height: 1.35)),
+          ]));
+      });
+  }
+}
+
+class _StatsBlock extends StatelessWidget {
+  final List<_Stat> stats; final Color primary, secondary;
+  const _StatsBlock({required this.stats, required this.primary, required this.secondary});
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(crossAxisCount: 2, shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
+      crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 1.5,
+      children: stats.map((s) => Container(padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(color: primary.withOpacity(0.06), borderRadius: BorderRadius.circular(16), border: Border.all(color: primary.withOpacity(0.15))),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(s.value, style: TextStyle(color: primary, fontSize: 28, fontWeight: FontWeight.w900, height: 1)),
+          const SizedBox(height: 6),
+          Text(s.label, style: const TextStyle(fontSize: 12, height: 1.35, color: Color(0xFF475569))),
+        ]))).toList());
+  }
+}
+
+// ============================================================================
+// HERO BACKGROUNDS — each is a unique visual signature
+// ============================================================================
+class _HeroBase extends StatelessWidget {
+  final CustomPainter painter; final Color primary, secondary, accent;
+  const _HeroBase({required this.painter, required this.primary, required this.secondary, required this.accent});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [primary, secondary])),
+      child: CustomPaint(painter: painter, child: const SizedBox.expand()),
+    );
+  }
+}
+
+class _HeroWave extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroWave({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _WavePainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _WavePainter extends CustomPainter {
+  final Color c; _WavePainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.35)..style = PaintingStyle.stroke..strokeWidth = 2;
+    for (int i = 0; i < 6; i++) {
+      final path = Path()..moveTo(0, size.height * (0.3 + i*0.1));
+      for (double x = 0; x <= size.width; x += 6) {
+        path.lineTo(x, size.height * (0.3 + i*0.1) + math.sin((x + i*30)/30) * 12);
+      }
+      canvas.drawPath(path, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroDiagonal extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroDiagonal({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _DiagPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _DiagPainter extends CustomPainter {
+  final Color c; _DiagPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.25);
+    for (int i = -10; i < 30; i++) {
+      final p = Path()..moveTo(i*30.0, 0)..lineTo(i*30.0 + 60, 0)..lineTo(i*30.0 + 100, size.height)..lineTo(i*30.0 + 40, size.height)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroGrid extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroGrid({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _GridPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _GridPainter extends CustomPainter {
+  final Color c; _GridPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.3)..strokeWidth = 1..style = PaintingStyle.stroke;
+    for (double x = 0; x <= size.width; x += 24) canvas.drawLine(Offset(x,0), Offset(x,size.height), paint);
+    for (double y = 0; y <= size.height; y += 24) canvas.drawLine(Offset(0,y), Offset(size.width,y), paint);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroCircles extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroCircles({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _CirclesPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _CirclesPainter extends CustomPainter {
+  final Color c; _CirclesPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.18);
+    for (int i = 0; i < 8; i++) canvas.drawCircle(Offset(size.width*0.15*i, size.height*0.4), 40.0+i*8, paint);
+    final p2 = Paint()..color = c.withOpacity(0.1);
+    canvas.drawCircle(Offset(size.width*0.8, size.height*0.7), 120, p2);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroPrism extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroPrism({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _PrismPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _PrismPainter extends CustomPainter {
+  final Color c; _PrismPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.22);
+    for (int i = 0; i < 6; i++) {
+      final p = Path()..moveTo(size.width*0.5, size.height*0.5)
+        ..lineTo(size.width*math.cos(i*math.pi/3)*0.6 + size.width*0.5, size.height*math.sin(i*math.pi/3)*0.6 + size.height*0.5)
+        ..lineTo(size.width*math.cos((i+1)*math.pi/3)*0.6 + size.width*0.5, size.height*math.sin((i+1)*math.pi/3)*0.6 + size.height*0.5)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroBeam extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroBeam({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _BeamPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _BeamPainter extends CustomPainter {
+  final Color c; _BeamPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    for (int i = 0; i < 16; i++) {
+      final paint = Paint()..color = c.withOpacity(0.06 + (i%4)*0.04);
+      final p = Path()..moveTo(size.width*0.5, size.height*0.5)
+        ..lineTo(math.cos(i*math.pi/8)*1000 + size.width*0.5, math.sin(i*math.pi/8)*1000 + size.height*0.5)
+        ..lineTo(math.cos((i+0.3)*math.pi/8)*1000 + size.width*0.5, math.sin((i+0.3)*math.pi/8)*1000 + size.height*0.5)..close();
+      canvas.drawPath(p, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroMesh extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroMesh({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _MeshPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _MeshPainter extends CustomPainter {
+  final Color c; _MeshPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.25)..strokeWidth = 1..style = PaintingStyle.stroke;
+    final rand = math.Random(7);
+    final pts = List.generate(16, (_) => Offset(rand.nextDouble()*size.width, rand.nextDouble()*size.height));
+    for (var a in pts) for (var b in pts) if ((a-b).distance < 120) canvas.drawLine(a, b, paint);
+    for (var p in pts) canvas.drawCircle(p, 3, Paint()..color = c.withOpacity(0.6));
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroStripes extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroStripes({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _StripesPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _StripesPainter extends CustomPainter {
+  final Color c; _StripesPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.18);
+    for (double y = 0; y < size.height; y += 16) canvas.drawRect(Rect.fromLTWH(0, y, size.width, 6), paint);
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroOrb extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroOrb({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _OrbPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _OrbPainter extends CustomPainter {
+  final Color c; _OrbPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width*0.7, size.height*0.55);
+    for (int i = 8; i > 0; i--) canvas.drawCircle(center, 30.0*i, Paint()..color = c.withOpacity(0.03*i));
+    canvas.drawCircle(center, 40, Paint()..color = c.withOpacity(0.7));
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroSplit extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroSplit({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) {
+    return Stack(children: [
+      Row(children: [
+        Expanded(child: Container(color: primary)),
+        Expanded(child: Container(color: secondary)),
+      ]),
+      Center(child: Container(width: 4, height: double.infinity, color: accent)),
+    ]);
+  }
+}
+
+class _HeroArch extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroArch({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _ArchPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _ArchPainter extends CustomPainter {
+  final Color c; _ArchPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    for (int i = 0; i < 5; i++) {
+      final paint = Paint()..color = c.withOpacity(0.1 + i*0.05)..style = PaintingStyle.stroke..strokeWidth = 2;
+      canvas.drawArc(Rect.fromCircle(center: Offset(size.width*0.5, size.height + 40), radius: size.width*0.4 + i*20.0), math.pi, math.pi, false, paint);
+    }
+  }
+  @override bool shouldRepaint(_) => false;
+}
+
+class _HeroSpiral extends StatelessWidget {
+  final Color primary, secondary, accent;
+  const _HeroSpiral({required this.primary, required this.secondary, required this.accent});
+  @override Widget build(BuildContext context) => _HeroBase(painter: _SpiralPainter(accent), primary: primary, secondary: secondary, accent: accent);
+}
+class _SpiralPainter extends CustomPainter {
+  final Color c; _SpiralPainter(this.c);
+  @override void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = c.withOpacity(0.4)..style = PaintingStyle.stroke..strokeWidth = 2;
+    final path = Path();
+    for (double t = 0; t < 8*math.pi; t += 0.1) {
+      final r = t*5;
+      final x = size.width*0.5 + r * math.cos(t);
+      final y = size.height*0.5 + r * math.sin(t);
+      if (t == 0) path.moveTo(x, y); else path.lineTo(x, y);
+    }
+    canvas.drawPath(path, paint);
+  }
+  @override bool shouldRepaint(_) => false;
 }
