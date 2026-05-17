@@ -4,6 +4,7 @@
 // ============================================================
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ── Breakpoints ──────────────────────────────────────────────
 class WBreak {
@@ -177,11 +178,13 @@ class WFeatureCard extends StatelessWidget {
   final String title;
   final String body;
   final Color color;
+  final String? routeName;
   const WFeatureCard({
     super.key,
     required this.icon,
     required this.title,
     required this.body,
+    this.routeName,
     this.color = WColors.indigo,
   });
 
@@ -190,6 +193,9 @@ class WFeatureCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
+      onTap: () {
+        if (routeName != null) Get.toNamed(routeName!);
+      },
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(

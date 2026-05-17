@@ -4,6 +4,7 @@
 // Responsive landing page for AIR – All-Space Web
 // ============================================================
 
+import 'package:air_app/web_modules/web_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -149,8 +150,9 @@ class WebHomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32),
                   WGrid(
-                    children: const [
+                    children: [
                       WFeatureCard(
+                        routeName: WebRoutes.explore,
                         icon: Icons.lightbulb_outline,
                         title: 'Explore & Learn',
                         body:
@@ -159,6 +161,7 @@ class WebHomePage extends StatelessWidget {
                         color: WColors.amber,
                       ),
                       WFeatureCard(
+                        routeName: WebRoutes.wisdom,
                         icon: Icons.gavel_rounded,
                         title: 'Rule & Wisdom',
                         body:
@@ -167,6 +170,7 @@ class WebHomePage extends StatelessWidget {
                         color: WColors.indigo,
                       ),
                       WFeatureCard(
+                        // routeName:WebRoutes.profile,
                         icon: Icons.person_pin_rounded,
                         title: 'Be You & Earn',
                         body:
@@ -175,6 +179,7 @@ class WebHomePage extends StatelessWidget {
                         color: WColors.emerald,
                       ),
                       WFeatureCard(
+                        routeName: WebRoutes.airVision,
                         icon: Icons.hub_rounded,
                         title: "AIR's Aspects",
                         body:
@@ -183,6 +188,7 @@ class WebHomePage extends StatelessWidget {
                         color: WColors.violet,
                       ),
                       WFeatureCard(
+                        routeName: WebRoutes.setup,
                         icon: Icons.settings_suggest_rounded,
                         title: 'Setup A-One',
                         body:
@@ -191,6 +197,7 @@ class WebHomePage extends StatelessWidget {
                         color: WColors.teal,
                       ),
                       WFeatureCard(
+                        // routeName: WebRoutes.v,
                         icon: Icons.favorite_rounded,
                         title: 'Human Values',
                         body:
