@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_vision_details/finally_blessings/finally_blessings_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'finally_blessings_view.dart';
@@ -211,6 +212,9 @@ class FinallyBlessingsBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: FinallyBlessingsEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: FinallyBlessingsView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

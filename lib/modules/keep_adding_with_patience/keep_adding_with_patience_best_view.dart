@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/keep_adding_with_patience/keep_adding_with_patience_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'keep_adding_with_patience_view.dart';
@@ -211,7 +212,12 @@ class KeepAddingWithPatienceBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: KeepAddingWithPatienceView(isEmbedded: true)),
+          SliverToBoxAdapter(
+            child: KeepAddingWithPatienceEnhancedView(isEmbedded: true),
+          ),
+          SliverToBoxAdapter(
+            child: KeepAddingWithPatienceView(isEmbedded: true),
+          ),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
@@ -1691,4 +1697,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

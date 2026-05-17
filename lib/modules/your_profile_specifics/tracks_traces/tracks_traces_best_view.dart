@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/your_profile_specifics/tracks_traces/tracks_traces_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'tracks_traces_view.dart';
@@ -211,6 +212,7 @@ class TracksTracesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: TracksTracesEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: TracksTracesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/prayer_for_all/prayer_for_all_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'prayer_for_all_view.dart';
@@ -9,7 +10,8 @@ import 'prayer_for_all_view.dart';
 /// Wraps and preserves the original PrayerForAllView at the bottom so no
 /// content is lost. Designed to demonstrate unique UI/UX per page.
 class PrayerForAllBestView extends StatelessWidget {
-  const PrayerForAllBestView({super.key});
+  final bool isEmbedded;
+  const PrayerForAllBestView({super.key, this.isEmbedded = false});
 
   static const Color _primary = Color(0xFFB45309);
   static const Color _secondary = Color(0xFF92400E);
@@ -93,6 +95,10 @@ class PrayerForAllBestView extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded
+            ? const NeverScrollableScrollPhysics()
+            : const AlwaysScrollableScrollPhysics(),
         slivers: [
           SliverAppBar(
             expandedHeight: 260,
@@ -211,6 +217,8 @@ class PrayerForAllBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: PrayerForAllEnhancedView(isEmbedded: true)),
+          SliverToBoxAdapter(child: PrayerForAllBestView(isEmbedded: true)),
           SliverToBoxAdapter(child: PrayerForAllView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1691,4 +1699,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

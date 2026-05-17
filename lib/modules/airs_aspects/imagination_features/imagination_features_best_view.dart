@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/imagination_features/imagination_features_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'imagination_features_view.dart';
@@ -211,6 +212,9 @@ class ImaginationFeaturesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: ImaginationFeaturesEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: ImaginationFeaturesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

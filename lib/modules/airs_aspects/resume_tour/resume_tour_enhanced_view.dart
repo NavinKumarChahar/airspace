@@ -10,7 +10,8 @@ import 'resume_tour_view.dart';
 ///
 /// Theme: Aurora Teal | Layout: grid
 class ResumeTourEnhancedView extends StatelessWidget {
-  const ResumeTourEnhancedView({super.key});
+  final bool isEmbedded;
+  const ResumeTourEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff051f26);
   static const Color _bg2 = Color(0xff0f3d45);
@@ -24,6 +25,8 @@ class ResumeTourEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           SliverAppBar(
             pinned: true,

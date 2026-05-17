@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/process/process_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'process_view.dart';
@@ -208,6 +209,7 @@ class ProcessBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: ProcessEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: ProcessView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

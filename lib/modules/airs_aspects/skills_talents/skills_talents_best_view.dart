@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/skills_talents/skills_talents_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'skills_talents_view.dart';
@@ -211,6 +212,9 @@ class SkillsTalentsBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: SkillsTalentsEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: SkillsTalentsView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

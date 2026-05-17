@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/unchecked_anomalies/unchecked_anomalies_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'unchecked_anomalies_view.dart';
@@ -94,9 +95,9 @@ class UncheckedAnomaliesBestView extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
+        slivers: [
           SliverAppBar(
             expandedHeight: 260,
             pinned: true,
@@ -214,6 +215,9 @@ class UncheckedAnomaliesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: UncheckedAnomaliesEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: UncheckedAnomaliesView()),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

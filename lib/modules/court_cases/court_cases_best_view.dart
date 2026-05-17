@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/court_cases/court_cases_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'court_cases_view.dart';
@@ -208,6 +209,8 @@ class CourtCasesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: CourtCasesEnhancedView(isEmbedded: true)),
+
           SliverToBoxAdapter(child: CourtCasesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1688,4 +1691,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_vision_details/airs_mission/airs_mission_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'airs_mission_view.dart';
@@ -208,6 +209,7 @@ class AirsMissionBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: AirsMissionEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: AirsMissionView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

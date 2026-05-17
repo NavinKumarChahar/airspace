@@ -10,7 +10,8 @@ import 'new_in_air_view.dart';
 ///
 /// Theme: Clay Earth | Layout: burst
 class NewInAirEnhancedView extends StatelessWidget {
-  const NewInAirEnhancedView({super.key});
+  final bool isEmbedded;
+  const NewInAirEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff2a1810);
   static const Color _bg2 = Color(0xff4a2d1f);
@@ -24,6 +25,8 @@ class NewInAirEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           SliverAppBar(
             pinned: true,

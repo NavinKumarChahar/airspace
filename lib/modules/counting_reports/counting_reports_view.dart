@@ -1,3 +1,4 @@
+import 'package:air_app/modules/counting_reports/counting_reports_best_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -366,7 +367,7 @@ class CountingReportsView extends GetView<CountingReportsController> {
     final isDark = theme.brightness == Brightness.dark;
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         backgroundColor: theme.scaffoldBackgroundColor,
         body: NestedScrollView(
@@ -378,6 +379,7 @@ class CountingReportsView extends GetView<CountingReportsController> {
               _BasicCountsTab(),
               _LargeNumbersTab(),
               _ReportToolsTab(),
+              CountingReportsBestView(isEmbedded: false),
             ],
           ),
         ),

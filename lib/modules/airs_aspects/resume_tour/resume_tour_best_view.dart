@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/resume_tour/resume_tour_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'resume_tour_view.dart';
@@ -208,6 +209,7 @@ class ResumeTourBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: ResumeTourEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: ResumeTourView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

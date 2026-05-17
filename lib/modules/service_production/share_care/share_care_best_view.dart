@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/share_care/share_care_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'share_care_view.dart';
@@ -208,6 +209,7 @@ class ShareCareBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: ShareCareEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: ShareCareView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

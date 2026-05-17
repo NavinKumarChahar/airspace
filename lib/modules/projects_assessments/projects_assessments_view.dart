@@ -1,3 +1,4 @@
+import 'package:air_app/modules/projects_assessments/projects_assessments_best_view.dart';
 import 'package:air_app/widgets/air_home_context_strip.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class ProjectsAssessmentsView extends GetView<ProjectsAssessmentsController> {
     final secondary = theme.colorScheme.secondary;
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -88,6 +89,7 @@ class ProjectsAssessmentsView extends GetView<ProjectsAssessmentsController> {
             children: [
               _buildProjectsList(context),
               _buildAssessmentsList(context),
+              ProjectsAssessmentsBestView(),
             ],
           ),
         ),
@@ -415,6 +417,3 @@ class ProjectsAssessmentsView extends GetView<ProjectsAssessmentsController> {
     );
   }
 }
-
-
-

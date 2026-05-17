@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/beliefs_values/beliefs_values_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'beliefs_values_view.dart';
@@ -211,6 +212,9 @@ class BeliefsValuesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: BeliefsValuesEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: BeliefsValuesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

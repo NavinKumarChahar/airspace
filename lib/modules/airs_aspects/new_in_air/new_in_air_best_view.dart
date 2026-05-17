@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/new_in_air/new_in_air_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'new_in_air_view.dart';
@@ -208,6 +209,7 @@ class NewInAirBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: NewInAirEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: NewInAirView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

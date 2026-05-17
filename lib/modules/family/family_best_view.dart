@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/family/family_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'family_view.dart';
@@ -208,6 +209,7 @@ class FamilyBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: FamilyEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: FamilyView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1688,4 +1690,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

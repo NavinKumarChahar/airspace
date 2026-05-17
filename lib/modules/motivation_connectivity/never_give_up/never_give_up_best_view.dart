@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/motivation_connectivity/never_give_up/never_give_up_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'never_give_up_view.dart';
@@ -211,6 +212,7 @@ class NeverGiveUpBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: NeverGiveUpEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: NeverGiveUpView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

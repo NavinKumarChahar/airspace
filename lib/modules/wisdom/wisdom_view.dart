@@ -1,3 +1,4 @@
+import 'package:air_app/modules/wisdom/wisdom_best_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:air_app/widgets/air_home_context_strip.dart';
@@ -10,7 +11,7 @@ class WisdomView extends GetView<WisdomController> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Wisdom (Expert Overview)'),
@@ -35,6 +36,7 @@ class WisdomView extends GetView<WisdomController> {
             _buildTaskFeedTab(context),
             _buildAchievementsTab(context),
             _buildConsiderationsTab(context),
+            WisdomBestView(),
           ],
         ),
       ),
@@ -65,7 +67,8 @@ class WisdomView extends GetView<WisdomController> {
               final Color iconColor = item['color'] as Color;
 
               return Obx(() {
-                final bool isExpanded = controller.expandedCards[index] ?? false;
+                final bool isExpanded =
+                    controller.expandedCards[index] ?? false;
 
                 return Container(
                   margin: const EdgeInsets.only(bottom: 16),
@@ -75,7 +78,9 @@ class WisdomView extends GetView<WisdomController> {
                     border: Border.all(color: iconColor.withValues(alpha: 0.3)),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
+                        color: Colors.black.withValues(
+                          alpha: isDark ? 0.2 : 0.05,
+                        ),
                         blurRadius: 10,
                         offset: const Offset(0, 4),
                       ),
@@ -105,7 +110,9 @@ class WisdomView extends GetView<WisdomController> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                                    color: Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.color,
                                     letterSpacing: 1,
                                   ),
                                 ),
@@ -123,7 +130,9 @@ class WisdomView extends GetView<WisdomController> {
                             item['shortDesc'] as String,
                             style: TextStyle(
                               fontSize: 14,
-                              color: Theme.of(context).textTheme.bodyMedium?.color,
+                              color: Theme.of(
+                                context,
+                              ).textTheme.bodyMedium?.color,
                               fontStyle: FontStyle.italic,
                             ),
                           ),
@@ -150,7 +159,9 @@ class WisdomView extends GetView<WisdomController> {
                                 style: TextStyle(
                                   fontSize: 15,
                                   height: 1.5,
-                                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                                  color: Theme.of(
+                                    context,
+                                  ).textTheme.bodyLarge?.color,
                                 ),
                               ),
                             ),
@@ -229,7 +240,9 @@ class WisdomView extends GetView<WisdomController> {
                                 fontWeight: FontWeight.bold,
                                 color: isConfidential
                                     ? Colors.redAccent
-                                    : Theme.of(context).textTheme.bodyLarge?.color,
+                                    : Theme.of(
+                                        context,
+                                      ).textTheme.bodyLarge?.color,
                               ),
                             ),
                           ),
@@ -249,7 +262,9 @@ class WisdomView extends GetView<WisdomController> {
                               task['status'] as String,
                               style: TextStyle(
                                 fontSize: 10,
-                                color: Theme.of(context).textTheme.bodyMedium?.color,
+                                color: Theme.of(
+                                  context,
+                                ).textTheme.bodyMedium?.color,
                               ),
                             ),
                           ),
@@ -391,6 +406,3 @@ class WisdomView extends GetView<WisdomController> {
     );
   }
 }
-
-
-

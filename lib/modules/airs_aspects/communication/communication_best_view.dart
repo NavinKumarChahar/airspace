@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/communication/communication_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'communication_view.dart';
@@ -211,6 +212,9 @@ class CommunicationBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: CommunicationEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: CommunicationView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

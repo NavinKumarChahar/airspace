@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/input_in_process/input_in_process_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'input_in_process_view.dart';
@@ -211,6 +212,9 @@ class InputInProcessBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: InputInProcessEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: InputInProcessView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

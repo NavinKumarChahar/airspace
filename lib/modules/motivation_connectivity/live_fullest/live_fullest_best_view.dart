@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/motivation_connectivity/live_fullest/live_fullest_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'live_fullest_view.dart';
@@ -208,6 +209,7 @@ class LiveFullestBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: LiveFullestEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: LiveFullestView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

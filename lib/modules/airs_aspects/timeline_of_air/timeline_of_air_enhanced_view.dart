@@ -10,7 +10,8 @@ import 'timeline_of_air_view.dart';
 ///
 /// Theme: Cyber Lime | Layout: burst
 class TimelineOfAirEnhancedView extends StatelessWidget {
-  const TimelineOfAirEnhancedView({super.key});
+  final bool isEmbedded;
+  const TimelineOfAirEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff0a1a0a);
   static const Color _bg2 = Color(0xff14361f);
@@ -24,6 +25,8 @@ class TimelineOfAirEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           SliverAppBar(
             pinned: true,

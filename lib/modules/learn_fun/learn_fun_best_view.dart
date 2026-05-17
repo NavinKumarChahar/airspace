@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/learn_fun/learn_fun_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'learn_fun_view.dart';
@@ -207,7 +208,9 @@ class LearnFunBestView extends StatelessWidget {
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: LearnFunEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: LearnFunView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1688,4 +1691,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

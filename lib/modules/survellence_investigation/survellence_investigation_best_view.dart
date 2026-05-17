@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/survellence_investigation/survellence_investigation_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'survellence_investigation_view.dart';
@@ -211,7 +212,12 @@ class SurvellenceInvestigationBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: SurvellenceInvestigationView(isEmbedded: true)),
+          SliverToBoxAdapter(
+            child: SurvellenceInvestigationEnhancedView(isEmbedded: true),
+          ),
+          SliverToBoxAdapter(
+            child: SurvellenceInvestigationView(isEmbedded: true),
+          ),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
       ),
@@ -1691,4 +1697,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

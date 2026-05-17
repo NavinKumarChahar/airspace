@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/practice_expertise/practice_expertise_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'practice_expertise_view.dart';
@@ -211,6 +212,9 @@ class PracticeExpertiseBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: PracticeExpertiseEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: PracticeExpertiseView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

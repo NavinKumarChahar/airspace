@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/motivation_connectivity/get_connected/get_connected_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'get_connected_view.dart';
@@ -211,6 +212,7 @@ class GetConnectedBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: GetConnectedEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: GetConnectedView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/fingers_are_crossed/fingers_are_crossed_best_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -244,7 +245,7 @@ class FingersAreCrossedView extends GetView<FingersAreCrossedController> {
     final isDark = theme.brightness == Brightness.dark;
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         backgroundColor: theme.scaffoldBackgroundColor,
         body: NestedScrollView(
@@ -256,6 +257,7 @@ class FingersAreCrossedView extends GetView<FingersAreCrossedController> {
               _HopeDashboardTab(isEmbedded: false),
               _WaitingWisdomTab(isEmbedded: false),
               _FeatureGuideTab(isEmbedded: false),
+              FingersAreCrossedBestView(),
             ],
           ),
         ),

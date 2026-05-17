@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/your_profile_specifics/public_stuff/public_stuff_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'public_stuff_view.dart';
@@ -208,6 +209,7 @@ class PublicStuffBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: PublicStuffEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: PublicStuffView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

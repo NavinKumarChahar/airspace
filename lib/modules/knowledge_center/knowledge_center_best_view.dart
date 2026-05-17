@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/knowledge_center/knowledge_center_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'knowledge_center_view.dart';
@@ -211,6 +212,9 @@ class KnowledgeCenterBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: KnowledgeCenterEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: KnowledgeCenterView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1691,4 +1695,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

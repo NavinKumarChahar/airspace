@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/motivation_connectivity/together_unison/together_unison_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'together_unison_view.dart';
@@ -211,6 +212,9 @@ class TogetherUnisonBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: TogetherUnisonEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: TogetherUnisonView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

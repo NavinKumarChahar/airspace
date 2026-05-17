@@ -10,7 +10,8 @@ import 'beliefs_values_view.dart';
 ///
 /// Theme: Slate Steel | Layout: circles
 class BeliefsValuesEnhancedView extends StatelessWidget {
-  const BeliefsValuesEnhancedView({super.key});
+  final bool isEmbedded;
+  const BeliefsValuesEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff0f172a);
   static const Color _bg2 = Color(0xff1e293b);
@@ -24,6 +25,8 @@ class BeliefsValuesEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           SliverAppBar(
             pinned: true,

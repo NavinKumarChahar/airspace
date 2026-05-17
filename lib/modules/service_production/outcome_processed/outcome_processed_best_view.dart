@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/outcome_processed/outcome_processed_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'outcome_processed_view.dart';
@@ -211,6 +212,9 @@ class OutcomeProcessedBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: OutcomeProcessedEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: OutcomeProcessedView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

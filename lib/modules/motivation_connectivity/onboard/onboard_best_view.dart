@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/motivation_connectivity/onboard/onboard_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'onboard_view.dart';
@@ -208,6 +209,7 @@ class OnboardBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: OnboardEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: OnboardView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

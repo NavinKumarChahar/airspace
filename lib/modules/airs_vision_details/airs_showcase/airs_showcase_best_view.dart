@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_vision_details/airs_showcase/airs_showcase_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'airs_showcase_view.dart';
@@ -211,6 +212,7 @@ class AirsShowcaseBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: AirsShowcaseEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: AirsShowcaseView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

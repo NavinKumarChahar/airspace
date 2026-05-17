@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/revise_improve/revise_improve_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'revise_improve_view.dart';
@@ -211,6 +212,9 @@ class ReviseImproveBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: ReviseImproveEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: ReviseImproveView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

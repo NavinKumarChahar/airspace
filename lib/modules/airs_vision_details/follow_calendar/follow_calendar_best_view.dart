@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_vision_details/follow_calendar/follow_calendar_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'follow_calendar_view.dart';
@@ -211,6 +212,9 @@ class FollowCalendarBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: FollowCalendarEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: FollowCalendarView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

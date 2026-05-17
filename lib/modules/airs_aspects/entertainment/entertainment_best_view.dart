@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/entertainment/entertainment_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'entertainment_view.dart';
@@ -211,6 +212,9 @@ class EntertainmentBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: EntertainmentEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: EntertainmentView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

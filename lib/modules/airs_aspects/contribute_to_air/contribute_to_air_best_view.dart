@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_aspects/contribute_to_air/contribute_to_air_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'contribute_to_air_view.dart';
@@ -94,9 +95,9 @@ class ContributeToAirBestView extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
+        slivers: [
           SliverAppBar(
             expandedHeight: 260,
             pinned: true,
@@ -214,6 +215,9 @@ class ContributeToAirBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: ContributeToAirEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: ContributeToAirView()),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

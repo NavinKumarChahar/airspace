@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/solution/solution_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'solution_view.dart';
@@ -208,6 +209,7 @@ class SolutionBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: SolutionEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: SolutionView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
@@ -1688,4 +1690,3 @@ class _SpiralPainter extends CustomPainter {
   @override
   bool shouldRepaint(_) => false;
 }
-

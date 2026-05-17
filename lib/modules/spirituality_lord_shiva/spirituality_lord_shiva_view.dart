@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/spirituality_lord_shiva/spirituality_lord_shiva_best_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -470,7 +471,7 @@ class SpiritualityLordShivaView
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: NestedScrollView(
@@ -483,6 +484,7 @@ class SpiritualityLordShivaView
               _SymbolsTab(isEmbedded: false),
               _FestivalsStoriesTab(isEmbedded: false),
               _PilgrimageGuideTab(isEmbedded: false),
+              SpiritualityLordShivaBestView(),
             ],
           ),
         ),

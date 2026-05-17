@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/airs_vision_details/windup_else/windup_else_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'windup_else_view.dart';
@@ -208,6 +209,7 @@ class WindupElseBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(child: WindupElseEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: WindupElseView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

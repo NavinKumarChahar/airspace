@@ -89,11 +89,7 @@ class HomeBestView extends StatelessWidget {
     return Scaffold(
       backgroundColor: bg,
       body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
-          // SliverToBoxAdapter(child: HomeView()),
-          // const SliverToBoxAdapter(child: SizedBox(height: 40)),
+        slivers: [
           SliverAppBar(
             expandedHeight: 260,
             pinned: true,
@@ -203,15 +199,8 @@ class HomeBestView extends StatelessWidget {
               ),
             ),
           ),
-          // SliverToBoxAdapter(
-          //   child: Padding(
-          //     padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-          //     child: _OriginalBanner(primary: _primary, secondary: _secondary),
-          //   ),
-          // ),
-          const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
-          // Original page content embedded below — nothing is lost
+          const SliverToBoxAdapter(child: SizedBox(height: 8)),
         ],
       ),
     );

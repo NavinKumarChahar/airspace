@@ -25,9 +25,9 @@ class DiscoveryEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
+        slivers: [
           SliverAppBar(
             pinned: true,
             expandedHeight: 240,
@@ -190,6 +190,7 @@ class DiscoveryEnhancedView extends StatelessWidget {
             ),
           ),
           // Original page content embedded — nothing deleted.
+          SliverToBoxAdapter(child: DiscoveryEnhancedView(isEmbedded: true)),
           SliverToBoxAdapter(child: const DiscoveryView()),
         ],
       ),
@@ -619,4 +620,3 @@ class _Quote extends StatelessWidget {
     );
   }
 }
-

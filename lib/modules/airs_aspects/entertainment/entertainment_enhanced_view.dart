@@ -10,7 +10,8 @@ import 'entertainment_view.dart';
 ///
 /// Theme: Slate Steel | Layout: stripes
 class EntertainmentEnhancedView extends StatelessWidget {
-  const EntertainmentEnhancedView({super.key});
+  final bool isEmbedded;
+  const EntertainmentEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff0f172a);
   static const Color _bg2 = Color(0xff1e293b);

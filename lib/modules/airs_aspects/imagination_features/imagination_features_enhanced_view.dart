@@ -10,7 +10,8 @@ import 'imagination_features_view.dart';
 ///
 /// Theme: Rose Petal | Layout: rings
 class ImaginationFeaturesEnhancedView extends StatelessWidget {
-  const ImaginationFeaturesEnhancedView({super.key});
+  final bool isEmbedded;
+  const ImaginationFeaturesEnhancedView({super.key, this.isEmbedded = false});
 
   static const Color _bg = Color(0xff2a0814);
   static const Color _bg2 = Color(0xff4a0e26);
@@ -24,6 +25,8 @@ class ImaginationFeaturesEnhancedView extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDark ? _bg : Colors.white,
       body: CustomScrollView(
+        shrinkWrap: isEmbedded,
+        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         slivers: [
           SliverAppBar(
             pinned: true,

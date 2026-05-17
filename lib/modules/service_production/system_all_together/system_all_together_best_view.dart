@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:air_app/modules/service_production/system_all_together/system_all_together_enhanced_view.dart';
 import 'package:flutter/material.dart';
 
 import 'system_all_together_view.dart';
@@ -211,6 +212,9 @@ class SystemAllTogetherBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
+          SliverToBoxAdapter(
+            child: SystemAllTogetherEnhancedView(isEmbedded: true),
+          ),
           SliverToBoxAdapter(child: SystemAllTogetherView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
