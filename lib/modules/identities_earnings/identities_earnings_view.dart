@@ -40,40 +40,42 @@ class IdentitiesEarningsView extends GetView<IdentitiesEarningsController> {
                   ),
                 ),
                 _buildSearchBar(context),
-                Expanded(
-                  child: Obx(() {
-                    final list = controller.filteredEarnings;
-                    if (list.isEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search_off_rounded,
-                              size: 64,
-                              color: tertiary.withValues(alpha: 0.3),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'No accomplishments match your search.',
-                              style: TextStyle(color: theme.dividerColor),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return ListView.builder(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
+                Obx(() {
+                  final list = controller.filteredEarnings;
+                  if (list.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.search_off_rounded,
+                            size: 64,
+                            color: tertiary.withValues(alpha: 0.3),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'No accomplishments match your search.',
+                            style: TextStyle(color: theme.dividerColor),
+                          ),
+                        ],
                       ),
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return _buildEarningCard(context, list[index]);
-                      },
                     );
-                  }),
-                ),
+                  }
+                  return ListView.builder(
+                    shrinkWrap: isEmbedded,
+                    physics: isEmbedded
+                        ? const NeverScrollableScrollPhysics()
+                        : null,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return _buildEarningCard(context, list[index]);
+                    },
+                  );
+                }),
               ],
             ),
           ),

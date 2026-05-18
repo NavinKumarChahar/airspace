@@ -22,7 +22,6 @@ class UnionsView extends GetView<UnionsController> {
         );
       }
       return SingleChildScrollView(
-        physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,
         child: Column(
           children: [
             FloatingActionButton.extended(

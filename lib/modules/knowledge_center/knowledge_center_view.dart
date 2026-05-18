@@ -46,37 +46,39 @@ class KnowledgeCenterView extends GetView<KnowledgeCenterController> {
                   ),
                 ),
                 _buildSearchBar(context),
-                Expanded(
-                  child: Obx(() {
-                    final list = controller.filteredHistory;
-                    if (list.isEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.auto_stories_rounded,
-                              size: 64,
-                              color: primary.withValues(alpha: 0.1),
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              'No knowledge nodes found.',
-                              style: TextStyle(color: Colors.white24),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return _buildHistoryCard(context, list[index]);
-                      },
+                Obx(() {
+                  final list = controller.filteredHistory;
+                  if (list.isEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.auto_stories_rounded,
+                            size: 64,
+                            color: primary.withValues(alpha: 0.1),
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'No knowledge nodes found.',
+                            style: TextStyle(color: Colors.white24),
+                          ),
+                        ],
+                      ),
                     );
-                  }),
-                ),
+                  }
+                  return ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    shrinkWrap: isEmbedded,
+                    physics: isEmbedded
+                        ? const NeverScrollableScrollPhysics()
+                        : null,
+                    itemCount: list.length,
+                    itemBuilder: (context, index) {
+                      return _buildHistoryCard(context, list[index]);
+                    },
+                  );
+                }),
               ],
             ),
           ),

@@ -25,44 +25,42 @@ class ProductsServicesView extends GetView<ProductsServicesController> {
         child: Column(
           children: [
             _buildSearchBar(context),
-            Expanded(
-              child: Obx(() {
-                final list = controller.filteredProducts;
-                if (list.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.inventory_2_outlined,
-                          size: 64,
-                          color: theme.dividerColor.withValues(alpha: 0.1),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'No products matching your scan.',
-                          style: TextStyle(color: Colors.white24),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+            Obx(() {
+              final list = controller.filteredProducts;
+              if (list.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.inventory_2_outlined,
+                        size: 64,
+                        color: theme.dividerColor.withValues(alpha: 0.1),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        'No products matching your scan.',
+                        style: TextStyle(color: Colors.white24),
+                      ),
+                    ],
                   ),
-                  shrinkWrap: isEmbedded,
-                  physics: isEmbedded
-                      ? const NeverScrollableScrollPhysics()
-                      : null,
-                  itemCount: list.length,
-                  itemBuilder: (context, index) {
-                    return _buildProductCard(context, list[index]);
-                  },
                 );
-              }),
-            ),
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                shrinkWrap: isEmbedded,
+                physics: isEmbedded
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  return _buildProductCard(context, list[index]);
+                },
+              );
+            }),
           ],
         ),
       ),
