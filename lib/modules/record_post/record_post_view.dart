@@ -22,6 +22,7 @@ class RecordPostView extends GetView<RecordPostController> {
       ),
       child: SafeArea(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FloatingActionButton.extended(
@@ -48,37 +49,39 @@ class RecordPostView extends GetView<RecordPostController> {
                 ),
               ),
             ),
-            Expanded(
-              child: Obx(() {
-                if (controller.posts.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.history_edu_rounded,
-                          size: 64,
-                          color: tertiary.withValues(alpha: 0.3),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No recordings logged yet.',
-                          style: TextStyle(color: theme.dividerColor),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: controller.posts.length,
-                  itemBuilder: (context, index) {
-                    final post = controller.posts[index];
-                    return _buildPostCard(context, post);
-                  },
+            Obx(() {
+              if (controller.posts.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.history_edu_rounded,
+                        size: 64,
+                        color: tertiary.withValues(alpha: 0.3),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'No recordings logged yet.',
+                        style: TextStyle(color: theme.dividerColor),
+                      ),
+                    ],
+                  ),
                 );
-              }),
-            ),
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                shrinkWrap: isEmbedded,
+                physics: isEmbedded
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
+                itemCount: controller.posts.length,
+                itemBuilder: (context, index) {
+                  final post = controller.posts[index];
+                  return _buildPostCard(context, post);
+                },
+              );
+            }),
           ],
         ),
       ),
@@ -125,28 +128,26 @@ class RecordPostView extends GetView<RecordPostController> {
                   child: Icon(mediaIcon, color: tertiary, size: 20),
                 ),
                 const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      post.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                      Text(
-                        '${post.category.toUpperCase()} // ${post.timestamp.day}/${post.timestamp.month}/${post.timestamp.year}',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: theme.dividerColor,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1,
-                        ),
+                    ),
+                    Text(
+                      '${post.category.toUpperCase()} // ${post.timestamp.day}/${post.timestamp.month}/${post.timestamp.year}',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: theme.dividerColor,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -147,6 +147,7 @@ class QueriesView extends GetView<QueriesController> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         // Filter Bar Section
         Container(
@@ -162,16 +163,20 @@ class QueriesView extends GetView<QueriesController> {
             ],
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              FloatingActionButton.extended(
-                onPressed: () => _showSubmissionSheet(context),
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                icon: const Icon(Icons.send, color: Colors.white),
-                label: const Text(
-                  'Send Query',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+              Align(
+                alignment: Alignment.topRight,
+                child: FloatingActionButton.extended(
+                  onPressed: () => _showSubmissionSheet(context),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  icon: const Icon(Icons.send, color: Colors.white),
+                  label: const Text(
+                    'Send Query',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -244,149 +249,147 @@ class QueriesView extends GetView<QueriesController> {
           ),
         ),
 
-        Expanded(
-          child: Obx(() {
-            if (controller.displayQueries.isEmpty) {
-              return Center(
-                child: Text(
-                  "No queries found matching the timeline/filters.",
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                  ),
+        Obx(() {
+          if (controller.displayQueries.isEmpty) {
+            return Center(
+              child: Text(
+                "No queries found matching the timeline/filters.",
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
                 ),
-              );
-            }
-
-            return ListView.builder(
-              padding: const EdgeInsets.only(
-                top: 16,
-                left: 16,
-                right: 16,
-                bottom: 80,
               ),
-              itemCount: controller.displayQueries.length,
-              itemBuilder: (context, index) {
-                final query = controller.displayQueries[index];
-                final bool isAnswered = query.status == 'Answered';
+            );
+          }
 
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: Theme.of(
-                        context,
-                      ).dividerColor.withValues(alpha: 0.3),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 10,
-                        spreadRadius: 1,
-                      ),
-                    ],
+          return ListView.builder(
+            shrinkWrap: isEmbedded,
+            physics: isEmbedded ? NeverScrollableScrollPhysics() : null,
+            padding: const EdgeInsets.only(
+              top: 16,
+              left: 16,
+              right: 16,
+              bottom: 80,
+            ),
+            itemCount: controller.displayQueries.length,
+            itemBuilder: (context, index) {
+              final query = controller.displayQueries[index];
+              final bool isAnswered = query.status == 'Answered';
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: Theme.of(
+                      context,
+                    ).dividerColor.withValues(alpha: 0.3),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              DateFormat(
-                                'MMM dd, yyyy - hh:mm a',
-                              ).format(query.dateSubmitted),
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Theme.of(
-                                  context,
-                                ).textTheme.bodyMedium?.color,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            DateFormat(
+                              'MMM dd, yyyy - hh:mm a',
+                            ).format(query.dateSubmitted),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Theme.of(
+                                context,
+                              ).textTheme.bodyMedium?.color,
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isAnswered
+                                  ? Colors.green.withValues(alpha: 0.1)
+                                  : Colors.orange.withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: isAnswered
+                                    ? Colors.green
+                                    : Colors.orange,
                               ),
                             ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
-                              ),
-                              decoration: BoxDecoration(
+                            child: Text(
+                              query.status,
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
                                 color: isAnswered
-                                    ? Colors.green.withValues(alpha: 0.1)
-                                    : Colors.orange.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: isAnswered
-                                      ? Colors.green
-                                      : Colors.orange,
-                                ),
+                                    ? Colors.green
+                                    : Colors.orange,
                               ),
-                              child: Text(
-                                query.status,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: isAnswered
-                                      ? Colors.green
-                                      : Colors.orange,
-                                ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        query.subject,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                          height: 1.3,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        query.description,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Theme.of(context).textTheme.bodyMedium?.color,
+                          height: 1.4,
+                        ),
+                      ),
+                      if (query.attachedFiles.isNotEmpty) ...[
+                        const SizedBox(height: 16),
+                        const Divider(height: 1),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.attachment,
+                              size: 16,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              "${query.attachedFiles.length} file(s) attached",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Theme.of(context).colorScheme.primary,
+                                fontStyle: FontStyle.italic,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        Text(
-                          query.subject,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).textTheme.bodyLarge?.color,
-                            height: 1.3,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          query.description,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.color,
-                            height: 1.4,
-                          ),
-                        ),
-                        if (query.attachedFiles.isNotEmpty) ...[
-                          const SizedBox(height: 16),
-                          const Divider(height: 1),
-                          const SizedBox(height: 16),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.attachment,
-                                size: 16,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                "${query.attachedFiles.length} file(s) attached",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
                       ],
-                    ),
+                    ],
                   ),
-                );
-              },
-            );
-          }),
-        ),
+                ),
+              );
+            },
+          );
+        }),
       ],
     );
   }

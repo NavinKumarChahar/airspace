@@ -45,37 +45,39 @@ class ShareExperienceView extends GetView<ShareExperienceController> {
                 ),
               ),
             ),
-            Expanded(
-              child: Obx(() {
-                if (controller.experiences.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.auto_awesome,
-                          size: 64,
-                          color: primary.withValues(alpha: 0.3),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'No experiences shared yet.',
-                          style: TextStyle(color: theme.dividerColor),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-                return ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  itemCount: controller.experiences.length,
-                  itemBuilder: (context, index) {
-                    final exp = controller.experiences[index];
-                    return _buildExperienceCard(context, exp);
-                  },
+            Obx(() {
+              if (controller.experiences.isEmpty) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.auto_awesome,
+                        size: 64,
+                        color: primary.withValues(alpha: 0.3),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'No experiences shared yet.',
+                        style: TextStyle(color: theme.dividerColor),
+                      ),
+                    ],
+                  ),
                 );
-              }),
-            ),
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                shrinkWrap: isEmbedded,
+                physics: isEmbedded
+                    ? const NeverScrollableScrollPhysics()
+                    : null,
+                itemCount: controller.experiences.length,
+                itemBuilder: (context, index) {
+                  final exp = controller.experiences[index];
+                  return _buildExperienceCard(context, exp);
+                },
+              );
+            }),
           ],
         ),
       ),
