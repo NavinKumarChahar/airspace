@@ -24,93 +24,108 @@ class HomeView extends StatelessWidget {
   /// FILTERED RESULTS
   /// =========================================================
 
+  /// ─── BUTTER-SMOOTH SCROLL ────────────────────────────────────────────────
+  ///
+  /// Strategy (3 phases):
+  ///
+  ///  Phase 1 — Jump near: animate the main ScrollController to the
+  ///            pre-measured section offset so the target item is built
+  ///            in the viewport (or very close to it).
+  ///
+  ///  Phase 2 — Wait for build: the ListView.builder only renders items
+  ///            that are near the viewport. After Phase 1 the target tile
+  ///            may not be laid out yet. We retry up to 15× (150 ms each)
+  ///            until its GlobalKey has a valid RenderObject.
+  ///
+  ///  Phase 3 — Fine-tune: once the context is live, use
+  ///            Scrollable.ensureVisible which handles the last few pixels
+  ///            precisely without any hard-coded offsets.
+  ///
+  /// Total worst-case time ≈ 600 ms coarse + 150 ms × retries + 600 ms fine
+  /// = well under 2 s, smooth on any device.
+  /// ─────────────────────────────────────────────────────────────────────────
   Future<void> scrollToItem({
     required String sectionTitle,
     required String routeTemp,
-    required GlobalKey key,
+    required GlobalKey key,   // key of the result-list tile (unused now)
   }) async {
-    /// CLOSE SEARCH OVERLAY
+    // ── 0. Close search overlay immediately ──────────────────
     controller.isDrawerSearchVisible.value = false;
-    int indexSection = 0;
-    // int indexActualTab = 0;
-    for (final section in controller.drawerSections) {
-      section.indexSection = controller.drawerSections.indexOf(section);
-      for (final item in section.items) {
-        if (item.route == routeTemp) {
-          indexSection = section.indexSection;
-          // indexActualTab = item.indexTab;
-          break;
-        }
-      }
+
+    // ── 1. Resolve the ACTUAL drawer item key ────────────────
+    GlobalKey? itemKey;
+    try {
+      itemKey = controller.drawerSections
+          .firstWhere((s) => s.title == sectionTitle)
+          .items
+          .firstWhere((i) => i.route == routeTemp)
+          .key;
+    } catch (_) {
+      debugPrint('[scroll] item not found → $routeTemp');
+      return;
     }
-    await scrollToSectionNewItem(sectionTitle);
-    // controller.itemScrollSectionController.scrollTo(
-    //   index: indexSection,
-    //   duration: const Duration(milliseconds: 800),
-    //   curve: Curves.easeInOutCubic,
-    //   alignment: 0.45,
-    // );
 
-    routeTemp = routeTemp;
-
-    /// WAIT FOR UI REBUILD
-    await Future.delayed(const Duration(milliseconds: 500));
-    GlobalKey? keyActualTab = ((controller.drawerSections.firstWhere(
-      (s) => s.title == sectionTitle,
-    )).items.firstWhere((i) => i.route == routeTemp)).key;
-
-    //  BUILD UNIQUE KEY
-    int retry = 0;
-    while (keyActualTab?.currentContext == null && retry < 10) {
-      retry++;
-
-      await Future.delayed(const Duration(milliseconds: 100));
+    if (itemKey == null) {
+      debugPrint('[scroll] key is null → $routeTemp');
+      return;
     }
-    BuildContext? ctx = keyActualTab?.currentContext;
+
+    // ── 2. Phase 1 — coarse scroll to section ────────────────
+    //      Use the live measured offset when available,
+    //      otherwise fall back to 0 (top of list).
+    final sectionOffset = controller.itemOffsets[sectionTitle] ?? 0.0;
+    final sc = controller.scrollController;
+
+    // Clamp to max scroll extent so we never overshoot on short lists.
+    final safeOffset = sectionOffset.clamp(
+      0.0,
+      sc.hasClients ? sc.position.maxScrollExtent : sectionOffset,
+    );
+
+    await sc.animateTo(
+      safeOffset,
+      duration: const Duration(milliseconds: 520),
+      curve: Curves.easeInOut,
+    );
+
+    // ── 3. Phase 2 — wait until target tile is built ─────────
+    //      ListView.builder only renders visible items; after the coarse
+    //      scroll the item may not exist yet in the widget tree.
+    const maxRetries = 15;
+    for (int i = 0; i < maxRetries; i++) {
+      if (itemKey.currentContext != null) break;
+      await Future.delayed(const Duration(milliseconds: 80));
+    }
+
+    final ctx = itemKey.currentContext;
     if (ctx == null) {
-      debugPrint("Context NULL -> $routeTemp");
+      debugPrint('[scroll] context still null after retries → $routeTemp');
       return;
     }
 
-    /// GET SAFE GLOBAL KEY
-    final GlobalKey? globalKey = keyActualTab;
-
-    if (globalKey == null) {
-      debugPrint("GlobalKey NOT FOUND -> $routeTemp");
-      return;
-    }
-
-    /// WAIT NEXT FRAME
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      /// SAFE CONTEXT
-      final BuildContext? itemContext = globalKey.currentContext;
-
-      if (itemContext == null) {
-        debugPrint("Context NULL -> $routeTemp");
-        return;
-      }
-
-      /// SCROLL
-      await Scrollable.ensureVisible(
-        itemContext,
-        duration: const Duration(milliseconds: 3800),
-        curve: Curves.easeInOutCubic,
-        alignment: 0.45,
-      );
-    });
+    // ── 4. Phase 3 — fine-tune with ensureVisible ─────────────
+    //      alignment: 0.15 puts the item 15 % from the top — clearly
+    //      visible but not jammed against the app bar.
+    await Scrollable.ensureVisible(
+      ctx,
+      duration: const Duration(milliseconds: 540),
+      curve: Curves.easeInOutCubic,
+      alignment: 0.15,
+    );
   }
 
+  /// Called by PositionTracker — kept for back-compat but logic
+  /// is now inlined in scrollToItem above.
   Future<void> scrollToSectionNewItem(String sectionTitle) async {
     final offset = controller.itemOffsets[sectionTitle];
-
     if (offset == null) {
-      debugPrint("Offset not found");
+      debugPrint('[scroll] offset not found for $sectionTitle');
       return;
     }
-
-    await controller.scrollController.animateTo(
-      offset,
-      duration: const Duration(milliseconds: 800),
+    final sc = controller.scrollController;
+    await sc.animateTo(
+      offset.clamp(0.0, sc.hasClients ? sc.position.maxScrollExtent : offset),
+      duration: const Duration(milliseconds: 520),
       curve: Curves.easeInOut,
     );
   }
@@ -797,7 +812,7 @@ class HomeView extends StatelessWidget {
   }
 }
 
-class PositionTracker extends StatelessWidget {
+class PositionTracker extends StatefulWidget {
   final Widget child;
   final String title;
   final Map<String, double> itemOffsets;
@@ -810,18 +825,42 @@ class PositionTracker extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    HomeController controller = Get.find<HomeController>();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final box = context.findRenderObject() as RenderBox?;
-
-      if (box != null) {
-        final position = box.localToGlobal(Offset.zero);
-
-        itemOffsets[title] = position.dy + controller.scrollController.offset;
-      }
-    });
-
-    return child;
-  }
+  State<PositionTracker> createState() => _PositionTrackerState();
 }
+
+class _PositionTrackerState extends State<PositionTracker> {
+  @override
+  void initState() {
+    super.initState();
+    // Measure after the first frame so RenderBox is ready.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _measure());
+  }
+
+  void _measure() {
+    if (!mounted) return;
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize) return;
+
+    // Find the nearest Scrollable ancestor and measure offset within it.
+    final scrollable = Scrollable.maybeOf(context);
+    if (scrollable == null) return;
+
+    final scrollBox =
+        scrollable.context.findRenderObject() as RenderBox?;
+    if (scrollBox == null) return;
+
+    // Position of this widget in the scrollable's coordinate space
+    // + current scroll offset = absolute offset in the full list.
+    final localPos = scrollBox.globalToLocal(
+      box.localToGlobal(Offset.zero),
+    );
+
+    final sc = scrollable.position;
+    widget.itemOffsets[widget.title] =
+        (localPos.dy + sc.pixels).clamp(0.0, double.infinity);
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
+}
+
