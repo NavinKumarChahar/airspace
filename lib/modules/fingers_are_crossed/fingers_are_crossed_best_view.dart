@@ -90,9 +90,10 @@ class FingersAreCrossedBestView extends StatelessWidget {
     final bg = isDark ? _bgDark : _bgLight;
     final onSurface = isDark ? Colors.white : const Color(0xFF0F172A);
 
-    return Scaffold(
-      backgroundColor: bg,
-      body: Column(
+    return Container(
+      color: bg,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           CustomScrollView(
             shrinkWrap: isEmbedded,
