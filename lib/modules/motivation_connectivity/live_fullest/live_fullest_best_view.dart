@@ -209,7 +209,7 @@ class LiveFullestBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: LiveFullestEnhancedView(isEmbedded: true)),
+          ...LiveFullestEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: LiveFullestView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

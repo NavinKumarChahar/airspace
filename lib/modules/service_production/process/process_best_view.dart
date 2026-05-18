@@ -209,7 +209,7 @@ class ProcessBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: ProcessEnhancedView(isEmbedded: true)),
+          ...ProcessEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: ProcessView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

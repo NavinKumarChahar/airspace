@@ -209,7 +209,7 @@ class SocialBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: SocialEnhancedView(isEmbedded: true)),
+          ...SocialEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: SocialView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

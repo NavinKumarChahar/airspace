@@ -209,7 +209,7 @@ class ResumeTourBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: ResumeTourEnhancedView(isEmbedded: true)),
+          ...ResumeTourEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: ResumeTourView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

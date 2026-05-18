@@ -209,7 +209,7 @@ class NewInAirBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: NewInAirEnhancedView(isEmbedded: true)),
+          ...NewInAirEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: NewInAirView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

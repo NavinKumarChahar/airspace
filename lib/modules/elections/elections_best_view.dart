@@ -209,7 +209,7 @@ class ElectionsBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: ElectionsEnhancedView(isEmbedded: true)),
+          ...ElectionsEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: ElectionsView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -209,7 +209,7 @@ class KindnessBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: KindnessEnhancedView(isEmbedded: true)),
+          ...KindnessEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: KindnessView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

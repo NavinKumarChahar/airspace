@@ -209,7 +209,7 @@ class PublicStuffBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: PublicStuffEnhancedView(isEmbedded: true)),
+          ...PublicStuffEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: PublicStuffView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -209,7 +209,7 @@ class LoopHoleBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: LoopHoleEnhancedView(isEmbedded: true)),
+          ...LoopHoleEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: LoopHoleView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

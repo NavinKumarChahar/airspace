@@ -212,7 +212,7 @@ class AirsShowcaseBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: AirsShowcaseEnhancedView(isEmbedded: true)),
+          ...AirsShowcaseEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: AirsShowcaseView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

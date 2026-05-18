@@ -209,7 +209,7 @@ class SolutionBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: SolutionEnhancedView(isEmbedded: true)),
+          ...SolutionEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: SolutionView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

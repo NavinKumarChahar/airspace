@@ -209,7 +209,7 @@ class OnlyOneWayBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: OnlyOneWayEnhancedView(isEmbedded: true)),
+          ...OnlyOneWayEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: OnlyOneWayView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

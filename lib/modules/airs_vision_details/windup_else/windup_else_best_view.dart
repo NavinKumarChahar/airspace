@@ -209,7 +209,7 @@ class WindupElseBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: WindupElseEnhancedView(isEmbedded: true)),
+          ...WindupElseEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: WindupElseView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -209,7 +209,7 @@ class CourtCasesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: CourtCasesEnhancedView(isEmbedded: true)),
+          ...CourtCasesEnhancedView(isEmbedded: true, isDark: isDark).slivers,
 
           SliverToBoxAdapter(child: CourtCasesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),

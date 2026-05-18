@@ -209,7 +209,7 @@ class ShareCareBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: ShareCareEnhancedView(isEmbedded: true)),
+          ...ShareCareEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: ShareCareView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -212,7 +212,7 @@ class TrainingBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: TrainingEnhancedView(isEmbedded: true)),
+          ...TrainingEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: TrainingView()),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

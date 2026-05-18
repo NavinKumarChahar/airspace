@@ -215,9 +215,10 @@ class ContributeToAirBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(
-            child: ContributeToAirEnhancedView(isEmbedded: true),
-          ),
+          ...ContributeToAirEnhancedView(
+            isEmbedded: true,
+            isDark: isDark,
+          ).slivers,
           SliverToBoxAdapter(child: ContributeToAirView()),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

@@ -209,7 +209,7 @@ class OnboardBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: OnboardEnhancedView(isEmbedded: true)),
+          ...OnboardEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: OnboardView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

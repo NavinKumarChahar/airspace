@@ -209,7 +209,7 @@ class LoyaltyBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: LoyaltyEnhancedView(isEmbedded: true)),
+          ...LoyaltyEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: LoyaltyView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

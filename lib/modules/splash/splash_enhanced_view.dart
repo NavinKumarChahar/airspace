@@ -9,8 +9,10 @@ import 'splash_screen.dart';
 /// (the original SplashScreen is embedded below the new sections).
 ///
 /// Theme: Twilight Lilac | Layout: burst
-class SplashEnhancedView extends StatelessWidget {
-  const SplashEnhancedView({super.key});
+class SplashEnhancedView {
+  final bool isEmbedded;
+  final bool isDark;
+  const SplashEnhancedView({this.isEmbedded = false, required this.isDark});
 
   static const Color _bg = Color(0xff1a0f2e);
   static const Color _bg2 = Color(0xff2d1b4e);
@@ -18,13 +20,7 @@ class SplashEnhancedView extends StatelessWidget {
   static const Color _soft = Color(0xffddd6fe);
   static const Color _gold = Color(0xfffbbf24);
 
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      backgroundColor: isDark ? _bg : Colors.white,
-      body: CustomScrollView(
-        slivers: [
+    List<Widget> get slivers => [
           SliverAppBar(
             pinned: true,
             expandedHeight: 240,
@@ -190,10 +186,7 @@ class SplashEnhancedView extends StatelessWidget {
           SliverToBoxAdapter(
             child: const SplashScreen(),
           ),
-        ],
-      ),
-    );
-  }
+          ];
 }
 
 class _Hero extends StatelessWidget {
@@ -210,10 +203,7 @@ class _Hero extends StatelessWidget {
     required this.gold,
     required this.icon,
     required this.title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  }); Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -285,9 +275,7 @@ class _HeroPainter extends CustomPainter {
     required this.accent,
     required this.soft,
     required this.gold,
-  });
-  @override
-  void paint(Canvas canvas, Size size) {
+  }); void paint(Canvas canvas, Size size) {
     final p = Paint();
     switch (layout) {
       case 'wave':
@@ -407,10 +395,7 @@ class _HeroPainter extends CustomPainter {
           );
         }
     }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter old) => false;
+  } bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
 class _Section extends StatelessWidget {
@@ -423,9 +408,7 @@ class _Section extends StatelessWidget {
     required this.child,
     required this.accent,
     required this.gold,
-  });
-  @override
-  Widget build(BuildContext context) {
+  }); Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -470,9 +453,7 @@ class _Pillar extends StatelessWidget {
     required this.text,
     required this.accent,
     required this.gold,
-  });
-  @override
-  Widget build(BuildContext context) {
+  }); Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
@@ -519,9 +500,7 @@ class _Step extends StatelessWidget {
     required this.text,
     required this.accent,
     required this.gold,
-  });
-  @override
-  Widget build(BuildContext context) {
+  }); Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
@@ -575,9 +554,7 @@ class _Quote extends StatelessWidget {
     required this.accent,
     required this.gold,
     required this.bg2,
-  });
-  @override
-  Widget build(BuildContext context) {
+  }); Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(

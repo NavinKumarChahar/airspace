@@ -215,9 +215,10 @@ class CheckedAnomaliesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(
-            child: CheckedAnomaliesEnhancedView(isEmbedded: true),
-          ),
+          ...CheckedAnomaliesEnhancedView(
+            isEmbedded: true,
+            isDark: isDark,
+          ).slivers,
           SliverToBoxAdapter(child: CheckedAnomaliesView()),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

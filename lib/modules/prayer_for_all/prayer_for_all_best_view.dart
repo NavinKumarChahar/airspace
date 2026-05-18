@@ -217,7 +217,7 @@ class PrayerForAllBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: PrayerForAllEnhancedView(isEmbedded: true)),
+          ...PrayerForAllEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: PrayerForAllBestView(isEmbedded: true)),
           SliverToBoxAdapter(child: PrayerForAllView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),

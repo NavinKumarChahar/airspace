@@ -9,9 +9,13 @@ import 'trade_import_export_view.dart';
 /// (the original TradeImportExportView is embedded below the new sections).
 ///
 /// Theme: Magenta Pulse | Layout: wave
-class TradeImportExportEnhancedView extends StatelessWidget {
+class TradeImportExportEnhancedView {
   final bool isEmbedded;
-  const TradeImportExportEnhancedView({super.key, this.isEmbedded = false});
+  final bool isDark;
+  const TradeImportExportEnhancedView({
+    this.isEmbedded = false,
+    required this.isDark,
+  });
 
   static const Color _bg = Color(0xff260a1f);
   static const Color _bg2 = Color(0xff4a0e3d);
@@ -19,183 +23,170 @@ class TradeImportExportEnhancedView extends StatelessWidget {
   static const Color _soft = Color(0xfffce7f3);
   static const Color _gold = Color(0xff38bdf8);
 
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      backgroundColor: isDark ? _bg : Colors.white,
-      body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 240,
-            backgroundColor: _bg,
-            foregroundColor: Colors.white,
-            iconTheme: const IconThemeData(color: Colors.white),
-            title: const Text(
-              'Trade Import Export',
+  List<Widget> get slivers => [
+    SliverAppBar(
+      pinned: true,
+      expandedHeight: 240,
+      backgroundColor: _bg,
+      foregroundColor: Colors.white,
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: const Text(
+        'Trade Import Export',
+        style: TextStyle(
+          letterSpacing: 2,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        background: _Hero(
+          palette: 'Magenta Pulse',
+          layout: 'wave',
+          bg: _bg,
+          bg2: _bg2,
+          accent: _accent,
+          soft: _soft,
+          gold: _gold,
+          icon: Icons.favorite_outlined,
+          title: 'Trade Import Export',
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'OVERVIEW',
+          title: 'About Trade Import Export',
+          child: Text(
+            'From the abstract to the actionable. Read it, feel it, then live it in your next conversation, decision, or quiet moment.',
+            style: TextStyle(
+              fontSize: 15.5,
+              height: 1.6,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'CORE PRINCIPLES',
+          title: 'Four Pillars',
+          child: Column(
+            children: [
+              _Pillar(
+                n: 1,
+                text: 'Notice the pattern',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 2,
+                text: 'Name the feeling',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 3,
+                text: 'Choose the response',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 4,
+                text: 'Honour the choice',
+                accent: _accent,
+                gold: _gold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'PRACTICE',
+          title: 'Action Steps',
+          child: Column(
+            children: [
+              _Step(
+                n: 1,
+                text: 'Set a 10-minute timer of presence',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 2,
+                text: 'Notice five things you can sense',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 3,
+                text: 'Release one expectation',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 4,
+                text: 'Receive whatever arrives',
+                accent: _accent,
+                gold: _gold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+        child: _Quote(
+          text:
+              'What we plant in the soil of contemplation, we shall reap in the harvest of action.',
+          author: 'Meister Eckhart',
+          accent: _accent,
+          gold: _gold,
+          bg2: _bg2,
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        child: Row(
+          children: [
+            Container(width: 4, height: 22, color: _accent),
+            const SizedBox(width: 10),
+            const Text(
+              'ORIGINAL CONTENT',
               style: TextStyle(
                 letterSpacing: 2,
-                fontWeight: FontWeight.w800,
-                color: Colors.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
               ),
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: _Hero(
-                palette: 'Magenta Pulse',
-                layout: 'wave',
-                bg: _bg,
-                bg2: _bg2,
-                accent: _accent,
-                soft: _soft,
-                gold: _gold,
-                icon: Icons.favorite_outlined,
-                title: 'Trade Import Export',
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'OVERVIEW',
-                title: 'About Trade Import Export',
-                child: Text(
-                  'From the abstract to the actionable. Read it, feel it, then live it in your next conversation, decision, or quiet moment.',
-                  style: TextStyle(
-                    fontSize: 15.5,
-                    height: 1.6,
-                    color: isDark ? Colors.white70 : Colors.black87,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'CORE PRINCIPLES',
-                title: 'Four Pillars',
-                child: Column(
-                  children: [
-                    _Pillar(
-                      n: 1,
-                      text: 'Notice the pattern',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 2,
-                      text: 'Name the feeling',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 3,
-                      text: 'Choose the response',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 4,
-                      text: 'Honour the choice',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'PRACTICE',
-                title: 'Action Steps',
-                child: Column(
-                  children: [
-                    _Step(
-                      n: 1,
-                      text: 'Set a 10-minute timer of presence',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 2,
-                      text: 'Notice five things you can sense',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 3,
-                      text: 'Release one expectation',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 4,
-                      text: 'Receive whatever arrives',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-              child: _Quote(
-                text:
-                    'What we plant in the soil of contemplation, we shall reap in the harvest of action.',
-                author: 'Meister Eckhart',
-                accent: _accent,
-                gold: _gold,
-                bg2: _bg2,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-              child: Row(
-                children: [
-                  Container(width: 4, height: 22, color: _accent),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'ORIGINAL CONTENT',
-                    style: TextStyle(
-                      letterSpacing: 2,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Original page content embedded — nothing deleted.
-          SliverToBoxAdapter(child: const TradeImportExportView()),
-        ],
+          ],
+        ),
       ),
-    );
-  }
+    ),
+  ];
 }
 
 class _Hero extends StatelessWidget {
@@ -213,8 +204,6 @@ class _Hero extends StatelessWidget {
     required this.icon,
     required this.title,
   });
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
@@ -288,7 +277,6 @@ class _HeroPainter extends CustomPainter {
     required this.soft,
     required this.gold,
   });
-  @override
   void paint(Canvas canvas, Size size) {
     final p = Paint();
     switch (layout) {
@@ -411,7 +399,6 @@ class _HeroPainter extends CustomPainter {
     }
   }
 
-  @override
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
@@ -426,7 +413,6 @@ class _Section extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -473,7 +459,6 @@ class _Pillar extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -522,7 +507,6 @@ class _Step extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -578,7 +562,6 @@ class _Quote extends StatelessWidget {
     required this.gold,
     required this.bg2,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -620,4 +603,3 @@ class _Quote extends StatelessWidget {
     );
   }
 }
-

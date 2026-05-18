@@ -209,7 +209,7 @@ class SafetyBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: SafetyEnhancedView(isEmbedded: true)),
+          ...SafetyEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: SafetyView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

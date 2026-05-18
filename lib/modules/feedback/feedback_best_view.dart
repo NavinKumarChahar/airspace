@@ -209,7 +209,7 @@ class FeedbackBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: FeedbackEnhancedView(isEmbedded: true)),
+          ...FeedbackEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: FeedbackView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

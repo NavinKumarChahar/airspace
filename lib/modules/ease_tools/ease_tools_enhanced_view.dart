@@ -9,9 +9,10 @@ import 'ease_tools_view.dart';
 /// (the original EaseToolsView is embedded below the new sections).
 ///
 /// Theme: Royal Plum | Layout: grid
-class EaseToolsEnhancedView extends StatelessWidget {
+class EaseToolsEnhancedView {
   final bool isEmbedded;
-  const EaseToolsEnhancedView({super.key, this.isEmbedded = false});
+  final bool isDark;
+  const EaseToolsEnhancedView({this.isEmbedded = false, required this.isDark});
 
   static const Color _bg = Color(0xff1e0a2e);
   static const Color _bg2 = Color(0xff3b0f5c);
@@ -19,182 +20,169 @@ class EaseToolsEnhancedView extends StatelessWidget {
   static const Color _soft = Color(0xffe9d5ff);
   static const Color _gold = Color(0xfff59e0b);
 
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Scaffold(
-      backgroundColor: isDark ? _bg : Colors.white,
-      body: CustomScrollView(
-        
-            shrinkWrap: isEmbedded,
-            physics: isEmbedded ? const NeverScrollableScrollPhysics() : null,slivers: [
-          SliverAppBar(
-            pinned: true,
-            expandedHeight: 240,
-            backgroundColor: _bg,
-            foregroundColor: Colors.white,
-            iconTheme: const IconThemeData(color: Colors.white),
-            title: const Text(
-              'Ease Tools',
+  List<Widget> get slivers => [
+    SliverAppBar(
+      pinned: true,
+      expandedHeight: 240,
+      backgroundColor: _bg,
+      foregroundColor: Colors.white,
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: const Text(
+        'Ease Tools',
+        style: TextStyle(
+          letterSpacing: 2,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        background: _Hero(
+          palette: 'Royal Plum',
+          layout: 'grid',
+          bg: _bg,
+          bg2: _bg2,
+          accent: _accent,
+          soft: _soft,
+          gold: _gold,
+          icon: Icons.trending_up_outlined,
+          title: 'Ease Tools',
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'OVERVIEW',
+          title: 'About Ease Tools',
+          child: Text(
+            'Not a definition, but an invitation. Walk through the ideas, then bring one home with you.',
+            style: TextStyle(
+              fontSize: 15.5,
+              height: 1.6,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'CORE PRINCIPLES',
+          title: 'Four Pillars',
+          child: Column(
+            children: [
+              _Pillar(
+                n: 1,
+                text: 'Listen first, twice',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 2,
+                text: 'Decide once, fully',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 3,
+                text: 'Move slow, then fast',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Pillar(
+                n: 4,
+                text: 'Reflect, then repeat',
+                accent: _accent,
+                gold: _gold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+        child: _Section(
+          accent: _accent,
+          gold: _gold,
+          eyebrow: 'PRACTICE',
+          title: 'Action Steps',
+          child: Column(
+            children: [
+              _Step(
+                n: 1,
+                text: 'Pick one habit to refine',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 2,
+                text: 'Reduce its friction by half',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 3,
+                text: 'Practice for seven days',
+                accent: _accent,
+                gold: _gold,
+              ),
+              _Step(
+                n: 4,
+                text: 'Reflect on the seventh evening',
+                accent: _accent,
+                gold: _gold,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+        child: _Quote(
+          text: 'The wound is the place where the Light enters you.',
+          author: 'Rumi',
+          accent: _accent,
+          gold: _gold,
+          bg2: _bg2,
+        ),
+      ),
+    ),
+    SliverToBoxAdapter(
+      child: Container(
+        color: isDark ? _bg : Colors.white,
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        child: Row(
+          children: [
+            Container(width: 4, height: 22, color: _accent),
+            const SizedBox(width: 10),
+            const Text(
+              'ORIGINAL CONTENT',
               style: TextStyle(
                 letterSpacing: 2,
-                fontWeight: FontWeight.w800,
-                color: Colors.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
               ),
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: _Hero(
-                palette: 'Royal Plum',
-                layout: 'grid',
-                bg: _bg,
-                bg2: _bg2,
-                accent: _accent,
-                soft: _soft,
-                gold: _gold,
-                icon: Icons.trending_up_outlined,
-                title: 'Ease Tools',
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'OVERVIEW',
-                title: 'About Ease Tools',
-                child: Text(
-                  'Not a definition, but an invitation. Walk through the ideas, then bring one home with you.',
-                  style: TextStyle(
-                    fontSize: 15.5,
-                    height: 1.6,
-                    color: isDark ? Colors.white70 : Colors.black87,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'CORE PRINCIPLES',
-                title: 'Four Pillars',
-                child: Column(
-                  children: [
-                    _Pillar(
-                      n: 1,
-                      text: 'Listen first, twice',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 2,
-                      text: 'Decide once, fully',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 3,
-                      text: 'Move slow, then fast',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Pillar(
-                      n: 4,
-                      text: 'Reflect, then repeat',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-              child: _Section(
-                accent: _accent,
-                gold: _gold,
-                eyebrow: 'PRACTICE',
-                title: 'Action Steps',
-                child: Column(
-                  children: [
-                    _Step(
-                      n: 1,
-                      text: 'Pick one habit to refine',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 2,
-                      text: 'Reduce its friction by half',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 3,
-                      text: 'Practice for seven days',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                    _Step(
-                      n: 4,
-                      text: 'Reflect on the seventh evening',
-                      accent: _accent,
-                      gold: _gold,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-              child: _Quote(
-                text: 'The wound is the place where the Light enters you.',
-                author: 'Rumi',
-                accent: _accent,
-                gold: _gold,
-                bg2: _bg2,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              color: isDark ? _bg : Colors.white,
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-              child: Row(
-                children: [
-                  Container(width: 4, height: 22, color: _accent),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'ORIGINAL CONTENT',
-                    style: TextStyle(
-                      letterSpacing: 2,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Original page content embedded — nothing deleted.
-          SliverToBoxAdapter(child: const EaseToolsView()),
-        ],
+          ],
+        ),
       ),
-    );
-  }
+    ),
+  ];
 }
 
 class _Hero extends StatelessWidget {
@@ -212,8 +200,6 @@ class _Hero extends StatelessWidget {
     required this.icon,
     required this.title,
   });
-
-  @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
@@ -287,7 +273,6 @@ class _HeroPainter extends CustomPainter {
     required this.soft,
     required this.gold,
   });
-  @override
   void paint(Canvas canvas, Size size) {
     final p = Paint();
     switch (layout) {
@@ -410,7 +395,6 @@ class _HeroPainter extends CustomPainter {
     }
   }
 
-  @override
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
@@ -425,7 +409,6 @@ class _Section extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -472,7 +455,6 @@ class _Pillar extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -521,7 +503,6 @@ class _Step extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -577,7 +558,6 @@ class _Quote extends StatelessWidget {
     required this.gold,
     required this.bg2,
   });
-  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -619,4 +599,3 @@ class _Quote extends StatelessWidget {
     );
   }
 }
-

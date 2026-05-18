@@ -209,7 +209,7 @@ class FamilyBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: FamilyEnhancedView(isEmbedded: true)),
+          ...FamilyEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: FamilyView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

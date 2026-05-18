@@ -209,7 +209,7 @@ class RivalryBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: RivalryEnhancedView(isEmbedded: true)),
+          ...RivalryEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: RivalryView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

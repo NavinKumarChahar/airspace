@@ -209,7 +209,7 @@ class MonitorshipBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: MonitorshipEnhancedView(isEmbedded: true)),
+          ...MonitorshipEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: MonitorshipView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

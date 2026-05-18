@@ -209,7 +209,7 @@ class EnhancementBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: EnhancementEnhancedView(isEmbedded: true)),
+          ...EnhancementEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: EnhancementView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

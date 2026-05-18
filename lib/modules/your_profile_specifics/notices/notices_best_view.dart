@@ -209,7 +209,7 @@ class NoticesBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: NoticesEnhancedView(isEmbedded: true)),
+          ...NoticesEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: NoticesView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],

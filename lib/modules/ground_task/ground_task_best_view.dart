@@ -209,7 +209,7 @@ class GroundTaskBestView extends StatelessWidget {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           // Original page content embedded below — nothing is lost
-          SliverToBoxAdapter(child: GroundTaskEnhancedView(isEmbedded: true)),
+          ...GroundTaskEnhancedView(isEmbedded: true, isDark: isDark).slivers,
           SliverToBoxAdapter(child: GroundTaskView(isEmbedded: true)),
           const SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
