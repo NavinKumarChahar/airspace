@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'only_one_way_controller.dart';
-import 'only_one_way_enhanced_view.dart';
 
 class OnlyOneWayPage extends GetView<OnlyOneWayController> {
   const OnlyOneWayPage({super.key});

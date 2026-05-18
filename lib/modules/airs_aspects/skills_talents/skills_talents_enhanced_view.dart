@@ -269,7 +269,8 @@ class _Hero extends StatelessWidget {
     required this.gold,
     required this.icon,
     required this.title,
-  }); Widget build(BuildContext context) {
+  }); @override
+  Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -341,7 +342,8 @@ class _HeroPainter extends CustomPainter {
     required this.accent,
     required this.soft,
     required this.gold,
-  }); void paint(Canvas canvas, Size size) {
+  }); @override
+  void paint(Canvas canvas, Size size) {
     final p = Paint();
     switch (layout) {
       case 'wave':
@@ -461,7 +463,8 @@ class _HeroPainter extends CustomPainter {
           );
         }
     }
-  } bool shouldRepaint(covariant CustomPainter old) => false;
+  } @override
+  bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
 class _Section extends StatelessWidget {
@@ -474,7 +477,8 @@ class _Section extends StatelessWidget {
     required this.child,
     required this.accent,
     required this.gold,
-  }); Widget build(BuildContext context) {
+  }); @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -519,7 +523,8 @@ class _Pillar extends StatelessWidget {
     required this.text,
     required this.accent,
     required this.gold,
-  }); Widget build(BuildContext context) {
+  }); @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
@@ -566,7 +571,8 @@ class _Step extends StatelessWidget {
     required this.text,
     required this.accent,
     required this.gold,
-  }); Widget build(BuildContext context) {
+  }); @override
+  Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
@@ -620,7 +626,8 @@ class _Quote extends StatelessWidget {
     required this.accent,
     required this.gold,
     required this.bg2,
-  }); Widget build(BuildContext context) {
+  }); @override
+  Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(

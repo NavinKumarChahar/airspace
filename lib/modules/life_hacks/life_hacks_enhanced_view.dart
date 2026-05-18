@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import 'life_hacks_view.dart';
 
 /// Auto-generated unique themed wrapper for Life Hacks.
 /// Adds a fresh design + new content sections while preserving original content
@@ -186,6 +185,7 @@ class _Hero extends StatelessWidget {
     required this.icon,
     required this.title,
   });
+  @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
@@ -259,6 +259,7 @@ class _HeroPainter extends CustomPainter {
     required this.soft,
     required this.gold,
   });
+  @override
   void paint(Canvas canvas, Size size) {
     final p = Paint();
     switch (layout) {
@@ -381,6 +382,7 @@ class _HeroPainter extends CustomPainter {
     }
   }
 
+  @override
   bool shouldRepaint(covariant CustomPainter old) => false;
 }
 
@@ -395,6 +397,7 @@ class _Section extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -441,6 +444,7 @@ class _Pillar extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -489,6 +493,7 @@ class _Step extends StatelessWidget {
     required this.accent,
     required this.gold,
   });
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -544,6 +549,7 @@ class _Quote extends StatelessWidget {
     required this.gold,
     required this.bg2,
   });
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),

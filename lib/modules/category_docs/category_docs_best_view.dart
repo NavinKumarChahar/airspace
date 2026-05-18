@@ -995,7 +995,7 @@ class _NumberedBlock extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${(i + 1).toString().padLeft(2, '0')}',
+                (i + 1).toString().padLeft(2, '0'),
                 style: TextStyle(
                   color: primary,
                   fontSize: 28,
@@ -1348,10 +1348,12 @@ class _GridPainter extends CustomPainter {
       ..color = c.withValues(alpha: 0.3)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
-    for (double x = 0; x <= size.width; x += 24)
+    for (double x = 0; x <= size.width; x += 24) {
       canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
-    for (double y = 0; y <= size.height; y += 24)
+    }
+    for (double y = 0; y <= size.height; y += 24) {
       canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
+    }
   }
 
   @override
@@ -1380,12 +1382,13 @@ class _CirclesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()..color = c.withValues(alpha: 0.18);
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 8; i++) {
       canvas.drawCircle(
         Offset(size.width * 0.15 * i, size.height * 0.4),
         40.0 + i * 8,
         paint,
       );
+    }
     final p2 = Paint()..color = c.withValues(alpha: 0.1);
     canvas.drawCircle(Offset(size.width * 0.8, size.height * 0.7), 120, p2);
   }
@@ -1513,10 +1516,12 @@ class _MeshPainter extends CustomPainter {
       ),
     );
     for (var a in pts)
-      for (var b in pts)
+      for (var b in pts) {
         if ((a - b).distance < 120) canvas.drawLine(a, b, paint);
-    for (var p in pts)
+      }
+    for (var p in pts) {
       canvas.drawCircle(p, 3, Paint()..color = c.withValues(alpha: 0.6));
+    }
   }
 
   @override
@@ -1545,8 +1550,9 @@ class _StripesPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()..color = c.withValues(alpha: 0.18);
-    for (double y = 0; y < size.height; y += 16)
+    for (double y = 0; y < size.height; y += 16) {
       canvas.drawRect(Rect.fromLTWH(0, y, size.width, 6), paint);
+    }
   }
 
   @override
@@ -1575,12 +1581,13 @@ class _OrbPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width * 0.7, size.height * 0.55);
-    for (int i = 8; i > 0; i--)
+    for (int i = 8; i > 0; i--) {
       canvas.drawCircle(
         center,
         30.0 * i,
         Paint()..color = c.withValues(alpha: 0.03 * i),
       );
+    }
     canvas.drawCircle(center, 40, Paint()..color = c.withValues(alpha: 0.7));
   }
 
@@ -1686,10 +1693,11 @@ class _SpiralPainter extends CustomPainter {
       final r = t * 5;
       final x = size.width * 0.5 + r * math.cos(t);
       final y = size.height * 0.5 + r * math.sin(t);
-      if (t == 0)
+      if (t == 0) {
         path.moveTo(x, y);
-      else
+      } else {
         path.lineTo(x, y);
+      }
     }
     canvas.drawPath(path, paint);
   }
