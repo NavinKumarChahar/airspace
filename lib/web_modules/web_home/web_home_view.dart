@@ -31,9 +31,7 @@ class WebHomeView extends GetView<WebHomeController> {
             SliverAppBar(
               expandedHeight: WBreak.isMobile(context) ? 320 : 450,
               pinned: false,
-              flexibleSpace: FlexibleSpaceBar(
-                background: _AnimatedHero(),
-              ),
+              flexibleSpace: FlexibleSpaceBar(background: _AnimatedHero()),
             ),
 
             // ── STATS WITH ANIMATION ──
@@ -52,11 +50,23 @@ class WebHomeView extends GetView<WebHomeController> {
                                 child: FadeInAnimation(child: widget),
                               ),
                               children: const [
-                                WStatChip(value: '11', label: 'Workspaces', color: WColors.indigo),
+                                WStatChip(
+                                  value: '11',
+                                  label: 'Workspaces',
+                                  color: WColors.indigo,
+                                ),
                                 SizedBox(height: 12),
-                                WStatChip(value: '150+', label: 'Linked Topics', color: WColors.teal),
+                                WStatChip(
+                                  value: '150+',
+                                  label: 'Linked Topics',
+                                  color: WColors.teal,
+                                ),
                                 SizedBox(height: 12),
-                                WStatChip(value: '∞', label: 'Room to Grow', color: WColors.amber),
+                                WStatChip(
+                                  value: '∞',
+                                  label: 'Room to Grow',
+                                  color: WColors.amber,
+                                ),
                               ],
                             ),
                           )
@@ -67,11 +77,29 @@ class WebHomeView extends GetView<WebHomeController> {
                                 child: FadeInAnimation(child: widget),
                               ),
                               children: const [
-                                Expanded(child: WStatChip(value: '11', label: 'Workspaces', color: WColors.indigo)),
+                                Expanded(
+                                  child: WStatChip(
+                                    value: '11',
+                                    label: 'Workspaces',
+                                    color: WColors.indigo,
+                                  ),
+                                ),
                                 SizedBox(width: 12),
-                                Expanded(child: WStatChip(value: '150+', label: 'Linked Topics', color: WColors.teal)),
+                                Expanded(
+                                  child: WStatChip(
+                                    value: '150+',
+                                    label: 'Linked Topics',
+                                    color: WColors.teal,
+                                  ),
+                                ),
                                 SizedBox(width: 12),
-                                Expanded(child: WStatChip(value: '∞', label: 'Room to Grow', color: WColors.amber)),
+                                Expanded(
+                                  child: WStatChip(
+                                    value: '∞',
+                                    label: 'Room to Grow',
+                                    color: WColors.amber,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -112,17 +140,50 @@ class WebHomeView extends GetView<WebHomeController> {
                   mainAxisSpacing: 16,
                 ),
                 delegate: SliverChildListDelegate([
-                  _AnimatedSectionCard(section: WebNavData.bySlug('explore'), index: 0),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('wisdom'), index: 1),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('be_you'), index: 2),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('air_space'), index: 3),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('profile'), index: 4),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('aspects'), index: 5),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('service'), index: 6),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('vision'), index: 7),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('motivation'), index: 8),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('setup'), index: 9),
-                  _AnimatedSectionCard(section: WebNavData.bySlug('system'), index: 10),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('explore'),
+                    index: 0,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('wisdom'),
+                    index: 1,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('be_you'),
+                    index: 2,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('air_space'),
+                    index: 3,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('profile'),
+                    index: 4,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('aspects'),
+                    index: 5,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('service'),
+                    index: 6,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('vision'),
+                    index: 7,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('motivation'),
+                    index: 8,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('setup'),
+                    index: 9,
+                  ),
+                  _AnimatedSectionCard(
+                    section: WebNavData.bySlug('system'),
+                    index: 10,
+                  ),
                 ]),
               ),
             ),
@@ -130,9 +191,7 @@ class WebHomeView extends GetView<WebHomeController> {
             SliverToBoxAdapter(child: const SizedBox(height: 56)),
 
             // ── FOOTER CTA ──
-            SliverToBoxAdapter(
-              child: _AnimatedFooter(),
-            ),
+            SliverToBoxAdapter(child: _AnimatedFooter()),
 
             SliverToBoxAdapter(child: const SizedBox(height: 40)),
           ],
@@ -334,8 +393,9 @@ class _AnimatedSectionCardState extends State<_AnimatedSectionCard>
                         color: isDark ? WColors.cardDark : Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: widget.section.primary
-                              .withValues(alpha: 0.25 + _hoverController.value * 0.25),
+                          color: widget.section.primary.withValues(
+                            alpha: 0.25 + _hoverController.value * 0.25,
+                          ),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -361,22 +421,28 @@ class _AnimatedSectionCardState extends State<_AnimatedSectionCard>
                                     gradient: LinearGradient(
                                       colors: [
                                         widget.section.primary,
-                                        widget.section.secondary
+                                        widget.section.secondary,
                                       ],
                                     ),
                                     borderRadius: BorderRadius.circular(14),
                                   ),
-                                  child: Icon(widget.section.icon,
-                                      color: Colors.white, size: 26),
+                                  child: Icon(
+                                    widget.section.icon,
+                                    color: Colors.white,
+                                    size: 26,
+                                  ),
                                 ),
                               ),
                               const Spacer(),
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 4),
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: widget.section.primary
-                                      .withValues(alpha: 0.12),
+                                  color: widget.section.primary.withValues(
+                                    alpha: 0.12,
+                                  ),
                                   borderRadius: BorderRadius.circular(100),
                                 ),
                                 child: Text(
@@ -412,17 +478,23 @@ class _AnimatedSectionCardState extends State<_AnimatedSectionCard>
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Expanded(
-                            child: Text(
-                              widget.section.blurb,
-                              maxLines: 4,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 13,
-                                height: 1.55,
-                                color: isDark ? Colors.white70 : Colors.black54,
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  widget.section.blurb,
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    height: 1.55,
+                                    color: isDark
+                                        ? Colors.white70
+                                        : Colors.black54,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                           const SizedBox(height: 18),
                           Row(
