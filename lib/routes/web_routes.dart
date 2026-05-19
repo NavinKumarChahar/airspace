@@ -255,38 +255,5 @@ class WebRoutes {
       binding: WebAppSettingBinding(),
       transition: Transition.fadeIn,
     ),
-
-    GetPage(
-      name: setup_digitalizeHub,
-      page: () => const ProductRecordDigitalize(),
-    ),
-
-    GetPage(
-      name: setup_projectsAssessments,
-      page: () => const ProjectsAssessments(),
-    ),
-
-    GetPage(name: setup_categoryTree, page: () => const CategoryTree()),
-
-    GetPage(name: setup_easeTools, page: () => const EaseTools()),
-
-    GetPage(name: setup_vocabulary, page: () => const Vocabulary()),
-
-    GetPage(name: setup_codeConduct, page: () => const CodeConduct()),
-
-    GetPage(name: setup_scriptStrategy, page: () => const ScriptStrategy()),
-
-    GetPage(name: setup_safety, page: () => const Safety()),
-
-    GetPage(name: setup_hospitalityCare, page: () => const HospitalityCare()),
-
-    GetPage(
-      name: setup_utilityFacilities,
-      page: () => const UtilityFacilities(),
-    ),
-
-    GetPage(name: setup_commerce, page: () => const Commerce()),
-
-    GetPage(name: setup_social, page: () => const Social()),
   ];
 }
