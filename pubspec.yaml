@@ -20,11 +20,17 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.2.10+1
 
 flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/AIR_Icon.png"
+  web:
+    generate: true
+    image_path: "assets/images/AIR_Icon.png"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"
   min_sdk_android: 21
   remove_alpha_ios: true # android min sdk min:16, default 21
 
@@ -44,7 +50,8 @@ flutter_native_splash:
     icon_background_color_dark: "#121212"
     # fill: true
 
-  web: false
+  web: true
+  image_web: assets/images/air_splash_logo.png
 
 flutter:
   uses-material-design: true
