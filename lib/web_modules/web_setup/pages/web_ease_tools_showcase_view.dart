@@ -19,7 +19,7 @@ class EaseTools extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              expandedHeight: 280,
+              expandedHeight: 330,
               pinned: true,
               backgroundColor: const Color(0xFF111827),
               flexibleSpace: FlexibleSpaceBar(
