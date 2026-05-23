@@ -19,280 +19,280 @@ class WebDigitalizeHubShowcaseView extends StatelessWidget {
             : const Color(0xFFF5F7FB),
         body: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              expandedHeight: 530,
-              pinned: true,
-              backgroundColor: Colors.transparent,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(
-                  'Digitalize Hub',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.4,
-                  ),
-                ),
-                background: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF5B8CFF),
-                            Color(0xFF6E44FF),
-                            Color(0xFF00C2A8),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 60,
-                      right: -40,
-                      child: Container(
-                        width: 220,
-                        height: 220,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.08),
-                          borderRadius: BorderRadius.circular(200),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 24,
-                      bottom: 60,
-                      child: SizedBox(
-                        width: 520,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 14,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: const Text(
-                                'Flutter 2026 Experience Layer',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 18),
-                            const Text(
-                              'Automation pipelines, cloud orchestration, modern digital operations.',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                height: 1.5,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            Wrap(
-                              spacing: 14,
-                              runSpacing: 14,
-                              children: List.generate(
-                                4,
-                                (index) => AnimatedContainer(
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.easeOutCubic,
-                                  padding: const EdgeInsets.all(18),
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.12),
-                                    borderRadius: BorderRadius.circular(24),
-                                    border: Border.all(
-                                      color: Colors.white.withOpacity(0.1),
-                                    ),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.auto_awesome,
-                                        color: Colors.white,
-                                      ),
-                                      const SizedBox(height: 12),
-                                      Text(
-                                        'Module $index',
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      const Text(
-                                        'Motion driven micro interactions',
-                                        style: TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsets.all(24),
-              sliver: SliverList(
-                delegate: SliverChildListDelegate([
-                  Wrap(
-                    spacing: 24,
-                    runSpacing: 24,
-                    children: List.generate(8, (index) {
-                      final width = MediaQuery.of(context).size.width;
+            // SliverAppBar(
+            //   expandedHeight: 530,
+            //   pinned: true,
+            //   backgroundColor: Colors.transparent,
+            //   flexibleSpace: FlexibleSpaceBar(
+            //     title: Text(
+            //       'Digitalize Hub',
+            //       style: const TextStyle(
+            //         fontWeight: FontWeight.w700,
+            //         letterSpacing: 0.4,
+            //       ),
+            //     ),
+            //     background: Stack(
+            //       fit: StackFit.expand,
+            //       children: [
+            //         Container(
+            //           decoration: const BoxDecoration(
+            //             gradient: LinearGradient(
+            //               colors: [
+            //                 Color(0xFF5B8CFF),
+            //                 Color(0xFF6E44FF),
+            //                 Color(0xFF00C2A8),
+            //               ],
+            //               begin: Alignment.topLeft,
+            //               end: Alignment.bottomRight,
+            //             ),
+            //           ),
+            //         ),
+            //         Positioned(
+            //           top: 60,
+            //           right: -40,
+            //           child: Container(
+            //             width: 220,
+            //             height: 220,
+            //             decoration: BoxDecoration(
+            //               color: Colors.white.withOpacity(0.08),
+            //               borderRadius: BorderRadius.circular(200),
+            //             ),
+            //           ),
+            //         ),
+            //         Positioned(
+            //           left: 24,
+            //           bottom: 60,
+            //           child: SizedBox(
+            //             width: 520,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               mainAxisAlignment: MainAxisAlignment.end,
+            //               children: [
+            //                 Container(
+            //                   padding: const EdgeInsets.symmetric(
+            //                     horizontal: 14,
+            //                     vertical: 8,
+            //                   ),
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.white.withOpacity(0.15),
+            //                     borderRadius: BorderRadius.circular(30),
+            //                   ),
+            //                   child: const Text(
+            //                     'Flutter 2026 Experience Layer',
+            //                     style: TextStyle(
+            //                       color: Colors.white,
+            //                       fontWeight: FontWeight.w600,
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 const SizedBox(height: 18),
+            //                 const Text(
+            //                   'Automation pipelines, cloud orchestration, modern digital operations.',
+            //                   style: TextStyle(
+            //                     color: Colors.white,
+            //                     fontSize: 18,
+            //                     height: 1.5,
+            //                   ),
+            //                 ),
+            //                 const SizedBox(height: 24),
+            //                 Wrap(
+            //                   spacing: 14,
+            //                   runSpacing: 14,
+            //                   children: List.generate(
+            //                     4,
+            //                     (index) => AnimatedContainer(
+            //                       duration: const Duration(milliseconds: 500),
+            //                       curve: Curves.easeOutCubic,
+            //                       padding: const EdgeInsets.all(18),
+            //                       width: 140,
+            //                       decoration: BoxDecoration(
+            //                         color: Colors.white.withOpacity(0.12),
+            //                         borderRadius: BorderRadius.circular(24),
+            //                         border: Border.all(
+            //                           color: Colors.white.withOpacity(0.1),
+            //                         ),
+            //                       ),
+            //                       child: Column(
+            //                         crossAxisAlignment:
+            //                             CrossAxisAlignment.start,
+            //                         children: [
+            //                           Icon(
+            //                             Icons.auto_awesome,
+            //                             color: Colors.white,
+            //                           ),
+            //                           const SizedBox(height: 12),
+            //                           Text(
+            //                             'Module $index',
+            //                             style: const TextStyle(
+            //                               color: Colors.white,
+            //                               fontWeight: FontWeight.w700,
+            //                             ),
+            //                           ),
+            //                           const SizedBox(height: 6),
+            //                           const Text(
+            //                             'Motion driven micro interactions',
+            //                             style: TextStyle(
+            //                               color: Colors.white70,
+            //                               fontSize: 12,
+            //                             ),
+            //                           ),
+            //                         ],
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // SliverPadding(
+            //   padding: const EdgeInsets.all(24),
+            //   sliver: SliverList(
+            //     delegate: SliverChildListDelegate([
+            //       Wrap(
+            //         spacing: 24,
+            //         runSpacing: 24,
+            //         children: List.generate(8, (index) {
+            //           final width = MediaQuery.of(context).size.width;
 
-                      double cardWidth = width;
+            //           double cardWidth = width;
 
-                      if (width > 1600) {
-                        cardWidth = (width - 120) / 4;
-                      } else if (width > 1200) {
-                        cardWidth = (width - 100) / 3;
-                      } else if (width > 700) {
-                        cardWidth = (width - 80) / 2;
-                      } else {
-                        cardWidth = width - 48;
-                      }
+            //           if (width > 1600) {
+            //             cardWidth = (width - 120) / 4;
+            //           } else if (width > 1200) {
+            //             cardWidth = (width - 100) / 3;
+            //           } else if (width > 700) {
+            //             cardWidth = (width - 80) / 2;
+            //           } else {
+            //             cardWidth = width - 48;
+            //           }
 
-                      return TweenAnimationBuilder<double>(
-                        tween: Tween(begin: 0, end: 1),
-                        duration: Duration(milliseconds: 500 + (index * 80)),
-                        curve: Curves.easeOutCubic,
-                        builder: (context, value, child) {
-                          return Transform.translate(
-                            offset: Offset(0, 40 * (1 - value)),
-                            child: Opacity(opacity: value, child: child),
-                          );
-                        },
-                        child: SizedBox(
-                          width: cardWidth,
-                          child: Container(
-                            padding: const EdgeInsets.all(22),
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? const Color(0xFF111C2D)
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 30,
-                                  offset: const Offset(0, 12),
-                                  color: Colors.black.withOpacity(0.06),
-                                ),
-                              ],
-                            ),
+            //           return TweenAnimationBuilder<double>(
+            //             tween: Tween(begin: 0, end: 1),
+            //             duration: Duration(milliseconds: 500 + (index * 80)),
+            //             curve: Curves.easeOutCubic,
+            //             builder: (context, value, child) {
+            //               return Transform.translate(
+            //                 offset: Offset(0, 40 * (1 - value)),
+            //                 child: Opacity(opacity: value, child: child),
+            //               );
+            //             },
+            //             child: SizedBox(
+            //               width: cardWidth,
+            //               child: Container(
+            //                 padding: const EdgeInsets.all(22),
+            //                 decoration: BoxDecoration(
+            //                   color: isDark
+            //                       ? const Color(0xFF111C2D)
+            //                       : Colors.white,
+            //                   borderRadius: BorderRadius.circular(30),
+            //                   boxShadow: [
+            //                     BoxShadow(
+            //                       blurRadius: 30,
+            //                       offset: const Offset(0, 12),
+            //                       color: Colors.black.withOpacity(0.06),
+            //                     ),
+            //                   ],
+            //                 ),
 
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 26,
-                                      backgroundColor: const Color(
-                                        0xFF5B8CFF,
-                                      ).withOpacity(0.15),
-                                      child: const Icon(
-                                        Icons.bolt,
-                                        color: Color(0xFF5B8CFF),
-                                      ),
-                                    ),
+            //                 child: Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Row(
+            //                       children: [
+            //                         CircleAvatar(
+            //                           radius: 26,
+            //                           backgroundColor: const Color(
+            //                             0xFF5B8CFF,
+            //                           ).withOpacity(0.15),
+            //                           child: const Icon(
+            //                             Icons.bolt,
+            //                             color: Color(0xFF5B8CFF),
+            //                           ),
+            //                         ),
 
-                                    const Spacer(),
+            //                         const Spacer(),
 
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 6,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: Colors.green.withOpacity(0.12),
-                                      ),
-                                      child: const Text(
-                                        'Realtime',
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+            //                         Container(
+            //                           padding: const EdgeInsets.symmetric(
+            //                             horizontal: 12,
+            //                             vertical: 6,
+            //                           ),
+            //                           decoration: BoxDecoration(
+            //                             borderRadius: BorderRadius.circular(20),
+            //                             color: Colors.green.withOpacity(0.12),
+            //                           ),
+            //                           child: const Text(
+            //                             'Realtime',
+            //                             style: TextStyle(
+            //                               color: Colors.green,
+            //                               fontWeight: FontWeight.w700,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
 
-                                const SizedBox(height: 24),
+            //                     const SizedBox(height: 24),
 
-                                Text(
-                                  'Feature Experience #$index',
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? Colors.white
-                                        : Colors.black87,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+            //                     Text(
+            //                       'Feature Experience #$index',
+            //                       style: TextStyle(
+            //                         color: isDark
+            //                             ? Colors.white
+            //                             : Colors.black87,
+            //                         fontSize: 22,
+            //                         fontWeight: FontWeight.w700,
+            //                       ),
+            //                     ),
 
-                                const SizedBox(height: 10),
+            //                     const SizedBox(height: 10),
 
-                                Text(
-                                  'Flutter enables high-performance sliver layouts, adaptive rendering, futuristic UI systems, GPU accelerated animations and premium desktop-grade experiences.',
-                                  style: TextStyle(
-                                    color: isDark
-                                        ? Colors.white70
-                                        : Colors.black54,
-                                    height: 1.6,
-                                  ),
-                                ),
+            //                     Text(
+            //                       'Flutter enables high-performance sliver layouts, adaptive rendering, futuristic UI systems, GPU accelerated animations and premium desktop-grade experiences.',
+            //                       style: TextStyle(
+            //                         color: isDark
+            //                             ? Colors.white70
+            //                             : Colors.black54,
+            //                         height: 1.6,
+            //                       ),
+            //                     ),
 
-                                const SizedBox(height: 24),
+            //                     const SizedBox(height: 24),
 
-                                LinearProgressIndicator(
-                                  value: (index + 1) / 10,
-                                  borderRadius: BorderRadius.circular(20),
-                                  minHeight: 10,
-                                ),
+            //                     LinearProgressIndicator(
+            //                       value: (index + 1) / 10,
+            //                       borderRadius: BorderRadius.circular(20),
+            //                       minHeight: 10,
+            //                     ),
 
-                                const SizedBox(height: 18),
+            //                     const SizedBox(height: 18),
 
-                                Wrap(
-                                  spacing: 10,
-                                  runSpacing: 10,
-                                  children: const [
-                                    Chip(label: Text('Slivers')),
-                                    Chip(label: Text('Motion')),
-                                    Chip(label: Text('AI UI')),
-                                    Chip(label: Text('Responsive')),
-                                    Chip(label: Text('GetX')),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ]),
-              ),
-            ),
+            //                     Wrap(
+            //                       spacing: 10,
+            //                       runSpacing: 10,
+            //                       children: const [
+            //                         Chip(label: Text('Slivers')),
+            //                         Chip(label: Text('Motion')),
+            //                         Chip(label: Text('AI UI')),
+            //                         Chip(label: Text('Responsive')),
+            //                         Chip(label: Text('GetX')),
+            //                       ],
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ),
+            //           );
+            //         }),
+            //       ),
+            //     ]),
+            //   ),
+            // ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 60),
