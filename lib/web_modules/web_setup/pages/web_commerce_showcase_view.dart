@@ -1,5 +1,7 @@
 import 'package:air_app/web_modules/_shared/web_shell.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 class WebCommerceShowcaseView extends StatefulWidget {
@@ -124,13 +126,17 @@ class _WebCommerceShowcaseViewState extends State<WebCommerceShowcaseView> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                                'Commerce Showcase',
-                                style: Theme.of(context).textTheme.headlineLarge
-                                    ?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          Container(
+                                child: Text(
+                                  'Commerce Showcase',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge
+                                      ?.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                ),
                               )
                               .animate()
                               .fadeIn(duration: 600.ms)
