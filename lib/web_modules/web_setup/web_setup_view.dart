@@ -2,7 +2,10 @@
 // Section workspace — unique palette, hero, item grid, and detail.
 
 import 'package:air_app/routes/web_routes.dart';
+import 'package:air_app/web_modules/web_setup/pages/web_commerce_showcase_view.dart';
 import 'package:air_app/web_modules/web_setup/pages/web_digitalize_hub_showcase_view.dart';
+import 'package:air_app/web_modules/web_setup/pages/web_ease_tools_showcase_view.dart';
+import 'package:air_app/web_modules/web_setup/pages/web_hospitality_care_showcase_view.dart';
 import 'package:air_app/web_modules/web_setup/pages/web_projects_assessments_showcase_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -358,6 +361,15 @@ class _ItemCard extends StatelessWidget {
       return;
     } else if (item.title == 'Projects & Assessments') {
       Get.toNamed(WebProjectsAssessmentsShowcaseView.routeName);
+      return;
+    } else if (item.title == 'Commerce') {
+      Get.toNamed(WebCommerceShowcaseView.routeName);
+      return;
+    } else if (item.title == 'Ease Tools') {
+      Get.toNamed(WebEaseToolsShowcaseView.routeName);
+      return;
+    } else if (item.title == 'Hospitality & Care') {
+      Get.toNamed(WebHospitalityCareShowcaseView.routeName);
       return;
     }
     // else if (t.title == "Operate with Ease") {
