@@ -290,17 +290,15 @@ class _FilterHeaderDelegate extends SliverPersistentHeaderDelegate {
             .map(
               (cat) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
-                child: Obx(
-                  () => ChoiceChip(
-                    label: Text(cat),
-                    selected: selectedCategory.value == cat,
-                    onSelected: (_) => onFilterSelected(cat),
-                    selectedColor: const Color(0xFF7C3AED),
-                    labelStyle: TextStyle(
-                      color: selectedCategory.value == cat
-                          ? Colors.white
-                          : (isDark ? Colors.white : Colors.black),
-                    ),
+                child: ChoiceChip(
+                  label: Text(cat),
+                  selected: selectedCategory.value == cat,
+                  onSelected: (_) => onFilterSelected(cat),
+                  selectedColor: const Color(0xFF7C3AED),
+                  labelStyle: TextStyle(
+                    color: selectedCategory.value == cat
+                        ? Colors.white
+                        : (isDark ? Colors.white : Colors.black),
                   ),
                 ),
               ),
