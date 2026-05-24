@@ -10,10 +10,16 @@ import 'package:air_app/web_modules/web_air_space/pages/web_utilities_guest_bind
 import 'package:air_app/web_modules/web_air_space/pages/web_utilities_guest_view.dart';
 import 'package:air_app/web_modules/web_air_space/web_air_space_binding.dart';
 import 'package:air_app/web_modules/web_air_space/web_air_space_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_checked_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_checked_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_be_part_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_be_part_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_new_in_air_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_new_in_air_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_resume_tour_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_resume_tour_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_timeline_of_air_binding.dart';
@@ -429,6 +435,24 @@ class WebRoutes {
       name: WebContributeView.routeName,
       page: () => const WebContributeView(),
       binding: WebContributeBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebNewInAirView.routeName,
+      page: () => const WebNewInAirView(),
+      binding: WebNewInAirBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebAnomaliesCheckedView.routeName,
+      page: () => const WebAnomaliesCheckedView(),
+      binding: WebAnomaliesCheckedBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebAnomaliesOpenView.routeName,
+      page: () => const WebAnomaliesOpenView(),
+      binding: WebAnomaliesOpenBinding(),
       transition: Transition.fadeIn,
     ),
   ];

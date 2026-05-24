@@ -1,7 +1,10 @@
 // web_modules/web_aspects/web_aspects_view.dart
 // Section workspace — unique palette, hero, item grid, and detail.
 
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_checked_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_new_in_air_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_resume_tour_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -362,6 +365,15 @@ class _ItemCard extends StatelessWidget {
       return;
     } else if (item.title == "Contribute to AIR") {
       Get.toNamed(WebContributeView.routeName);
+      return;
+    } else if (item.title == "New in AIR") {
+      Get.toNamed(WebNewInAirView.routeName);
+      return;
+    } else if (item.title == "Checked Space Anomalies") {
+      Get.toNamed(WebAnomaliesCheckedView.routeName);
+      return;
+    } else if (item.title == "Un-Checked Anomalies") {
+      Get.toNamed(WebAnomaliesOpenView.routeName);
       return;
     }
     showModalBottomSheet(
