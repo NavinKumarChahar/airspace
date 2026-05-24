@@ -22,6 +22,8 @@ import 'package:air_app/web_modules/web_aspects/pages/web_communication_binding.
 import 'package:air_app/web_modules/web_aspects/pages/web_communication_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_entertainment_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_entertainment_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_imagination_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_imagination_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_limits_binding.dart';
@@ -485,6 +487,12 @@ class WebRoutes {
       name: WebBeliefsView.routeName,
       page: () => const WebBeliefsView(),
       binding: WebBeliefsBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebEntertainmentView.routeName,
+      page: () => const WebEntertainmentView(),
+      binding: WebEntertainmentBinding(),
       transition: Transition.fadeIn,
     ),
   ];
