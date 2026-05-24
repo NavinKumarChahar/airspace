@@ -52,6 +52,8 @@ import 'package:air_app/web_modules/web_profile/pages/web_connect_collaborate_bi
 import 'package:air_app/web_modules/web_profile/pages/web_connect_collaborate_view.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_events_binding.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_events_view.dart';
+import 'package:air_app/web_modules/web_profile/pages/web_maintenance_binding.dart';
+import 'package:air_app/web_modules/web_profile/pages/web_maintenance_view.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_managements_binding.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_managements_view.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_tracks_and_traces_binding.dart';
@@ -348,6 +350,12 @@ class WebRoutes {
       name: WebManagementsView.routeName,
       page: () => const WebManagementsView(),
       binding: WebManagementsBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebMaintenanceView.routeName,
+      page: () => const WebMaintenanceView(),
+      binding: WebMaintenanceBinding(),
       transition: Transition.fadeIn,
     ),
   ];

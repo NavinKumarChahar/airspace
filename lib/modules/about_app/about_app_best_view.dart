@@ -18,6 +18,11 @@ class AboutAppBestView extends StatelessWidget {
   static const Color _bgLight = Color(0xFFF5F3FF);
   static const Color _bgDark = Color(0xFF120822);
 
+  // ── Responsive helpers ─────────────────────────────────────────────
+  static bool _isTablet(BuildContext c) => MediaQuery.sizeOf(c).width >= 600;
+  static double _hPad(BuildContext c) =>
+      MediaQuery.sizeOf(c).width >= 600 ? 36.0 : 20.0;
+
   static const List<_Pillar> _pillars = [
     _Pillar(
       "Foundations",
@@ -93,7 +98,9 @@ class AboutAppBestView extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 260,
+            expandedHeight: _isTablet(context)
+                ? 340
+                : 260, // ← tablet responsive
             pinned: true,
             stretch: true,
             backgroundColor: _primary,
@@ -115,96 +122,117 @@ class AboutAppBestView extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 28, 20, 12),
-              child: _Intro(
-                title: 'About App',
-                primary: _primary,
-                secondary: _secondary,
-                accent: _accent,
-                onSurface: onSurface,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 28, _hPad(ctx), 12),
+                child: _Intro(
+                  title: 'About App',
+                  primary: _primary,
+                  secondary: _secondary,
+                  accent: _accent,
+                  onSurface: onSurface,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-              child: _SectionLabel(
-                label: 'CORE LANDSCAPE',
-                icon: Icons.celebration_rounded,
-                color: _primary,
-                onSurface: onSurface,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 12),
+                child: _SectionLabel(
+                  label: 'CORE LANDSCAPE',
+                  icon: Icons.celebration_rounded,
+                  color: _primary,
+                  onSurface: onSurface,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-              child: _GalleryBlock(
-                pillars: _pillars,
-                primary: _primary,
-                secondary: _secondary,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 24),
+                child: _GalleryBlock(
+                  pillars: _pillars,
+                  primary: _primary,
+                  secondary: _secondary,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-              child: _SectionLabel(
-                label: 'PRACTICE LOOP',
-                icon: Icons.shield_rounded,
-                color: _secondary,
-                onSurface: onSurface,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 12),
+                child: _SectionLabel(
+                  label: 'PRACTICE LOOP',
+                  icon: Icons.shield_rounded,
+                  color: _secondary,
+                  onSurface: onSurface,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-              child: _ActionList(
-                actions: _actions,
-                primary: _primary,
-                secondary: _secondary,
-                accent: _accent,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 24),
+                child: _ActionList(
+                  actions: _actions,
+                  primary: _primary,
+                  secondary: _secondary,
+                  accent: _accent,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-              child: _SectionLabel(
-                label: 'BY THE NUMBERS',
-                icon: Icons.bolt_rounded,
-                color: _accent,
-                onSurface: onSurface,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 12),
+                child: _SectionLabel(
+                  label: 'BY THE NUMBERS',
+                  icon: Icons.bolt_rounded,
+                  color: _accent,
+                  onSurface: onSurface,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-              child: _StatsBlock(
-                stats: _stats,
-                primary: _primary,
-                secondary: _secondary,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 24),
+                child: _StatsBlock(
+                  stats: _stats,
+                  primary: _primary,
+                  secondary: _secondary,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
-              child: _Quote(
-                text:
-                    'When about app becomes a practice rather than an idea, the whole story changes.',
-                primary: _primary,
-                secondary: _secondary,
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 12),
+                child: _Quote(
+                  text:
+                      'When about app becomes a practice rather than an idea, the whole story changes.',
+                  primary: _primary,
+                  secondary: _secondary,
+                ),
               ),
             ),
           ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-              child: _OriginalBanner(primary: _primary, secondary: _secondary),
+            child: Builder(
+              builder: (ctx) => Padding(
+                padding: EdgeInsets.fromLTRB(_hPad(ctx), 8, _hPad(ctx), 8),
+                child: _OriginalBanner(
+                  primary: _primary,
+                  secondary: _secondary,
+                ),
+              ),
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
@@ -525,18 +553,19 @@ class _BentoGrid extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final cellH = MediaQuery.sizeOf(context).width >= 600 ? 170.0 : 130.0;
     return Column(
       children: [
         Row(
           children: [
             Expanded(
               flex: 2,
-              child: _cell(pillars[0], 140, primary, secondary),
+              child: _cell(pillars[0], cellH, primary, secondary),
             ),
             const SizedBox(width: 10),
             Expanded(
               flex: 1,
-              child: _cell(pillars[1], 140, secondary, primary),
+              child: _cell(pillars[1], cellH, secondary, primary),
             ),
           ],
         ),
@@ -545,12 +574,12 @@ class _BentoGrid extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: _cell(pillars[2], 140, secondary, primary),
+              child: _cell(pillars[2], cellH, secondary, primary),
             ),
             const SizedBox(width: 10),
             Expanded(
               flex: 2,
-              child: _cell(pillars[3], 140, primary, secondary),
+              child: _cell(pillars[3], cellH, primary, secondary),
             ),
           ],
         ),
@@ -760,14 +789,17 @@ class _CardsRow extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.sizeOf(context).width;
+    final cardW = w >= 600 ? 290.0 : 220.0; // wider on tablet
+    final rowH = w >= 600 ? 200.0 : 170.0; // taller on tablet
     return SizedBox(
-      height: 170,
+      height: rowH,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: steps.length,
         separatorBuilder: (_, __) => const SizedBox(width: 12),
         itemBuilder: (_, i) => Container(
-          width: 220,
+          width: cardW,
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -972,6 +1004,7 @@ class _NumberedBlock extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: List.generate(
         steps.length,
@@ -979,7 +1012,7 @@ class _NumberedBlock extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 10),
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isDark ? const Color(0xFF1E293B) : Colors.white, // dark fix
             borderRadius: BorderRadius.circular(14),
             boxShadow: [
               BoxShadow(
@@ -1016,10 +1049,12 @@ class _NumberedBlock extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       steps[i].description,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         height: 1.45,
-                        color: Color(0xFF475569),
+                        color: isDark
+                            ? Colors.white54
+                            : const Color(0xFF475569), // dark fix
                       ),
                     ),
                   ],
@@ -1043,55 +1078,63 @@ class _BadgesBlock extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 10,
-      runSpacing: 10,
-      children: pillars
-          .map(
-            (p) => Container(
-              width: 170,
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: primary.withValues(alpha: 0.07),
-                border: Border.all(color: primary.withValues(alpha: 0.2)),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
+    return LayoutBuilder(
+      builder: (_, constraints) {
+        final cols = constraints.maxWidth >= 500 ? 3 : 2;
+        final bw = (constraints.maxWidth - (cols - 1) * 10) / cols;
+        return Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: pillars
+              .map(
+                (p) => SizedBox(
+                  width: bw, // responsive badge width
+                  child: Container(
+                    padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
-                      color: secondary.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
+                      color: primary.withValues(alpha: 0.07),
+                      border: Border.all(color: primary.withValues(alpha: 0.2)),
                     ),
-                    child: Icon(p.icon, color: secondary, size: 18),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    p.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 13,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: secondary.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(p.icon, color: secondary, size: 18),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          p.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          p.description,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 11.5,
+                            height: 1.35,
+                            color: Color(0xFF475569),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    p.description,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 11.5,
-                      height: 1.35,
-                      color: Color(0xFF475569),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-          .toList(),
-    );
+                  ), // Container
+                ), // SizedBox
+              )
+              .toList(),
+        ); // Wrap
+      },
+    ); // LayoutBuilder
   }
 }
 
@@ -1109,8 +1152,8 @@ class _GalleryBlock extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: pillars.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 220, // tablet→3+ cols, phone→2 cols
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 0.95,
@@ -1169,49 +1212,54 @@ class _StatsBlock extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      childAspectRatio: 1.35,
-      children: stats
-          .map(
-            (s) => Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: primary.withValues(alpha: 0.06),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: primary.withValues(alpha: 0.15)),
+      itemCount: stats.length,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200, // tablet→4 cols, phone→2 cols
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.35,
+      ),
+      itemBuilder: (_, i) {
+        final s = stats[i];
+        return Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: primary.withValues(alpha: 0.06),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: primary.withValues(alpha: 0.15)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                s.value,
+                style: TextStyle(
+                  color: primary,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w900,
+                  height: 1,
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    s.value,
-                    style: TextStyle(
-                      color: primary,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                      height: 1,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    s.label,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      height: 1.35,
-                      color: Color(0xFF475569),
-                    ),
-                  ),
-                ],
+              const SizedBox(height: 6),
+              Text(
+                s.label,
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 1.35,
+                  color: isDark
+                      ? Colors.white54
+                      : const Color(0xFF475569), // dark fix
+                ),
               ),
-            ),
-          )
-          .toList(),
+            ],
+          ),
+        );
+      },
     );
   }
 }

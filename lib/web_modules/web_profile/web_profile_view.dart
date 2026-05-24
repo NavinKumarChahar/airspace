@@ -1,6 +1,7 @@
 // web_modules/web_profile/web_profile_view.dart
 // Section workspace — unique palette, hero, item grid, and detail.
 
+import 'package:air_app/web_modules/web_profile/pages/web_maintenance_view.dart';
 import 'package:air_app/web_modules/web_profile/pages/web_managements_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -355,8 +356,10 @@ class _ItemCard extends StatelessWidget {
       Get.toNamed('/web-profile/events');
       return;
     } else if (item.title == 'Managements') {
-      // ADD THIS BLOCK:
       Get.toNamed(WebManagementsView.routeName);
+      return;
+    } else if (item.title == 'Maintenance') {
+      Get.toNamed(WebMaintenanceView.routeName);
       return;
     } else if (item.title == 'Connect & Collaborate') {
       Get.toNamed('/web-profile/connect-collaborate');
