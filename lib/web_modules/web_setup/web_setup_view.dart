@@ -360,46 +360,46 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Category Tree') {
-      Get.toNamed(WebNavData.setup_categoryTree);
-      return;
-    } else if (item.title == 'Product & Record (DIGITALIZE)') {
-      Get.toNamed(WebDigitalizeHubShowcaseView.routeName);
-      return;
-    } else if (item.title == 'Projects & Assessments') {
-      Get.toNamed(WebProjectsAssessmentsShowcaseView.routeName);
-      return;
-    } else if (item.title == 'Commerce') {
-      Get.toNamed(WebCommerceShowcaseView.routeName);
-      return;
-    } else if (item.title == 'Ease Tools') {
-      Get.toNamed(WebEaseToolsShowcaseView.routeName);
-      return;
-    } else if (item.title == 'Hospitality & Care') {
-      Get.toNamed(WebHospitalityCareShowcaseView.routeName);
-      return;
-    } else if (item.title == 'Vocabulary') {
-      Get.toNamed(Vocabulary.routeName);
-      return;
-    } else if (item.title == 'Code Conduct') {
-      Get.toNamed(CodeConduct.routeName);
-      return;
-    } else if (item.title == 'Script Strategy') {
-      Get.toNamed(ScriptStrategy.routeName);
-      return;
-    } else if (item.title == 'Safety') {
-      Get.toNamed(Safety.routeName);
-      return;
-    } else if (item.title == 'Utility Facilities') {
-      Get.toNamed(UtilityFacilities.routeName);
-      return;
-    } else if (item.title == 'Social') {
-      Get.toNamed(Social.routeName);
-      return;
-    } else {
-      Get.toNamed(WebSetupMasterView.routeName);
-      return;
-    }
+    // if (item.title == 'Category Tree') {
+    //   Get.toNamed(WebNavData.setup_categoryTree);
+    //   return;
+    // } else if (item.title == 'Product & Record (DIGITALIZE)') {
+    //   Get.toNamed(WebDigitalizeHubShowcaseView.routeName);
+    //   return;
+    // } else if (item.title == 'Projects & Assessments') {
+    //   Get.toNamed(WebProjectsAssessmentsShowcaseView.routeName);
+    //   return;
+    // } else if (item.title == 'Commerce') {
+    //   Get.toNamed(WebCommerceShowcaseView.routeName);
+    //   return;
+    // } else if (item.title == 'Ease Tools') {
+    //   Get.toNamed(WebEaseToolsShowcaseView.routeName);
+    //   return;
+    // } else if (item.title == 'Hospitality & Care') {
+    //   Get.toNamed(WebHospitalityCareShowcaseView.routeName);
+    //   return;
+    // } else if (item.title == 'Vocabulary') {
+    //   Get.toNamed(Vocabulary.routeName);
+    //   return;
+    // } else if (item.title == 'Code Conduct') {
+    //   Get.toNamed(CodeConduct.routeName);
+    //   return;
+    // } else if (item.title == 'Script Strategy') {
+    //   Get.toNamed(ScriptStrategy.routeName);
+    //   return;
+    // } else if (item.title == 'Safety') {
+    //   Get.toNamed(Safety.routeName);
+    //   return;
+    // } else if (item.title == 'Utility Facilities') {
+    //   Get.toNamed(UtilityFacilities.routeName);
+    //   return;
+    // } else if (item.title == 'Social') {
+    //   Get.toNamed(Social.routeName);
+    //   return;
+    // } else {
+    //   Get.toNamed(WebSetupMasterView.routeName);
+    //   return;
+    // }
     // showModalBottomSheet(
     //   context: context,
     //   backgroundColor: Colors.transparent,

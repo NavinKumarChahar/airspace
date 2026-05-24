@@ -359,49 +359,49 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Get Connected') {
-      Get.toNamed('/web-motivation/get-connected');
-      return;
-    } else if (item.title == 'A Word of Motivation') {
-      Get.toNamed('/web-motivation/word-of-motivation');
-      return;
-    } else if (item.title == "Revise & Improve") {
-      Get.toNamed(WebReviseView.routeName);
-      return;
-    } else if (item.title == "Practice & Expertise") {
-      Get.toNamed(WebPracticeView.routeName);
-      return;
-    } else if (item.title == "Share & Care") {
-      Get.toNamed(WebShareCareView.routeName);
-      return;
-    } else if (item.title == "Finnally All is Blessings") {
-      Get.toNamed(WebBlessingsView.routeName);
-      return;
-    } else if (item.title == "Never Give Up") {
-      Get.toNamed(WebNeverGiveUpView.routeName);
-      return;
-    } else if (item.title == "Innovation is Key") {
-      Get.toNamed(WebInnovationView.routeName);
-      return;
-    } else if (item.title == "You Got All of it Accountable") {
-      Get.toNamed(WebAccountableView.routeName);
-      return;
-    } else if (item.title == "Live Life to the Fullest") {
-      Get.toNamed(WebLiveFullView.routeName);
-      return;
-    } else if (item.title == "Being Together is Unison") {
-      Get.toNamed(WebUnisonView.routeName);
-      return;
-    } else if (item.title == "Great to Have You Onboard") {
-      Get.toNamed(WebOnboardView.routeName);
-      return;
-    } else if (item.title == "All Greetings") {
-      Get.toNamed(WebGreetingsView.routeName);
-      return;
-    } else if (item.title == "Be Liable to Responsibilities") {
-      Get.toNamed(WebLiableView.routeName);
-      return;
-    }
+    // if (item.title == 'Get Connected') {
+    //   Get.toNamed('/web-motivation/get-connected');
+    //   return;
+    // } else if (item.title == 'A Word of Motivation') {
+    //   Get.toNamed('/web-motivation/word-of-motivation');
+    //   return;
+    // } else if (item.title == "Revise & Improve") {
+    //   Get.toNamed(WebReviseView.routeName);
+    //   return;
+    // } else if (item.title == "Practice & Expertise") {
+    //   Get.toNamed(WebPracticeView.routeName);
+    //   return;
+    // } else if (item.title == "Share & Care") {
+    //   Get.toNamed(WebShareCareView.routeName);
+    //   return;
+    // } else if (item.title == "Finnally All is Blessings") {
+    //   Get.toNamed(WebBlessingsView.routeName);
+    //   return;
+    // } else if (item.title == "Never Give Up") {
+    //   Get.toNamed(WebNeverGiveUpView.routeName);
+    //   return;
+    // } else if (item.title == "Innovation is Key") {
+    //   Get.toNamed(WebInnovationView.routeName);
+    //   return;
+    // } else if (item.title == "You Got All of it Accountable") {
+    //   Get.toNamed(WebAccountableView.routeName);
+    //   return;
+    // } else if (item.title == "Live Life to the Fullest") {
+    //   Get.toNamed(WebLiveFullView.routeName);
+    //   return;
+    // } else if (item.title == "Being Together is Unison") {
+    //   Get.toNamed(WebUnisonView.routeName);
+    //   return;
+    // } else if (item.title == "Great to Have You Onboard") {
+    //   Get.toNamed(WebOnboardView.routeName);
+    //   return;
+    // } else if (item.title == "All Greetings") {
+    //   Get.toNamed(WebGreetingsView.routeName);
+    //   return;
+    // } else if (item.title == "Be Liable to Responsibilities") {
+    //   Get.toNamed(WebLiableView.routeName);
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

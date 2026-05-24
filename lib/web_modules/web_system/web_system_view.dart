@@ -316,15 +316,15 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'App Setting') {
-      Get.toNamed('/web-system/app-setting');
-      return;
-    }
-    if (item.title == 'About AIR Organization') {
-      Get.toNamed('/web-system/about-org');
-      return;
-      return;
-    }
+    // if (item.title == 'App Setting') {
+    //   Get.toNamed('/web-system/app-setting');
+    //   return;
+    // }
+    // if (item.title == 'About AIR Organization') {
+    //   Get.toNamed('/web-system/about-org');
+    //   return;
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

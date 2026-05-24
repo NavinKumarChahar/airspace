@@ -349,19 +349,19 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Share Experience') {
-      Get.toNamed('/web-be-you/share-experience');
-      return;
-    } else if (item.title == 'Record Your Post') {
-      Get.toNamed('/web-be_you/record-post');
-      return;
-    } else if (item.title == 'Identities Cum Earnings') {
-      // THIS IS THE NEWLY IMPLEMENTED ROUTE
-      Get.toNamed(WebIdentitiesEarningsBView.routeName);
-      return;
-      Get.toNamed(WebIdentitiesEarningsView.routeName);
-      return;
-    }
+    // if (item.title == 'Share Experience') {
+    //   Get.toNamed('/web-be-you/share-experience');
+    //   return;
+    // } else if (item.title == 'Record Your Post') {
+    //   Get.toNamed('/web-be_you/record-post');
+    //   return;
+    // } else if (item.title == 'Identities Cum Earnings') {
+    //   // THIS IS THE NEWLY IMPLEMENTED ROUTE
+    //   Get.toNamed(WebIdentitiesEarningsBView.routeName);
+    //   return;
+    //   Get.toNamed(WebIdentitiesEarningsView.routeName);
+    //   return;
+    // }
 
     showModalBottomSheet(
       context: context,

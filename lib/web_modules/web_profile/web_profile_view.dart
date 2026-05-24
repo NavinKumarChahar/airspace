@@ -356,43 +356,43 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Tracks & Traces') {
-      Get.toNamed('/web-profile/tracks-and-traces');
-      return;
-    } else if (item.title == 'Events') {
-      Get.toNamed('/web-profile/events');
-      return;
-    } else if (item.title == 'Rewards/Credits') {
-      Get.toNamed(WebRewardsView.routeName);
-      return;
-    } else if (item.title == 'Your Business') {
-      Get.toNamed(WebYourBusinessView.routeName);
-      return;
-    } else if (item.title == 'Managements') {
-      Get.toNamed(WebManagementsView.routeName);
-      return;
-    } else if (item.title == 'Maintenance') {
-      Get.toNamed(WebMaintenanceView.routeName);
-      return;
-    } else if (item.title == 'Connect & Collaborate') {
-      Get.toNamed('/web-profile/connect-collaborate');
-      return;
-    } else if (item.title == 'Notices') {
-      Get.toNamed(WebNoticesView.routeName);
-      return;
-    } else if (item.title == 'Approval of Appeals') {
-      Get.toNamed(WebAppealsView.routeName);
-      return;
-    } else if (item.title == 'Network (APIs) Stuff') {
-      Get.toNamed(WebNetworkApisView.routeName);
-      return;
-    } else if (item.title == 'Private/Confidential Stuff') {
-      Get.toNamed(WebPrivateView.routeName);
-      return;
-    } else if (item.title == 'Public Stuff') {
-      Get.toNamed(WebPublicView.routeName);
-      return;
-    }
+    // if (item.title == 'Tracks & Traces') {
+    //   Get.toNamed('/web-profile/tracks-and-traces');
+    //   return;
+    // } else if (item.title == 'Events') {
+    //   Get.toNamed('/web-profile/events');
+    //   return;
+    // } else if (item.title == 'Rewards/Credits') {
+    //   Get.toNamed(WebRewardsView.routeName);
+    //   return;
+    // } else if (item.title == 'Your Business') {
+    //   Get.toNamed(WebYourBusinessView.routeName);
+    //   return;
+    // } else if (item.title == 'Managements') {
+    //   Get.toNamed(WebManagementsView.routeName);
+    //   return;
+    // } else if (item.title == 'Maintenance') {
+    //   Get.toNamed(WebMaintenanceView.routeName);
+    //   return;
+    // } else if (item.title == 'Connect & Collaborate') {
+    //   Get.toNamed('/web-profile/connect-collaborate');
+    //   return;
+    // } else if (item.title == 'Notices') {
+    //   Get.toNamed(WebNoticesView.routeName);
+    //   return;
+    // } else if (item.title == 'Approval of Appeals') {
+    //   Get.toNamed(WebAppealsView.routeName);
+    //   return;
+    // } else if (item.title == 'Network (APIs) Stuff') {
+    //   Get.toNamed(WebNetworkApisView.routeName);
+    //   return;
+    // } else if (item.title == 'Private/Confidential Stuff') {
+    //   Get.toNamed(WebPrivateView.routeName);
+    //   return;
+    // } else if (item.title == 'Public Stuff') {
+    //   Get.toNamed(WebPublicView.routeName);
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

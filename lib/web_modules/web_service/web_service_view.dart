@@ -349,16 +349,16 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == "Input in Process") {
-      Get.toNamed(WebInputView.routeName);
-      return;
-    } else if (item.title == "Outcome of Processed") {
-      Get.toNamed(WebOutcomeView.routeName);
-      return;
-    } else if (item.title == 'Process') {
-      Get.toNamed('/web-service/process');
-      return;
-    }
+    // if (item.title == "Input in Process") {
+    //   Get.toNamed(WebInputView.routeName);
+    //   return;
+    // } else if (item.title == "Outcome of Processed") {
+    //   Get.toNamed(WebOutcomeView.routeName);
+    //   return;
+    // } else if (item.title == 'Process') {
+    //   Get.toNamed('/web-service/process');
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

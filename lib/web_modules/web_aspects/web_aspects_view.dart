@@ -361,57 +361,57 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == "Let's resume your tour") {
-      // ADD THIS BLOCK:
-      Get.toNamed(WebResumeTourView.routeName);
-      return;
-    } else if (item.title == "Be the part of AIR") {
-      // ADD THIS BLOCK:
-      Get.toNamed('/web-aspects/be-part');
-      return;
-    } else if (item.title == 'Timeline of AIR') {
-      Get.toNamed('/web-aspects/timeline-of-air');
-      return;
-    } else if (item.title == "Contribute to AIR") {
-      Get.toNamed(WebContributeView.routeName);
-      return;
-    } else if (item.title == "New in AIR") {
-      Get.toNamed(WebNewInAirView.routeName);
-      return;
-    } else if (item.title == "Checked Space Anomalies") {
-      Get.toNamed(WebAnomaliesCheckedView.routeName);
-      return;
-    } else if (item.title == "Un-Checked Anomalies") {
-      Get.toNamed(WebAnomaliesOpenView.routeName);
-      return;
-    } else if (item.title == "Limits (0 or 1)") {
-      Get.toNamed(WebLimitsView.routeName);
-      return;
-    } else if (item.title == "Communication") {
-      Get.toNamed(WebCommunicationView.routeName);
-      return;
-    } else if (item.title == "Imagination & Features") {
-      Get.toNamed(WebImaginationView.routeName);
-      return;
-    } else if (item.title == "Beliefs & Values") {
-      Get.toNamed(WebBeliefsView.routeName);
-      return;
-    } else if (item.title == "Entertainment") {
-      Get.toNamed(WebEntertainmentView.routeName);
-      return;
-    } else if (item.title == "Skills & Talents") {
-      Get.toNamed(WebSkillsView.routeName);
-      return;
-    } else if (item.title == "Being Recorded & Rewarded") {
-      Get.toNamed(WebRecordedRewardedView.routeName);
-      return;
-    } else if (item.title == "Training") {
-      Get.toNamed(WebTrainingView.routeName);
-      return;
-    } else if (item.title == "System All Together") {
-      Get.toNamed(WebSystemAllView.routeName);
-      return;
-    }
+    // if (item.title == "Let's resume your tour") {
+    //   // ADD THIS BLOCK:
+    //   Get.toNamed(WebResumeTourView.routeName);
+    //   return;
+    // } else if (item.title == "Be the part of AIR") {
+    //   // ADD THIS BLOCK:
+    //   Get.toNamed('/web-aspects/be-part');
+    //   return;
+    // } else if (item.title == 'Timeline of AIR') {
+    //   Get.toNamed('/web-aspects/timeline-of-air');
+    //   return;
+    // } else if (item.title == "Contribute to AIR") {
+    //   Get.toNamed(WebContributeView.routeName);
+    //   return;
+    // } else if (item.title == "New in AIR") {
+    //   Get.toNamed(WebNewInAirView.routeName);
+    //   return;
+    // } else if (item.title == "Checked Space Anomalies") {
+    //   Get.toNamed(WebAnomaliesCheckedView.routeName);
+    //   return;
+    // } else if (item.title == "Un-Checked Anomalies") {
+    //   Get.toNamed(WebAnomaliesOpenView.routeName);
+    //   return;
+    // } else if (item.title == "Limits (0 or 1)") {
+    //   Get.toNamed(WebLimitsView.routeName);
+    //   return;
+    // } else if (item.title == "Communication") {
+    //   Get.toNamed(WebCommunicationView.routeName);
+    //   return;
+    // } else if (item.title == "Imagination & Features") {
+    //   Get.toNamed(WebImaginationView.routeName);
+    //   return;
+    // } else if (item.title == "Beliefs & Values") {
+    //   Get.toNamed(WebBeliefsView.routeName);
+    //   return;
+    // } else if (item.title == "Entertainment") {
+    //   Get.toNamed(WebEntertainmentView.routeName);
+    //   return;
+    // } else if (item.title == "Skills & Talents") {
+    //   Get.toNamed(WebSkillsView.routeName);
+    //   return;
+    // } else if (item.title == "Being Recorded & Rewarded") {
+    //   Get.toNamed(WebRecordedRewardedView.routeName);
+    //   return;
+    // } else if (item.title == "Training") {
+    //   Get.toNamed(WebTrainingView.routeName);
+    //   return;
+    // } else if (item.title == "System All Together") {
+    //   Get.toNamed(WebSystemAllView.routeName);
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

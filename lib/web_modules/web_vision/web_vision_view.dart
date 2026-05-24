@@ -350,25 +350,25 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'AIR\'s Show Case') {
-      Get.toNamed('/web-vision/airs-show-case');
-      return;
-    } else if (item.title == "AIR's Mission") {
-      Get.toNamed('/web-vision/airs-mission');
-      return;
-    } else if (item.title == "AIR's Vision") {
-      Get.toNamed(WebVisionView.routeName);
-      return;
-    } else if (item.title == "Let's Windup Else") {
-      Get.toNamed(WebWindupView.routeName);
-      return;
-    } else if (item.title == "Follow like Calendar") {
-      Get.toNamed(WebCalendarView.routeName);
-      return;
-    } else if (item.title == "Pick Your Good Going") {
-      Get.toNamed(WebGoodGoingView.routeName);
-      return;
-    }
+    // if (item.title == 'AIR\'s Show Case') {
+    //   Get.toNamed('/web-vision/airs-show-case');
+    //   return;
+    // } else if (item.title == "AIR's Mission") {
+    //   Get.toNamed('/web-vision/airs-mission');
+    //   return;
+    // } else if (item.title == "AIR's Vision") {
+    //   Get.toNamed(WebVisionView.routeName);
+    //   return;
+    // } else if (item.title == "Let's Windup Else") {
+    //   Get.toNamed(WebWindupView.routeName);
+    //   return;
+    // } else if (item.title == "Follow like Calendar") {
+    //   Get.toNamed(WebCalendarView.routeName);
+    //   return;
+    // } else if (item.title == "Pick Your Good Going") {
+    //   Get.toNamed(WebGoodGoingView.routeName);
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

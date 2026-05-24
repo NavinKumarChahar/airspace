@@ -351,28 +351,28 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Learn And Fun') {
-      Get.toNamed('/web-explore/learn-and-fun');
-      return;
-    } else if (item.title == 'Learn Docs (by category)') {
-      Get.toNamed('/web-explore/learn-docs');
-      return;
-    } else if (item.title == 'Life Hacks') {
-      Get.toNamed('/web-explore/life-hacks');
-      return;
-    } else if (item.title == 'Heigher Studies') {
-      // Note: matching typo in handbook 'Heigher'
-      Get.toNamed(WebHigherStudiesView.routeName);
-      return;
-    } else if (item.title == 'Doctorate') {
-      // ADD THIS BLOCK:
-      Get.toNamed(WebDoctorateView.routeName);
-      return;
-    } else if (item.title == 'Ask Anything') {
-      // ADD THIS BLOCK:
-      Get.toNamed(WebAskAnythingBView.routeName);
-      return;
-    }
+    // if (item.title == 'Learn And Fun') {
+    //   Get.toNamed('/web-explore/learn-and-fun');
+    //   return;
+    // } else if (item.title == 'Learn Docs (by category)') {
+    //   Get.toNamed('/web-explore/learn-docs');
+    //   return;
+    // } else if (item.title == 'Life Hacks') {
+    //   Get.toNamed('/web-explore/life-hacks');
+    //   return;
+    // } else if (item.title == 'Heigher Studies') {
+    //   // Note: matching typo in handbook 'Heigher'
+    //   Get.toNamed(WebHigherStudiesView.routeName);
+    //   return;
+    // } else if (item.title == 'Doctorate') {
+    //   // ADD THIS BLOCK:
+    //   Get.toNamed(WebDoctorateView.routeName);
+    //   return;
+    // } else if (item.title == 'Ask Anything') {
+    //   // ADD THIS BLOCK:
+    //   Get.toNamed(WebAskAnythingBView.routeName);
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

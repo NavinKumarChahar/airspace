@@ -349,15 +349,15 @@ class _ItemCard extends StatelessWidget {
   }
 
   void _openDetail(BuildContext context) {
-    if (item.title == 'Wisdom') {
-      Get.toNamed(WebWisdomBView.routeName);
-      return;
-      Get.toNamed('/web-wisdom/wisdom');
-      return;
-    } else if (item.title == 'Ask Any Thing') {
-      Get.toNamed('/web-wisdom/ask-anything');
-      return;
-    }
+    // if (item.title == 'Wisdom') {
+    //   Get.toNamed(WebWisdomBView.routeName);
+    //   return;
+    //   Get.toNamed('/web-wisdom/wisdom');
+    //   return;
+    // } else if (item.title == 'Ask Any Thing') {
+    //   Get.toNamed('/web-wisdom/ask-anything');
+    //   return;
+    // }
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
