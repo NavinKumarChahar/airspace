@@ -186,11 +186,9 @@ class WebWindupView extends GetView<WebWindupController> {
               Text(label, style: const TextStyle(fontSize: 16)),
             ],
           ),
-          Obx(
-            () => Text(
-              '$val',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
+          Text(
+            '$val',
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
         ],
       ),
