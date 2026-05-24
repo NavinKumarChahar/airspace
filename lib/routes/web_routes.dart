@@ -70,8 +70,32 @@ import 'package:air_app/web_modules/web_explore/web_explore_binding.dart';
 import 'package:air_app/web_modules/web_explore/web_explore_view.dart';
 import 'package:air_app/web_modules/web_home/web_home_binding.dart';
 import 'package:air_app/web_modules/web_home/web_home_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_accountable_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_accountable_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_blessings_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_blessings_view.dart';
 import 'package:air_app/web_modules/web_motivation/pages/web_get_connected_binding.dart';
 import 'package:air_app/web_modules/web_motivation/pages/web_get_connected_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_greetings_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_greetings_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_innovation_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_innovation_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_liable_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_liable_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_livefull_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_livefull_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_nevergiveup_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_nevergiveup_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_onboard_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_onboard_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_practice_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_practice_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_revise_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_revise_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_sharecare_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_sharecare_view.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_unison_binding.dart';
+import 'package:air_app/web_modules/web_motivation/pages/web_unison_view.dart';
 import 'package:air_app/web_modules/web_motivation/pages/web_word_motivation_binding.dart';
 import 'package:air_app/web_modules/web_motivation/pages/web_word_motivation_view.dart';
 import 'package:air_app/web_modules/web_motivation/web_motivation_binding.dart';
@@ -573,6 +597,78 @@ class WebRoutes {
       name: WebGoodGoingView.routeName,
       page: () => const WebGoodGoingView(),
       binding: WebGoodGoingBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebReviseView.routeName,
+      page: () => const WebReviseView(),
+      binding: WebReviseBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebPracticeView.routeName,
+      page: () => const WebPracticeView(),
+      binding: WebPracticeBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebShareCareView.routeName,
+      page: () => const WebShareCareView(),
+      binding: WebShareCareBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebBlessingsView.routeName,
+      page: () => const WebBlessingsView(),
+      binding: WebBlessingsBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebNeverGiveUpView.routeName,
+      page: () => const WebNeverGiveUpView(),
+      binding: WebNeverGiveUpBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebInnovationView.routeName,
+      page: () => const WebInnovationView(),
+      binding: WebInnovationBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebAccountableView.routeName,
+      page: () => const WebAccountableView(),
+      binding: WebAccountableBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebLiveFullView.routeName,
+      page: () => const WebLiveFullView(),
+      binding: WebLiveFullBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebUnisonView.routeName,
+      page: () => const WebUnisonView(),
+      binding: WebUnisonBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebOnboardView.routeName,
+      page: () => const WebOnboardView(),
+      binding: WebOnboardBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebGreetingsView.routeName,
+      page: () => const WebGreetingsView(),
+      binding: WebGreetingsBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebLiableView.routeName,
+      page: () => const WebLiableView(),
+      binding: WebLiableBinding(),
       transition: Transition.fadeIn,
     ),
   ];
