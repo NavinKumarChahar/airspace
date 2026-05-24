@@ -25,7 +25,7 @@ class WebGoodGoingController extends GetxController {
     },
     {
       'title': 'The Vanguard',
-      ' la': 'Leading the charge into the 2026 frontiers.',
+      'desc': 'Leading the charge into the 2026 frontiers.',
       'icon': Icons.rocket_launch,
       'color': const Color(0xFFB9A35A),
     },
