@@ -3,8 +3,10 @@
 
 import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_checked_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_beliefs_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_communication_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_imagination_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_limits_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_new_in_air_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_resume_tour_view.dart';
@@ -382,6 +384,12 @@ class _ItemCard extends StatelessWidget {
       return;
     } else if (item.title == "Communication") {
       Get.toNamed(WebCommunicationView.routeName);
+      return;
+    } else if (item.title == "Imagination & Features") {
+      Get.toNamed(WebImaginationView.routeName);
+      return;
+    } else if (item.title == "Beliefs & Values") {
+      Get.toNamed(WebBeliefsView.routeName);
       return;
     }
     showModalBottomSheet(

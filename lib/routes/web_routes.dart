@@ -16,10 +16,14 @@ import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_binding
 import 'package:air_app/web_modules/web_aspects/pages/web_anomalies_open_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_be_part_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_be_part_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_beliefs_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_beliefs_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_communication_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_communication_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_contribute_view.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_imagination_binding.dart';
+import 'package:air_app/web_modules/web_aspects/pages/web_imagination_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_limits_binding.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_limits_view.dart';
 import 'package:air_app/web_modules/web_aspects/pages/web_new_in_air_binding.dart';
@@ -469,6 +473,18 @@ class WebRoutes {
       name: WebCommunicationView.routeName,
       page: () => const WebCommunicationView(),
       binding: WebCommunicationBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebImaginationView.routeName,
+      page: () => const WebImaginationView(),
+      binding: WebImaginationBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: WebBeliefsView.routeName,
+      page: () => const WebBeliefsView(),
+      binding: WebBeliefsBinding(),
       transition: Transition.fadeIn,
     ),
   ];
