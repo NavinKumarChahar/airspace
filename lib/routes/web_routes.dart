@@ -186,9 +186,13 @@ import 'package:air_app/web_modules/web_home/web_rtc_call_view.dart';
 import 'package:get/get.dart';
 
 class WebRoutes {
-  static const String initial = WebHomeView.routeName;
-
   static final List<GetPage> pages = [
+    GetPage(
+      name: WebHomeView.routeName,
+      page: () => const WebHomeView(),
+      binding: WebHomeBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
       name: WebHomeView.routeName,
       page: () => const WebHomeView(),
@@ -206,6 +210,7 @@ class WebRoutes {
       binding: AgoraBinding(),
       transition: Transition.fadeIn,
     ),
+
     // GetPage(
     //   name: LivekitRtcView.routeName,
     //   page: () => const LivekitRtcView(),
