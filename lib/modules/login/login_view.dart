@@ -256,7 +256,11 @@ class LoginView extends GetView<LoginController> {
                   children: [
                     Text(
                       "Don't have a node? ",
-                      style: TextStyle(color: theme.dividerColor),
+                      style: TextStyle(
+                        color: theme.colorScheme.tertiary.withValues(
+                          alpha: 0.4,
+                        ),
+                      ),
                     ),
                     GestureDetector(
                       onTap: () => Get.toNamed(AppRoutes.SIGNUP),
@@ -286,7 +290,6 @@ class LoginView extends GetView<LoginController> {
   }) {
     final theme = Theme.of(context);
     return InputDecoration(
-      floatingLabelBehavior: FloatingLabelBehavior.never,
       alignLabelWithHint: true,
       hintStyle: TextStyle(
         color: theme.colorScheme.tertiary.withValues(alpha: 0.6),
@@ -321,6 +324,7 @@ class LoginView extends GetView<LoginController> {
       ),
       filled: true,
       fillColor: const Color(0xFFF1F3F4),
+      floatingLabelBehavior: FloatingLabelBehavior.never,
     );
   }
 }
