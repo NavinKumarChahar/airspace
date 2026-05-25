@@ -36,6 +36,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   responsive_builder: ^0.7.1
 
+  web: ^1.0.0
+
 
 
 dev_dependencies:
