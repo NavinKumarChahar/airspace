@@ -14,8 +14,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-    GlobalKey<ScaffoldMessengerState>();
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -57,7 +55,6 @@ class AirApp extends StatelessWidget {
       designSize: const Size(1440, 1024),
       builder: (_, child) {
         return GetMaterialApp(
-          scaffoldMessengerKey: scaffoldMessengerKey,
           title: 'AIR-Space',
           theme: AppTheme.etherealLight,
           darkTheme: AppTheme.cosmicDark,

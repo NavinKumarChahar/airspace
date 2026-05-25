@@ -9,6 +9,8 @@ class WebHomeController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final RxInt activeItemIndex = 0.obs;
   final RxString searchQuery = ''.obs;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
 
   void setActive(int i) => activeItemIndex.value = i;
   void setQuery(String q) => searchQuery.value = q.toLowerCase();

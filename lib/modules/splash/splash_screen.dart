@@ -122,7 +122,8 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
 
-            SafeArea(
+            SizedBox(
+              height: Get.height,
               child: Column(
                 children: [
                   const Spacer(),

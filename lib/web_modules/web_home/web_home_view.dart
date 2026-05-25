@@ -23,6 +23,7 @@ class WebHomeView extends GetView<WebHomeController> {
     return WebShell(
       currentRoute: routeName,
       child: Scaffold(
+        key: controller.scaffoldMessengerKey,
         backgroundColor: isDark ? WColors.surfaceDark : WColors.surface,
         body: CustomScrollView(
           controller: controller.scrollController,
