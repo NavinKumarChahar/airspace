@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:air_app/routes/app_pages.dart';
+import 'package:air_app/web_modules/web_home/web_home_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,9 +51,9 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 4), () {
       if (kIsWeb) {
-        Get.offAllNamed(AppRoutes.WEB_HOME);
+        Get.offAllNamed(WebHomeView.routeName);
       } else {
-        Get.offAllNamed(AppRoutes.WEB_HOME);
+        Get.offAllNamed(WebHomeView.routeName);
       }
     });
   }

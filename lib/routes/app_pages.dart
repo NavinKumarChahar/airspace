@@ -466,7 +466,7 @@ class AppRoutes {
   static const COUNTING_REPORTS = '/counting-reports';
 
   // ── Web Module Routes ─────────────────────────────────────
-  static const WEB_HOME = '/web-home';
+  // static const WEB_HOME = '/web-home';
   static const WEB_WISDOM = '/web-wisdom';
   static const WEB_EXPLORE = '/web-explore';
   static const WEB_AIR_VISION = '/web-air-vision';

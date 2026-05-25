@@ -4,6 +4,7 @@
 // ============================================================
 
 import 'package:air_app/routes/app_pages.dart';
+import 'package:air_app/web_modules/web_home/web_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -247,8 +248,8 @@ class _WebDrawer extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             if (!isDesktop) Navigator.of(context).pop();
-                            if (currentRoute != WebNavData.homeWebRoute) {
-                              Get.offAllNamed(WebNavData.homeWebRoute);
+                            if (currentRoute != WebHomeView.routeName) {
+                              Get.offAllNamed(AppRoutes.HOME_APP_OLD);
                             }
                           },
                           child: Row(
@@ -326,8 +327,8 @@ class _WebDrawer extends StatelessWidget {
                   ElevatedButton.icon(
                     onPressed: () {
                       if (!isDesktop) Navigator.of(context).pop();
-                      if (currentRoute != WebNavData.homeWebRoute) {
-                        Get.offAllNamed(WebNavData.homeWebRoute);
+                      if (currentRoute != WebHomeView.routeName) {
+                        Get.offAllNamed(AppRoutes.HOME_APP_OLD);
                       }
                     },
                     style: ElevatedButton.styleFrom(
