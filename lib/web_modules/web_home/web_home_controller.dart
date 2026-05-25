@@ -1,4 +1,5 @@
 // web_modules/web_home/web_home_controller.dart
+import 'package:air_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:web/web.dart' as webHndle;
@@ -30,7 +31,7 @@ class WebHomeController extends GetxController {
   }
 
   void _showUpdateNotification() {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
+    scaffoldMessengerKey.currentState?.showSnackBar(
       SnackBar(
         content: const Text('A new update is available!'),
         duration: const Duration(days: 1), // Keep open until actioned
