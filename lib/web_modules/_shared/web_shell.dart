@@ -42,51 +42,50 @@ class WebShell extends StatelessWidget {
     if (isDesktop) {
       return Obx(() {
         final open = drawerCtrl.isOpen.value;
-        return Column(
-          children: [
-            Row(
-              children: [
-                // ── Animated sidebar ──────────────────────────
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  width: open ? 320 : 0,
-                  child: ClipRect(
-                    child: OverflowBox(
-                      alignment: Alignment.topLeft,
-                      maxWidth: 320,
-                      minWidth: 320,
-                      child: SizedBox(
-                        width: 320,
-                        child: _WebDrawer(
-                          currentRoute: currentRoute,
-                          isNotMobile: (isTablet || isDesktop),
-                          onCollapse: drawerCtrl.close,
-                        ),
+        return Scaffold(
+          backgroundColor: theme.scaffoldBackgroundColor,
+          body: Row(
+            children: [
+              // ── Animated sidebar ──────────────────────────
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                width: open ? 320 : 0,
+                child: ClipRect(
+                  child: OverflowBox(
+                    alignment: Alignment.topLeft,
+                    maxWidth: 320,
+                    minWidth: 320,
+                    child: SizedBox(
+                      width: 320,
+                      child: _WebDrawer(
+                        currentRoute: currentRoute,
+                        isNotMobile: (isTablet || isDesktop),
+                        onCollapse: drawerCtrl.close,
                       ),
                     ),
                   ),
                 ),
-                // ── Main body ────────────────────────────────
-                Expanded(
-                  child: Stack(
-                    children: [
-                      child,
-                      // Floating hamburger when drawer is closed (desktop)
-                      if (!open)
-                        Positioned(
-                          top: 16,
-                          left: 16,
-                          child: SafeArea(
-                            child: _FloatingMenuButton(onTap: drawerCtrl.open),
-                          ),
+              ),
+              // ── Main body ────────────────────────────────
+              Expanded(
+                child: Stack(
+                  children: [
+                    child,
+                    // Floating hamburger when drawer is closed (desktop)
+                    if (!open)
+                      Positioned(
+                        top: 16,
+                        left: 16,
+                        child: SafeArea(
+                          child: _FloatingMenuButton(onTap: drawerCtrl.open),
                         ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         );
       });
     }
