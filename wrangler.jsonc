@@ -1,11 +1,5 @@
 {
-    "name": "air-web-worker",
-    "main": "cloudeflare_index.ts",
-    "compatibility_date": "2026-05-26",
-    "routes": [
-        {
-            "pattern": "https://AsathesCumIRoofantal.github.io/AsathesCumIRoofantal.github.io",
-            "custom_domain": false
-        }
-    ]
+    "name": "air",
+    "main": "src/index.ts",
+    "compatibility_date": "2026-05-26"
 }
