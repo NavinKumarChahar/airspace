@@ -19,7 +19,7 @@ jobs:
       - name: Assert daily run limit
         uses: wiry-cow/action-limit-runs@v1
         with:
-          allowed: 240
+          allowed: 20
           time-period: 1d
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -53,7 +53,7 @@ jobs:
 
       # 7. Generate release optimized web build
       - name: Build Web Release
-        run: flutter build web --release --base-href="/asathes.github.io/" --dart-define-from-file=.env.json
+        run: flutter build web --release --base-href="/" --dart-define-from-file=.env.json
 
       # 8. Ship build folder up to GitHub pages staging area
       - name: Upload Pages Artifact
