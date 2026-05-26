@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
      # 3. This condition stops the build instantly if your variable above is not 'true'
-    if: ${{ Fabian == 'true' || env.doDeploy == 'true' }}
+    if: ${{ env.doDeploy == 'true' }}
 
     steps:
       # 1. LIMIT GATEKEEPER: Instantly fails the build if it goes over 10 daily runs
