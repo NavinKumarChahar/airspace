@@ -27,22 +27,22 @@ jobs:
 
    
       # 1. LIMIT GATEKEEPER: Instantly fails the build if it goes over 10 daily runs
-      - name: Assert daily run limit
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Get current date in UTC (YYYY-MM-DD)
-          TODAY=$(date -u +'%Y-%m-%d')
+      # - name: Assert daily run limit
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     # Get current date in UTC (YYYY-MM-DD)
+      #     TODAY=$(date -u +'%Y-%m-%d')
           
-          # Count how many times deploy.yml ran today (using valid databaseId field)
-          RUN_COUNT=$(gh run list --workflow "deploy.yml" --created "$TODAY" --json databaseId --jq '. | length')
+      #     # Count how many times deploy.yml ran today (using valid databaseId field)
+      #     RUN_COUNT=$(gh run list --workflow "deploy.yml" --created "$TODAY" --json databaseId --jq '. | length')
           
-          echo "Current workflow runs today: $RUN_COUNT"
+      #     echo "Current workflow runs today: $RUN_COUNT"
           
-          if [ "$RUN_COUNT" -gt 10 ]; then
-            echo "Error: Daily run limit (10) exceeded!"
-            exit 1
-          fi
+      #     if [ "$RUN_COUNT" -gt 10 ]; then
+      #       echo "Error: Daily run limit (10) exceeded!"
+      #       exit 1
+      #     fi
 
 
       # 2. Pull down repository source code
