@@ -39,7 +39,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Web Release
-        run: flutter build web --release --base-href="/" --dart-define-from-file=.env.json
+        run: flutter build web --release --base-href="/asathes.github.io/" --dart-define-from-file=.env.json
 
        Tar- name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
