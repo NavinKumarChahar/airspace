@@ -15,36 +15,52 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. LIMIT GATEKEEPER: Instantly fails the build if it goes over 10 daily runs
+      - name: Assert daily run limit
+        uses: wiry-cow/action-limit-runs@v1
+        with:
+          allowed: 240
+          time-period: 1d
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 2. Pull down repository source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 3. Set up Java environment
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
+      # 4. Install Flutter framework tools
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
+      # 5. Build localized config mapping your secrets
       - name: Create .env.json configuration file
         run: |
           echo '{
             "AppIdAgorra": "${{ secrets.AppIdAgorra }}"
           }' > .env.json
 
+      # 6. Fetch Flutter target libraries
       - name: Install dependencies
         run: flutter pub get
 
+      # 7. Generate release optimized web build
       - name: Build Web Release
-        run: flutter build web --release --base-href="/asathes.github.io/" --dart-define-from-file=.env.json
+        run: flutter build web --release --base-href="/" --dart-define-from-file=.env.json
 
+      # 8. Ship build folder up to GitHub pages staging area
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
+      # 9. Trigger deployment target live updates
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
